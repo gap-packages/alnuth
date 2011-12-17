@@ -204,7 +204,7 @@ InstallGlobalFunction( FieldByMatrixBasisNC, function( gens )
 end );
 
 InstallGlobalFunction( FieldByMatrixBasis, function( gens )
-    local V, mat;
+    local V;
     if not IsFieldByMatrices( gens ) then return fail; fi;
     V := VectorSpace( Rationals, gens );
     # test linear independence

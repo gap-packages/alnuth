@@ -6,7 +6,7 @@ This package provides an interface between GAP 4 and KANT respectively
 KASH, the shell of the computational algebraic number theory system KANT. By
 now the interface can only be used on a Linux system. KASH itself is not part
 of this package.  It has to be obtained and installed independently of this
-package. Alnuth works with KASH version 2.4 or higher.
+package. Alnuth works with KASH version 2.4 or 2.5. 
 
 
 Getting and installing Kash
@@ -21,7 +21,7 @@ of KASH. For the installation of version 2.5 of KASH on a Linux
 system you would do the following steps:
 
 --- Download the files
-    kash_2.5.common.tar.gz and kash_2.5.3.linux.tar.gz
+    kash_2.5.6.common.tar.gz and kash_2.5.7.linux.tar.gz
     into the same directory on your system.
  
 --- Unpack the files using tar.  This will create a directory
@@ -92,7 +92,7 @@ Loading and testing the package
 To use this package you have to request it explicitly. This is done by calling
 
     gap> LoadPackage("alnuth");
-    Loading Alnuth 1.0 ...
+    Loading Alnuth 2.2.2 ...
     true
     gap>
 

@@ -2,6 +2,7 @@
 ##
 #W kantin.gd            Alnuth -  Kant interface                 Bettina Eick
 #W                                                             Bjoern Assmann
+#W                                                            Andreas Distler
 ##
 
 #############################################################################

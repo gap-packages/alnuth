@@ -26,18 +26,18 @@ end);
                                                                                
 #############################################################################
 ##
-#F  FactorsPolynomialKant, function( <H>, <poly> )
+#F  FactorsPolynomialAlgExt, function( <H>, <poly> )
 ##
 ##  Factorizes the rational polynomial <poly> over the field <H>, a proper
 ##  algebraic extension of the rationals, with KANT
 ##
-InstallGlobalFunction( FactorsPolynomialKant, function( H, poly )
-    local faktoren, fak, coeff, c, lcoeff, irf, i;
+InstallGlobalFunction( FactorsPolynomialAlgExt, function( H, poly )
+    local faktoren, irf, i;
 
     if FieldOfPolynomial( poly ) <> Rationals then
         Error( "polynomial has to be defined over the Rationals" );
     fi;
-                          
+
     if H = Rationals then 
         return Factors( poly );
     fi;
@@ -47,11 +47,44 @@ InstallGlobalFunction( FactorsPolynomialKant, function( H, poly )
     if i <> fail  then
         return irf[i][2];
     fi;
-  
+
+    faktoren := FactorsPolynomialKant( AlgExtEmbeddedPol( H, poly ));
+    StoreFactorsAlgExtPol( H, poly, faktoren );
+
+    return faktoren;
+end );
+
+
+#############################################################################
+##
+#F  FactorsPolynomialKant, function( <poly> )
+##
+##  Factorizes the polynomial <poly> defined over an algebraic extension of
+##  the rationals with KANT
+##  As a method of 'Factors' ?
+##
+InstallGlobalFunction( FactorsPolynomialKant, function( poly )
+    local faktoren, fak, coeff, c, lcoeff, irf, i, coeffs, H;
+
+    H := CoefficientsRing( DefaultRing( poly ));
+    irf := IrrFacsAlgExtPol( poly );
+
+    i := PositionProperty( irf, k -> k[1] = H );
+    if i <> fail  then
+        return irf[i][2];
+    fi;
+
+    if DegreeOfLaurentPolynomial( poly ) < 2 then
+        faktoren := [ poly ];
+        StoreFactorsPol( H, poly, faktoren );
+        return faktoren;
+    fi;
+      
     faktoren := [ ];
     lcoeff := LeadingCoefficient( poly );
-    poly := poly / lcoeff;
-    for fak in PolynomialFactorsDescriptionKant(poly,DefiningPolynomial(H)) do
+    coeffs := CoefficientsOfUnivariatePolynomial( poly / lcoeff );
+    coeffs := List( Reversed( coeffs ), ExtRepOfObj );
+    for fak in PolynomialFactorsDescriptionKant( H, coeffs ) do
         coeff := [ ];
         for c in Reversed( fak ) do
             if ( c in Rationals ) then
@@ -63,7 +96,7 @@ InstallGlobalFunction( FactorsPolynomialKant, function( H, poly )
         Add( faktoren, UnivariatePolynomial( H, One(H)*coeff ) );
     od;
     faktoren[1] := lcoeff * faktoren[1];
-    StoreFactorsAlgExtPol( H, poly, faktoren );
+    StoreFactorsPol( H, poly, faktoren );
 
     return faktoren;
 end );

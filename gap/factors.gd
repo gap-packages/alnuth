@@ -11,6 +11,7 @@
 ##  Factorizes the polynomial <poly> over the field <H> with KANT
 ##
 DeclareGlobalFunction( "FactorsPolynomialKant" );
+DeclareGlobalFunction( "FactorsPolynomialAlgExt" );
 
 DeclareAttribute( "IrrFacsAlgExtPol", IsUnivariatePolynomial, "mutable" );
 

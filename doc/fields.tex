@@ -165,7 +165,7 @@ requirements.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \Section{Factorisation of polynomials over a number field}
 
-\> FactorsPolynomialKant( <F>, <pol> )
+\> FactorsPolynomialAlgExt( <F>, <pol> )
 
 embeds the rational polynomial <pol> into the polynomial ring over the
 number field <F>, which has to be constructed by `FieldByPolynomial'
@@ -174,6 +174,11 @@ polynomial.  By default <a> denotes the primitive element of the field
 one can obtain from `PrimitiveElement(<F>)', i. e. a root of the
 defining polynomial of <F>. 
 
+\> FactorsPolynomialKant( <pol> )
+
+takes a polynomial <pol> defined over an algebraic extension of the
+Rationals and factors it using KANT.
+
 \beginexample
 gap> x := Indeterminate( Rationals, "x" );;
 gap> pol := 2*x^7+2*x^5+8*x^4+8*x^2;
@@ -181,8 +186,11 @@ gap> pol := 2*x^7+2*x^5+8*x^4+8*x^2;
 gap> L := FieldByPolynomial( x^3-4 );
 <algebraic extension over the Rationals of degree 3>
 gap> y := Indeterminate( L, "y" );;
-gap> FactorsPolynomialKant( L, pol );
+gap> FactorsPolynomialAlgExt( L, pol );
 [ !2*y, y, y+(a), y^2+!1, y^2+((-1*a))*y+(a^2) ]
+gap> FactorsPolynomialKant( last[5] );
+[ y^2+((-1*a))*y+(a^2) ]
+gap>
 \endexample
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

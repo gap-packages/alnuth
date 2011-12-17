@@ -1,14 +1,12 @@
-# compute factors of poly defined by coeffs over Q_f
+# compute factors of poly over Q_f
 o := Order( f );
-ox := PolyAlg( o );
-
-for i in [1..Length(coeffs)] do
-    coeffs[i] := Elt( o, coeffs[i] );
-od;
-
-pol := Poly( ox, coeffs );
-faktoren := PolyFactor( pol );
 zeit := time;
+oe := OrderEquationOrder( o );
+zeit := zeit + time;
+pol := PolyMove( poly, oe );
+zeit := zeit + time;
+faktoren := PolyFactor( pol );
+zeit := zeit + time;
 
 # print it to file
 PrintTo(outt," KANTVars := [ \n");

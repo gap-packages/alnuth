@@ -90,7 +90,7 @@ InstallGlobalFunction( FactorsPolynomialKant, function( poly )
             if ( c in Rationals ) then
                 Add( coeff, c );
             else
-                Add( coeff, LinearCombination( Basis(H), c ) );
+                Add( coeff, LinearCombination( EquationOrderBasis(H), c ) );
             fi;
         od;
         Add( faktoren, UnivariatePolynomial( H, One(H)*coeff ) );

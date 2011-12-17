@@ -38,6 +38,7 @@ gap> RelationLattice( F, mats );
   [ 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 2 ],
   [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0 ],
   [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 2, -3 ] ]
+gap> # factorisation tests
 gap> pol := UnivariatePolynomial( Rationals, [0,0,8,0,8,2,0,2] );
 2*x_1^7+2*x_1^5+8*x_1^4+8*x_1^2
 gap> f := UnivariatePolynomial( Rationals, [-4,0,0,1] );
@@ -46,6 +47,15 @@ gap> L := FieldByPolynomial( f );
 <algebraic extension over the Rationals of degree 3>
 gap> FactorsPolynomialAlgExt( L, pol );
 [ !2*x_1, x_1, x_1+(a), x_1^2+!1, x_1^2+((-1*a))*x_1+(a^2) ]
+gap> pol := UnivariatePolynomial( Rationals, [ 1, 3, 2, -1, 2, 3, 1 ] );
+x_1^6+3*x_1^5+2*x_1^4-x_1^3+2*x_1^2+3*x_1+1
+gap> f := UnivariatePolynomial( Rationals,[ 11/64, 59/16, -7/4, 1 ] );
+x_1^3-7/4*x_1^2+59/16*x_1+11/64
+gap> L := FieldByPolynomial( f );
+<algebraic extension over the Rationals of degree 3>
+gap> FactorsPolynomialAlgExt( L, pol );
+[ x_1^2+x_1+((1/4-1*a)), x_1^2+((-21/16+3/2*a-1*a^2))*x_1+!1, 
+  x_1^2+((53/16-3/2*a+a^2))*x_1+((53/16-3/2*a+a^2)) ]
 gap> STOP_TEST( "ALNUTH.tst", 100000);   
 
 

@@ -7,8 +7,8 @@ SetPackageInfo( rec(
 
 PackageName := "Alnuth",
 Subtitle := "Algebraic number theory and an interface to KANT",
-Version := "2.2.4",
-Date := "17/06/2007",
+Version := "2.2.5",
+Date := "10/07/2007",
 
 ArchiveURL := Concatenation([ 
 "http://www.cs.st-and.ac.uk/~bjoern/software/Alnuth/Alnuth-", 

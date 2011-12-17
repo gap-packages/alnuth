@@ -1,0 +1,122 @@
+
+The GAP 4 package `Alnuth'
+========================
+
+This package provides an interface between GAP 4 and KASH, the shell
+of the computational algebraic number theory system KANT.  KASH itself
+is not part of this package.  It has to be obtained and installed
+independently of this package.  
+
+
+Getting and installing Kash
+===========================
+
+Kash is available at 
+
+           http://www.math.tu-berlin.de/~kant/download.html
+
+Note that you have to download two files for a complete installation
+of Kash.  For the installation of version 2.4 of Kash on a Linux
+system you would do the following steps:
+
+--- download the files  
+    kash_2.4.common.tar.gz and kash_2.4.1.linux.tar.gz
+    into the same directory on your system.
+    
+--- unpack the files using tar.  This will create a directory
+    KASH_2.4 containing among other files the Kash executable called
+    kash.  The place where Kash is put is independent of the place
+    where the Alnuth package is installed.
+
+
+Installing this package
+=======================
+
+This package is available at 
+
+      http://cayley.math.nat.tu-bs.de/software/assmann/Alnuth
+     
+in form of a gzipped tar-archive and as an uncompressed tar-archive.
+
+There are two ways of installing the package.  If you have permission
+to add files to the installation of GAP 4 on your system you may
+install the Alnuth package into the pkg subdirectory of the GAP
+installation tree.  If you do not have the permission to do that you
+may install the Alnuth package in your private area.
+
+--  Installation in the GAP 4 pkg subdirectory on a Unix system.
+
+    We assume that the archive file alnuth.tar.gz or alnuth.tar is
+    present in pkg and that the current directory is pkg.  All that needs
+    to be done is to unpack the archive.
+
+    bash> tar xfz alnuth.tar.gz        # for the gzipped tar-archive
+    bash> tar xf alnuth.tar            # for the uncompressed tar-archive
+    bash> gap4
+    [... startup messages ...]
+    gap> RequirePackage("alnuth");
+    true
+    gap>     
+
+    Now edit the file alnuth/read.g and change the line
+
+    KANTEXEC := "kash"
+
+    to something like 
+
+    KANTEXEC := "<mykash>/kash -l <mykash>/lib"
+
+    where <mykash> needs to be replaced with the directory where kash
+    was installed.
+
+--  Installation in a private directory
+
+    We assume that we are in a directory called  <mygap>  which also
+    contains the archive file of the Alnuth package.
+
+    bash> mkdir pkg
+    bash> mv alnuth.tar.gz pkg
+    bash> tar xfz alnuth.tar.gz
+
+    Now edit the file alnuth/read.g and change the line
+
+    KANTEXEC := "kash"
+
+    to something like 
+
+    KANTEXEC := "<mykash>/kash -l <mykash>/lib"
+
+    where <mykash> needs to be replaced with the directory where kash
+    was installed.
+
+    When you start GAP 4 you have to use the option -l in the
+    following manner:
+
+    gap4 -l ";<mygap>"
+
+    Note the semicolon!  It is imortant to have it there.  The effect
+    is that the directory <mygap> is appended to the list of
+    directories which GAP searches for input data.  Note that you do
+    not say <mygap>/pkg.
+
+--  Running the test suite
+
+    Once the package is installed, it is possible to check the correct
+    installation by running the test suite of the package. 
+
+    gap> Read( "<mygap>/pkg/alnuth/tst/testall.g" );
+
+    where <mygap> needs to be replaced with the directory where gap
+    was installed.
+
+   
+
+
+
+
+
+
+
+
+
+

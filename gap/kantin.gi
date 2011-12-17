@@ -39,7 +39,7 @@ InstallGlobalFunction( TestKantExecutable, function( path )
         libstr := path{[1..Length(path)-PositionSublist(Reversed(path),"/")]};
         libstr := Concatenation( libstr, "/lib/" );
         str := "";
-        Process( DirectoryCurrent( ), path, InputTextNone( ),
+        Process( DirectoryTemporary( ), path, InputTextNone( ),
                  OutputTextString( str, false ), [ "-l", libstr ] );
         path := Concatenation( path, " -l ", libstr );
     fi;
@@ -100,7 +100,7 @@ end );
 #F PrintPolynomialToFile( arg )
 ##
 PrintPolynomialToFile := function( arg )
-    local c, i, file, f;
+    local c, f, file, i, name;
     file := arg[1];
     f := arg[2];
     if Length( arg ) > 2 then
@@ -129,13 +129,15 @@ MaximalOrderDescriptionKant := function( F )
     # test, wether KANTEXEC is set
     if KANTEXEC = fail then
         Error( "KANTEXEC, the executable for Kant, has to be set" );
+    elif KANTOUTPUT = fail then
+        Error( "Creation of the temporary directory KANTOUPUT failed" );
     fi; 
 
     # get the path to the kant directory
-    file := Concatenation( KANTOUTPUT, "kant.tmp" );
-    inpt := Concatenation( KANTOUTPUT, "kant.input" );
-    outt := Concatenation( KANTOUTPUT, "kant.output");
-    trsh := Concatenation( KANTOUTPUT, "kant.trash");
+    file := Filename( KANTOUTPUT, "kant.tmp" );
+    inpt := Filename( KANTOUTPUT, "kant.input" );
+    outt := Filename( KANTOUTPUT, "kant.output");
+    trsh := Filename( KANTOUTPUT, "kant.trash");
 
     # compute generating polynomial and print it
     f := IntegerDefiningPolynomial( F );
@@ -152,7 +154,10 @@ MaximalOrderDescriptionKant := function( F )
     Read(outt);
 
     # delete junk
-    Exec(Concatenation("rm ",inpt," ",outt," ",file," ",trsh));
+    RemoveFile( file );
+    RemoveFile( inpt );
+    RemoveFile( outt );
+    RemoveFile( trsh );
 
     # return info
     return KANTVars;
@@ -170,13 +175,15 @@ UnitGroupDescriptionKant := function( F )
     # test, wether KANTEXEC is set
     if KANTEXEC = fail then
         Error( "KANTEXEC, the executable for Kant, has to be set" );
+    elif KANTOUTPUT = fail then
+        Error( "Creation of the temporary directory KANTOUPUT failed" );
     fi; 
 
     # get the path to the kant directory
-    file := Concatenation( KANTOUTPUT, "kant.tmp" );
-    inpt := Concatenation( KANTOUTPUT, "kant.input" );
-    outt := Concatenation( KANTOUTPUT, "kant.output");
-    trsh := Concatenation( KANTOUTPUT, "kant.trash");
+    file := Filename( KANTOUTPUT, "kant.tmp" );
+    inpt := Filename( KANTOUTPUT, "kant.input" );
+    outt := Filename( KANTOUTPUT, "kant.output");
+    trsh := Filename( KANTOUTPUT, "kant.trash");
 
     # compute generating polynomial and print it
     f := IntegerDefiningPolynomial( F );
@@ -193,7 +200,10 @@ UnitGroupDescriptionKant := function( F )
     Read(outt);
 
     # delete junk
-    Exec(Concatenation("rm ",inpt," ",outt," ",file," ",trsh));
+    RemoveFile( file );
+    RemoveFile( inpt );
+    RemoveFile( outt );
+    RemoveFile( trsh );
 
     # return
     return KANTVars;
@@ -212,13 +222,15 @@ ExponentsOfUnitsDescriptionKant := function( F, elms )
     # test, wether KANTEXEC is set
     if KANTEXEC = fail then
         Error( "KANTEXEC, the executable for Kant, has to be set" );
+    elif KANTOUTPUT = fail then
+        Error( "Creation of the temporary directory KANTOUPUT failed" );
     fi; 
 
     # get the path to the kant directory
-    file := Concatenation( KANTOUTPUT, "kant.tmp" );
-    inpt := Concatenation( KANTOUTPUT, "kant.input" );
-    outt := Concatenation( KANTOUTPUT, "kant.output");
-    trsh := Concatenation( KANTOUTPUT, "kant.trash");
+    file := Filename( KANTOUTPUT, "kant.tmp" );
+    inpt := Filename( KANTOUTPUT, "kant.input" );
+    outt := Filename( KANTOUTPUT, "kant.output");
+    trsh := Filename( KANTOUTPUT, "kant.trash");
     
     # compute generating polynomial
     f := IntegerDefiningPolynomial( F );
@@ -243,9 +255,11 @@ ExponentsOfUnitsDescriptionKant := function( F, elms )
     Info( InfoAlnuth, 3, "KANTVart");
     Info( InfoAlnuth, 3, KANTVars);
 
-
     # delete junk
-    Exec(Concatenation("rm ",inpt," ",outt," ",file," ",trsh));
+    RemoveFile( file );
+    RemoveFile( inpt );
+    RemoveFile( outt );
+    RemoveFile( trsh );
 
     # return unit group and exponents
     return rec( units := KANTVars, expns := KANTVart );
@@ -263,13 +277,15 @@ ExponentsOfUnitsDescriptionWithRankKant := function( F, elms )
     # test, wether KANTEXEC is set
     if KANTEXEC = fail then
         Error( "KANTEXEC, the executable for Kant, has to be set" );
+    elif KANTOUTPUT = fail then
+        Error( "Creation of the temporary directory KANTOUPUT failed" );
     fi; 
 
     # get the path to the kant directory
-    file := Concatenation( KANTOUTPUT, "kant.tmp" );
-    inpt := Concatenation( KANTOUTPUT, "kant.input" );
-    outt := Concatenation( KANTOUTPUT, "kant.output");
-    trsh := Concatenation( KANTOUTPUT, "kant.trash");
+    file := Filename( KANTOUTPUT, "kant.tmp" );
+    inpt := Filename( KANTOUTPUT, "kant.input" );
+    outt := Filename( KANTOUTPUT, "kant.output");
+    trsh := Filename( KANTOUTPUT, "kant.trash");
     
     # compute generating polynomial
     f := IntegerDefiningPolynomial( F );
@@ -297,7 +313,10 @@ ExponentsOfUnitsDescriptionWithRankKant := function( F, elms )
 
     # delete junk
     if InfoLevel( InfoAlnuth ) < 3 then
-        Exec(Concatenation("rm ",inpt," ",outt," ",file," ",trsh));
+        RemoveFile( file );
+        RemoveFile( inpt );
+        RemoveFile( outt );
+        RemoveFile( trsh );
     fi;
 
     # return unit group and exponents
@@ -320,13 +339,15 @@ ExponentsOfFractionalIdealDescriptionKant := function( F, elms )
     # test, wether KANTEXEC is set
     if KANTEXEC = fail then
         Error( "KANTEXEC, the executable for Kant, has to be set" );
+    elif KANTOUTPUT = fail then
+        Error( "Creation of the temporary directory KANTOUPUT failed" );
     fi; 
 
     # get the path to the kant directory
-    file := Concatenation( KANTOUTPUT, "kant.tmp" );
-    inpt := Concatenation( KANTOUTPUT, "kant.input" );
-    outt := Concatenation( KANTOUTPUT, "kant.output");
-    trsh := Concatenation( KANTOUTPUT, "kant.trash");
+    file := Filename( KANTOUTPUT, "kant.tmp" );
+    inpt := Filename( KANTOUTPUT, "kant.input" );
+    outt := Filename( KANTOUTPUT, "kant.output");
+    trsh := Filename( KANTOUTPUT, "kant.trash");
     
     # compute generating polynomial
     f := IntegerDefiningPolynomial( F );
@@ -348,7 +369,10 @@ ExponentsOfFractionalIdealDescriptionKant := function( F, elms )
     Read(outt);
 
     # delete junk
-    Exec(Concatenation("rm ",inpt," ",outt," ",file," ",trsh));
+    RemoveFile( file );
+    RemoveFile( inpt );
+    RemoveFile( outt );
+    RemoveFile( trsh );
 
     # return unit group and exponents
     return KANTVars;
@@ -366,13 +390,15 @@ NormCosetsDescriptionKant := function( F, norm )
     # test, wether KANTEXEC is set
     if KANTEXEC = fail then
         Error( "KANTEXEC, the executable for Kant, has to be set" );
+    elif KANTOUTPUT = fail then
+        Error( "Creation of the temporary directory KANTOUPUT failed" );
     fi; 
 
     # get the path to the kant directory
-    file := Concatenation( KANTOUTPUT, "kant.tmp" );
-    inpt := Concatenation( KANTOUTPUT, "kant.input" );
-    outt := Concatenation( KANTOUTPUT, "kant.output");
-    trsh := Concatenation( KANTOUTPUT, "kant.trash");
+    file := Filename( KANTOUTPUT, "kant.tmp" );
+    inpt := Filename( KANTOUTPUT, "kant.input" );
+    outt := Filename( KANTOUTPUT, "kant.output");
+    trsh := Filename( KANTOUTPUT, "kant.trash");
 
     # compute generating polynomial and print it
     f := IntegerDefiningPolynomial( F );
@@ -390,7 +416,10 @@ NormCosetsDescriptionKant := function( F, norm )
     Read(outt);
 
     # delete junk
-    Exec(Concatenation("rm ",inpt," ",outt," ",file," ",trsh));
+    RemoveFile( file );
+    RemoveFile( inpt );
+    RemoveFile( outt );
+    RemoveFile( trsh );
 
     # return unit group and exponents
     return rec( units := KANTVars, creps := KANTVart );
@@ -409,14 +438,15 @@ InstallGlobalFunction( PolynomialFactorsDescriptionKant, function( F, coeffs )
     # test, wether KANTEXEC is set
     if KANTEXEC = fail then
         Error( "KANTEXEC, the executable for Kant, has to be set" );
+    elif KANTOUTPUT = fail then
+        Error( "Creation of the temporary directory KANTOUPUT failed" );
     fi; 
 
     # get the path to the kant directory
-    tmpdir := DirectoryTemporary( );
-    file := Filename( tmpdir, "kant.tmp" );
-    inpt := Filename( tmpdir, "kant.input" );
-    outt := Filename( tmpdir, "kant.output");
-    trsh := Filename( tmpdir, "kant.trash");
+    file := Filename( KANTOUTPUT, "kant.tmp" );
+    inpt := Filename( KANTOUTPUT, "kant.input" );
+    outt := Filename( KANTOUTPUT, "kant.output");
+    trsh := Filename( KANTOUTPUT, "kant.trash");
                                                                                
     # print the polynomial
     f := IntegerDefiningPolynomial( F );
@@ -440,7 +470,10 @@ InstallGlobalFunction( PolynomialFactorsDescriptionKant, function( F, coeffs )
     Unbind( KANTVars[ Length( KANTVars ) ] ); 
                                                                                
     # delete junk
-    Exec( "rm -r ", Filename( tmpdir, "" ));
+    RemoveFile( file );
+    RemoveFile( inpt );
+    RemoveFile( outt );
+    RemoveFile( trsh );
 
     # return info
     return KANTVars;

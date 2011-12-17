@@ -1,10 +1,8 @@
 #############################################################################
 ##
-#W    init.g       Alnuth -  Kant interface                      Bettina Eick
+#W    init.g       Alnuth -  Kant interface                 Andreas Distler 
+#W                                                             Bettina Eick
 ##
-
-DeclarePackage( "alnuth", "2.2.5", function() return true; end );
-DeclarePackageDocumentation( "alnuth", "doc" );
 
 #############################################################################
 ##
@@ -16,7 +14,4 @@ ReadPkg("alnuth/gap/kantin.gd");
 
 #############################################################################
 ##
-#R  read other packages
-##
-RequirePackage("polycyclic");
-
+#E

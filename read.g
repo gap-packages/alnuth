@@ -1,6 +1,7 @@
 #############################################################################
 ##
 #W    read.g         Alnuth - Kant Interface                     Bettina Eick
+##                                                            Andreas Distler
 ##
 
 #############################################################################
@@ -8,7 +9,7 @@
 #R alnuth global variables
 ##
 if not IsBound( KANTOUTPUT ) then 
-    KANTOUTPUT := "/tmp/"; 
+    KANTOUTPUT := DirectoryTemporary( ); 
 fi;
 
 if not IsBound( ALNUTHPATH ) then 

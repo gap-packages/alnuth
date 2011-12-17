@@ -91,7 +91,7 @@ Loading and testing the package
 
 To use this package you have to request it explicitly. This is done by calling
 
-    gap> LoadingPackage("alnuth");
+    gap> LoadPackage("alnuth");
     Loading Alnuth 1.0 ...
     true
     gap>

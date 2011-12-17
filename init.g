@@ -1,16 +1,17 @@
 #############################################################################
 ##
-#W    init.g       Alnuth -  Kant interface                 Andreas Distler 
-#W                                                             Bettina Eick
+#W  init.g          Alnuth - ALgebraic NUmber THeory           Bettina Eick
+#W                                                          Andreas Distler
 ##
 
 #############################################################################
 ##
 #R  read .gd files
 ##
-ReadPkg("alnuth/gap/factors.gd");
-ReadPkg("alnuth/gap/field.gd");
-ReadPkg("alnuth/gap/kantin.gd");
+ReadPackage("alnuth", "gap/setup.gd");
+ReadPackage("alnuth", "gap/factors.gd");
+ReadPackage("alnuth", "gap/field.gd");
+ReadPackage("alnuth", "gap/kantin.gd");
 
 #############################################################################
 ##

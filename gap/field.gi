@@ -1,7 +1,8 @@
 ############################################################################
 ##
-#W  field.gi            Alnuth - Kant interface                 Bettina Eick
-#W       					               Bjoern Assmann
+#W  field.gi       Alnuth - ALgebraic NUmber THeory           Bettina Eick
+#W       					            Bjoern Assmann
+#W       					           Andreas Distler
 ##
 
 #############################################################################
@@ -39,11 +40,28 @@ function( F )
                                           IntegerPrimitiveElement( F ) ) ) ;
 end );
 
+
+InstallMethod( IsPrimitiveElementOfNumberField, 
+"for number field and algebraic element", true, [ IsNumberField, IsObject ], 0, 
+function( F, elm )
+    local d, g;
+
+    if not elm in F then
+        Info( InfoAlnuth, 1, "Element does not lie in the field." );
+        return false;
+    fi;
+
+    d := DegreeOverPrimeField( F );
+    g := MinimalPolynomial( Rationals, elm );
+
+    return Degree(g) = d;
+end );
+ 
+
 InstallOtherMethod( EquationOrderBasis,
-"for number field and primitive element", 
-true, [IsNumberField, IsObject ], 0, 
+"for number field and primitive element", true, [IsNumberField, IsObject ], 0, 
 function( F , elm )
-    if not IsPrimitiveElement( F, elm ) then
+    if not IsPrimitiveElementOfNumberField( F, elm ) then
         return fail;
     fi; 
     return RelativeBasisNC(Basis( F ), 
@@ -63,7 +81,7 @@ function( F )
         return EquationOrderBasis(F);
     fi;
     e := EquationOrderBasis(F);
-    T := MaximalOrderDescriptionKant(F);
+    T := MaximalOrderDescriptionPari(F);
     b := List( T, x -> LinearCombination( e, x ) );
     B := Objectify(NewType(FamilyObj(F), IsFiniteBasisDefault and
                                          IsRelativeBasisDefaultRep),
@@ -100,10 +118,8 @@ AddNaturalHomomorphismOfUnitGroup := function( G )
 
     # add infos
     SetIsBijective( nat, true );
-    SetIsMapping( nat, true );
-    SetKernelOfMultiplicativeGeneralMapping( nat, true );
     SetIsUnitGroupIsomorphism( nat, true );
-    G!.nathom := nat;
+    SetIsomorphismPcpGroup( G, nat );
 end;
 
 AddUnitGroupOfNumberField := function( F, units )
@@ -128,7 +144,7 @@ UnitGroupOfNumberField := function( F )
 
     # determine generators
     eqn := EquationOrderBasis(F);
-    uni := UnitGroupDescriptionKant(F);
+    uni := UnitGroupDescriptionPari(F);
     if uni=[-1] then
         G:=GroupByGenerators([-1*eqn[1]]);
     else
@@ -187,7 +203,7 @@ ExponentsOfUnitsOfNumberField := function( F, elms )
     # determine exponents
     base := EquationOrderBasis( F );
     coef := List( elms, x -> Coefficients( base, x ) );
-    exps := ExponentsOfUnitsDescriptionKant( F, coef );
+    exps := ExponentsOfUnitsDescriptionWithRankPari( F, coef );
 
     # add unit group if this is not yet known
     gens := List( exps.units, x -> LinearCombination( base, x ) );
@@ -215,7 +231,7 @@ ExponentsOfUnitsWithRank := function( F, elms )
     # determine exponents
     base := EquationOrderBasis( F );
     coef := List( elms, x -> Coefficients( base, x ) );
-    exps := ExponentsOfUnitsDescriptionWithRankKant( F, coef );
+    exps := ExponentsOfUnitsDescriptionWithRankPari( F, coef );
 
     # add unit group if this is not yet known
     gens := List( exps.units, x -> LinearCombination( base, x ) );
@@ -237,7 +253,7 @@ InstallGlobalFunction( NormCosetsOfNumberField, function( F, norm )
 
     # get representatives mod unit group
     base := EquationOrderBasis( F );
-    reps := NormCosetsDescriptionKant( F, norm );
+    reps := NormCosetsDescriptionPari( F, norm );
 
     # add unit group if this is not yet known
     gens := List( reps.units, x -> LinearCombination( base, x ) );

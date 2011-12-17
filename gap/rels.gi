@@ -1,6 +1,6 @@
 #############################################################################
 ##
-#W rels.gi             Alnuth -  Kant Interface                Bjoern Assmann
+#W rels.gi          Alnuth - ALgebraic NUmber THeory         Bjoern Assmann
 ##
 
 #############################################################################
@@ -117,7 +117,7 @@ ExponentsOfFractionalIdealDescription:= function( F, elms )
     # determine exponents
     base := EquationOrderBasis( F );
     coef := List( elms, x -> Coefficients( base, x ) );
-    exps := ExponentsOfFractionalIdealDescriptionKant( F, coef );
+    exps := ExponentsOfFractionalIdealDescriptionPari( F, coef );
 
     # return exponents
     return exps;

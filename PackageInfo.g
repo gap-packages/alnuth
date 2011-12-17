@@ -7,10 +7,10 @@ SetPackageInfo( rec(
 
 PackageName := "Alnuth",
 Subtitle := "Algebraic number theory and an interface to KANT",
-Version := "2.1.3",
-Date := "09/08/2005",
+Version := "2.2.0",
+Date := "02/09/2006",
 
-ArchiveURL := "http://www.icm.tu-bs.de/ag_algebra/software/assmann/Alnuth/Alnuth-2.1.3",
+ArchiveURL := "http://www.icm.tu-bs.de/ag_algebra/software/assmann/Alnuth/Alnuth-2.2.0",
 ArchiveFormats := ".tar.gz",
 
 
@@ -22,6 +22,20 @@ Persons := [
       IsAuthor      := true,
       IsMaintainer  := true,
       Email         := "BjoernAssmann@gmx.net",
+      WWWHome       := "http://www.dcs.st-and.ac.uk/~bjoern",
+      PostalAddress := Concatenation( [
+            "Mathematical Institute\n",
+            "University of St. Andrews\n",
+            "North Haugh\n St. Andrews, Fife, KY16 9SS\n Scotland, UK" ] ),
+      Place         := "St. Andrews",
+      Institution   := "University of St. Andrews"),
+
+  rec(
+      LastName      := "Distler",
+      FirstNames    := "Andreas",
+      IsAuthor      := true,
+      IsMaintainer  := true,
+      Email         := "a.distler@tu-bs.de",
       #WWWHome       := "http://www.tu-bs.de/~beick",
       PostalAddress := Concatenation( [
             "Mathematical Institute\n",
@@ -37,20 +51,6 @@ Persons := [
       IsMaintainer  := true,
       Email         := "b.eick@tu-bs.de",
       WWWHome       := "http://www.tu-bs.de/~beick",
-      PostalAddress := Concatenation( [
-            "Institut Computational Mathematics\n",
-            "TU Braunschweig\n",
-            "Pockelsstr. 14\n D-38106 Braunschweig\n Germany" ] ),
-      Place         := "Braunschweig",
-      Institution   := "TU Braunschweig"),
-
-  rec(
-      LastName      := "Distler",
-      FirstNames    := "Andreas",
-      IsAuthor      := true,
-      IsMaintainer  := true,
-      Email         := "a.distler@tu-bs.de",
-      #WWWHome       := "http://www.tu-bs.de/~beick",
       PostalAddress := Concatenation( [
             "Institut Computational Mathematics\n",
             "TU Braunschweig\n",
@@ -85,11 +85,13 @@ Dependencies := rec(
   GAP := ">= 4.3fix4",
   NeededOtherPackages := [[ "polycyclic", ">=1.1" ]],
   SuggestedOtherPackages := [], 
-  ExternalConditions := ["needs KANT/KASH Computer Algebra System \
-  Version 2.4"] ),
+  ExternalConditions := 
+[["needs KANT/KASH Computer Algebra System Version 2.4 or 2.5",
+"http://www.math.tu-berlin.de/~kant/" ] ]
+),
 
 AvailabilityTest := ReturnTrue,
-BannerString := "Loading Alnuth 2.1.3 ... \n",
+BannerString := "Loading Alnuth 2.2.0 ... \n",
 Autoload := true,
 TestFile := "tst/testall.g",
 Keywords := ["algebraic number theory", "number field" , "maximal order", "interface to KANT", "unit group", "elements of given norm" ]

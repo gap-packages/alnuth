@@ -5,10 +5,57 @@
 ##
 
 #############################################################################
+##
+#F ListElmPower( range, elm )
+#M EquationOrderBasis( F )
+##
+ListElmPower := function( range, elm )
+    local list, i;
+
+    if not IsRange( range ) then
+        Error( "<range> has to be a range" );
+    fi;
+
+    # trivial cases
+    if IsEmpty( range ) then
+        return [ ];
+    elif Length( range ) = 1 then
+        return [ elm ^ range[1] ];
+    fi;
+
+    list := [ elm ^ range[1] ];
+    elm := elm ^ (range[2] - range[1]);
+    for i in [ 1..Length( range ) - 1 ] do
+        Add( list, list[i] * elm );
+    od;
+    return list;
+end;   
+
+InstallMethod( EquationOrderBasis, "for number field", true,
+[IsNumberField], 0, 
+function( F ) 
+    return RelativeBasisNC( Basis( F ), 
+                            ListElmPower( [ 0..DegreeOverPrimeField( F )-1 ],
+                                          IntegerPrimitiveElement( F ) ) ) ;
+end );
+
+InstallOtherMethod( EquationOrderBasis,
+"for number field and primitive element", 
+true, [IsNumberField, IsObject ], 0, 
+function( F , elm )
+    if not IsPrimitiveElement( F, elm ) then
+        return fail;
+    fi; 
+    return RelativeBasisNC(Basis( F ), 
+                           ListElmPower([0..DegreeOverPrimeField(F)-1],elm));
+end );
+
+
+#############################################################################
 ## 
 #M MaximalOrderBasis( F )
 ##  
-InstallMethod(MaximalOrderBasis, "for numberfield", true,[IsNumberField], 0, 
+InstallMethod(MaximalOrderBasis, "for number field", true,[IsNumberField], 0, 
 function( F ) 
     local e, T, b, B;
   
@@ -18,11 +65,13 @@ function( F )
     e := EquationOrderBasis(F);
     T := MaximalOrderDescriptionKant(F);
     b := List( T, x -> LinearCombination( e, x ) );
-    B := Objectify(NewType(FamilyObj(F), IsBasisOfNumberField), rec());
+    B := Objectify(NewType(FamilyObj(F), IsFiniteBasisDefault and
+                                         IsRelativeBasisDefaultRep),
+                           rec());
     SetUnderlyingLeftModule( B, F );
     SetBasisVectors( B, b );
-    SetUnderlyingBasis( B, e );
-    SetTranslationMat( B, T^-1 );
+    B!.basis := e;
+    B!.basechangeMatrix := Immutable( T^-1 );
     return B;
 end );
 
@@ -110,14 +159,30 @@ end );
 
 #############################################################################
 ##
+#F AL_ExponentsTrivialUnits( unit, one )
 #F ExponentsOfUnitsOfNumberField( F, elms )
 #M ExponentsOfUnits( F, elms )
 ##
+AL_ExponentsTrivialUnits := function( unit, one ) 
+    if unit = one then
+        return [ 0 ];
+    else
+        return [ 1 ];
+    fi;
+end;
+
 ExponentsOfUnitsOfNumberField := function( F, elms )
-    local base, flat, coef, exps, gens;
+    local base, coef, exps, gens;
 
     # catch a trivial case
-    if IsPrimeField(F) then return List( elms, x -> Norm( F, x ) ); fi;
+    if IsPrimeField(F) then 
+        # check whether all elements are units
+        if ForAny( elms, x -> not x in [ One( F ), -One( F ) ] ) then
+            return fail;
+        fi;
+        # return [ 0 ] for One( F ) and [ 1 ] for -One( F )
+        return List( elms, x -> AL_ExponentsTrivialUnits( x, One( F )));
+    fi; 
 
     # determine exponents
     base := EquationOrderBasis( F );
@@ -129,7 +194,11 @@ ExponentsOfUnitsOfNumberField := function( F, elms )
     AddUnitGroupOfNumberField( F, gens );
 
     # return exponents
-    return exps.expns;
+    if exps.expns = [ ] then 
+        return fail;
+    else
+        return exps.expns;
+    fi;
 end;
 
 InstallMethod( ExponentsOfUnits, "for number fields", true,
@@ -180,7 +249,7 @@ end );
 
 #############################################################################
 ##
-#F IsCyclotomicField( F )
+#M IsCyclotomicField( F )
 ##
 InstallMethod( IsCyclotomicField, "for number fields", true,
 [IsNumberField], 0, function( F )

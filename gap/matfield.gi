@@ -145,6 +145,9 @@ IsFieldByMatrices := function( gens )
     if ForAny( gens, x -> Length(x) <> d ) then 
         Print("matrices must have same dimensions\n");
         return false;
+    elif not ForAll( Flat( gens ), IsRat ) then
+        Print("matrices must be rational\n");
+        return false; 
     elif ForAny( gens, x -> RankMat(x) <> d ) then 
         Print("matrices must be invertible \n");
         return false;
@@ -177,8 +180,11 @@ InstallGlobalFunction( FieldByMatricesNC, function( gens )
 end );  
 
 InstallGlobalFunction( FieldByMatrices, function( gens )
+    local F;
     if not IsFieldByMatrices( gens ) then return fail; fi;
-    return FieldByMatricesNC( gens );
+    F := FieldByMatricesNC( gens );
+    DegreeOverPrimeField( F );
+    return F;
 end );
 
 
@@ -193,11 +199,25 @@ InstallGlobalFunction( FieldByMatrixBasisNC, function( gens )
     SetUnderlyingLeftModule( B, F );
     SetBasisVectors( B, gens );
     SetBasis( F, B );
+    DegreeOverPrimeField( F );
     return F;
 end );
 
 InstallGlobalFunction( FieldByMatrixBasis, function( gens )
+    local V, mat;
     if not IsFieldByMatrices( gens ) then return fail; fi;
+    V := VectorSpace( Rationals, gens );
+    # test linear independence
+    if Length( Basis( V )) < Length( gens ) then
+        Print("matrices must be linearly independent\n"); 
+        return fail;
+    fi;
+    # test whether V = Field( gens )
+    if Length( AlgebraBase( gens )) > Length( gens ) then
+            Print("dimension of generated field is greater than vector space dimension\n"); 
+            return fail; 
+    fi;
+
     return FieldByMatrixBasisNC( gens );
 end );
 
@@ -226,18 +246,20 @@ InstallMethod( Basis, "for matrix field", true,
 [IsNumberFieldByMatrices], 0, 
 function( F ) return CanonicalBasis( F ); end );
 
+
 #############################################################################
 ##
 #M Coefficients( B, a )
 ##
-InstallMethod( Coefficients, "for basis of matrix field", true, 
+InstallMethod( Coefficients, "for basis of matrix field", true,
 [IsBasisOfMatrixField, IsVector ], 15,
 function( B, a )
     local b;
     b := BasisVectors( B );
     b := List( b, Flat );
     return SolutionMat( b, Flat(a) );
-end ); 
+end );
+ 
 
 #############################################################################
 ##
@@ -246,6 +268,7 @@ end );
 InstallMethod( DegreeOverPrimeField, "for matrix field", true, 
 [IsNumberFieldByMatrices], 0, function( F ) 
 return Length( Basis( F ) ); end);
+
 
 #############################################################################
 ##
@@ -264,6 +287,7 @@ end;
 
 #############################################################################
 ##
+#F IntegralMatrix
 #F SuitablePrimitiveElementCheck( F, k )
 ##
 IntegralMatrix := function( mat ) 
@@ -308,6 +332,7 @@ end;
 #############################################################################
 ##
 #F SuitablePrimitiveElementOfMatrixField( F )
+#M IntegerPrimitiveElement( F )
 #M PrimitiveElement( F )
 ##
 SuitablePrimitiveElementOfMatrixField := function( F )
@@ -318,9 +343,7 @@ SuitablePrimitiveElementOfMatrixField := function( F )
    
     #catch the trivial case 
     if DegreeOverPrimeField(F)=1 then
-        k:= GeneratorsOfField(F)[1];
-        SetDefiningPolynomial( F, MinimalPolynomial(Rationals,k) );
-        return k;
+        return One(F);
     fi;
     # first try the generators of F
     for k in GeneratorsOfField(F) do
@@ -338,7 +361,7 @@ SuitablePrimitiveElementOfMatrixField := function( F )
     b := Basis(F);
     l := List( [1..d], x -> 0 ); Append( l, [1,1,-1] );
     i := 1;
-    repeat
+    while poss < PRIM_TEST do
         Info( InfoAlnuth, 3, "another try to calculate primitive element");
         Info( InfoAlnuth, 3, i );
         c := List( [1..d], x -> RandomList( l ) );
@@ -352,69 +375,36 @@ SuitablePrimitiveElementOfMatrixField := function( F )
         fi;
         i := i + 1;
         Append( l, [i,i,-i] );
-    until poss > PRIM_TEST;
+    od;
  
     SetDefiningPolynomial( F, prim.min );
+    SetIntegerDefiningPolynomial( F, prim.min );
     Info( InfoAlnuth, 2, "prim is ", prim);
     return prim.prim;
 end;
 
-InstallMethod( PrimitiveElement, "for matrix field", true, 
+InstallMethod( IntegerPrimitiveElement, "for matrix field", true, 
 [IsNumberFieldByMatrices], 0, function( F ) return 
 SuitablePrimitiveElementOfMatrixField(F); end);
 
+InstallMethod( PrimitiveElement, "for matrix field", true, 
+[IsNumberFieldByMatrices], 0, function( F ) return 
+IntegerPrimitiveElement(F); end);
+
 InstallOtherMethod( DefiningPolynomial, "for matrix field", true, 
 [IsNumberFieldByMatrices], 0, function( F )  
-    SuitablePrimitiveElementOfMatrixField(F); 
-    return DefiningPolynomial(F); 
+    return MinimalPolynomial( Rationals, PrimitiveElement(F) ); 
 end);
 
-
 #############################################################################
 ##
-#F EquationOrderBasisOfMatrixField( F )
-#M EquationOrderBasis( F )
+#M IntegerDefiningPolynomial( F )
 ##
-EquationOrderBasisOfMatrixField := function( F )
-    local k, d;
-    k := PrimitiveElement( F );
-    d := DegreeOverPrimeField( F );
-    return List( [1..d], x -> k^(x-1) );
-end;   
-
-InstallMethod( EquationOrderBasis, "for matrix field", true,
+InstallMethod( IntegerDefiningPolynomial, "for algebraic extension", true,
 [IsNumberFieldByMatrices], 0, 
-function( F ) 
-    local B, b;
-    B := Objectify(NewType(FamilyObj(F), IsBasisOfMatrixField), rec());
-    b := EquationOrderBasisOfMatrixField( F ); 
-    SetUnderlyingLeftModule( B, F );
-    SetBasisVectors( B, b );
-    return B;
-end );
-
-#############################################################################
-##
-#M MaximalOrderBasis( F )
-##
-InstallMethod( MaximalOrderBasis, "for matrix field", true, 
-[IsNumberFieldByMatrices], 0,
 function( F )
-    local E, T, b, B;
-    if DegreeOverPrimeField(F)=1 then
-        return EquationOrderBasis(F);
-    fi;
-    E := EquationOrderBasis(F);
-    T := MaximalOrderDescriptionKant(F);
-    b := List( T, x -> LinearCombination( E, x ) );
-    B := Objectify(NewType(FamilyObj(F), IsBasisOfMatrixField), rec());
-    SetUnderlyingLeftModule( B, F );
-    SetBasisVectors( B, b );
-    SetUnderlyingBasis( B, E );
-    SetTranslationMat( B, T );
-    return B;
+    return MinimalPolynomial( Rationals, IntegerPrimitiveElement( F ) );
 end );
-
 
 #############################################################################
 ##
@@ -429,8 +419,35 @@ function( F, k )
     return Root( Determinant(k), l/d ); 
 end );
 
+#############################################################################
+##
+#M  PrintObj( F ) 
+#M  ViewObj( F )
+##
+InstallMethod( PrintObj, "for a matrix field", true,
+[IsNumberFieldByMatrices], 0, 
+function( F )
+    if HasDegreeOverPrimeField( F ) then
+        Print( "<rational matrix field of degree ", 
+               DegreeOverPrimeField( F ), ">" );
+    else
+        Print("<rational matrix field of unknown degree>");
+    fi;
+end );
+
+InstallMethod( ViewObj, "for a matrix field", true,
+[IsNumberFieldByMatrices], 0, 
+function( F )
+    if HasDegreeOverPrimeField( F ) then
+        Print( "<rational matrix field of degree ", 
+               DegreeOverPrimeField( F ), ">" );
+    else
+        Print("<rational matrix field of unknown degree>");
+    fi;
+end );
 
 
+ 
 
 
 

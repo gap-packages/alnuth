@@ -1,7 +1,7 @@
 gap> START_TEST("Test of ALNUTH package");  
 gap> mats := ExamUnimod( 1 );;
 gap> F := FieldByMatrices( mats );
-<field in characteristic 0>
+<rational matrix field of degree 4>
 gap> DegreeOverPrimeField( F );
 4
 gap> EquationOrderBasis( F );;
@@ -43,9 +43,9 @@ gap> pol := UnivariatePolynomial( Rationals, [0,0,8,0,8,2,0,2] );
 gap> f := UnivariatePolynomial( Rationals, [-4,0,0,1] );
 x_1^3-4
 gap> L := FieldByPolynomial( f );
-<field in characteristic 0>
-gap> FactorsPolynomialKant( pol, L );
-[ !2*x_1, x_1, x_1+(a), x_1^2+!1, x_1^2+(-1*a)*x_1+(a^2) ]
+<algebraic extension over the Rationals of degree 3>
+gap> FactorsPolynomialKant( L, pol );
+[ !2*x_1, x_1, x_1+(a), x_1^2+!1, x_1^2+((-1*a))*x_1+(a^2) ]
 gap> STOP_TEST( "ALNUTH.tst", 100000);   
 
 

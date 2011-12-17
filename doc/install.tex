@@ -5,7 +5,7 @@ This package provides an interface between GAP 4 and KANT respectively
 KASH, the shell of the computational algebraic number theory system KANT. By
 now the interface can only be used on a Linux system.  KASH itself is not part
 of this package.  It has to be obtained and installed independently of this
-package. Alnuth works with KASH version 2.4 or higher.
+package. Alnuth works with KASH version 2.4 or 2.5.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \Section{Getting and installing KASH}
@@ -127,7 +127,7 @@ changed permanently. In case of a new installation of Alnuth,
 you will have to run this command again. 
 
 Both functions run a test whether <path> is a valid string for a filename of an
-executable for KASH version 2.4 or higher.
+executable for KASH version 2.4 or 2.5.
 
 If you want to set the path to the executable of KASH using the function
 `SetKantExecutable' every time you start GAP, you could add
@@ -185,7 +185,7 @@ To use this package you have to request it explicitly. This is done by calling
 
 \beginexample
     gap> LoadingPackage("alnuth");
-    Loading Alnuth 1.0 ...
+    Loading Alnuth 2.2.0 ...
     true
     gap>
 \endexample

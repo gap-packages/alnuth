@@ -31,6 +31,7 @@ fi;
 ##
 ReadPkg("alnuth/defs.g");
 
+ReadPkg("alnuth/gap/factors.gi");
 ReadPkg("alnuth/gap/kantin.gi");
 ReadPkg("alnuth/gap/matfield.gi");
 ReadPkg("alnuth/gap/polfield.gi");
@@ -40,6 +41,7 @@ ReadPkg("alnuth/gap/matunits.gi");
 ReadPkg("alnuth/gap/rels.gi");
 ReadPkg("alnuth/gap/present.gi");
 ReadPkg("alnuth/gap/isom.gi");
+ReadPkg("alnuth/gap/rationals.gi");
 
 ReadPkg("alnuth/exam/unimod.gi");
 ReadPkg("alnuth/exam/rationals.gi");

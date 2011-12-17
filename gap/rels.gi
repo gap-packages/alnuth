@@ -263,8 +263,8 @@ end;
 
 
 InstallMethod( RelationLattice, "for fields by polynomial", true,
-[IsNumberFieldByPolynomial, IsCollection], 0, function( F, elms ) return
-RelationLatticePol( F, elms ); end);
+[IsNumberField and IsAlgebraicExtension, IsCollection], 0, 
+function( F, elms ) return RelationLatticePol( F, elms ); end);
 
 InstallMethod( RelationLattice, "for matrix fields", true,
 [IsNumberFieldByMatrices, IsCollection], 0, function( F, elms ) return

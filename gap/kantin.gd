@@ -13,15 +13,6 @@
 ##
 DeclareGlobalFunction( "PolynomialFactorsDescriptionKant" );
 
-
-#############################################################################
-##
-#F  FactorsPolynomialKant, function( <poly>, <H> )
-##
-##  Factorizes the polynomial <poly> in the <H> with KANT
-##
-DeclareGlobalFunction( "FactorsPolynomialKant" );
-
 #############################################################################
 ##
 #F TestKantExecutable( path )

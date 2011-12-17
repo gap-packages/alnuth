@@ -48,18 +48,16 @@ InstallGlobalFunction( TestKantExecutable, function( path )
         Error( "<path> has to be an executable for KASH" );
     fi; 
 
-    # check version number, must be higher than 2.4
+    # check version number, must be 2.4 or 2.5
     pos := PositionSublist( str, "Version " );
     if pos = fail then
         Error( "<path> has to be an executable for KASH" );
     fi;
 
-    if str[ pos+8 ] < '2' then
-        Error("<path> has to be an executable for KASH Version 2.4. or higher");
-    elif str[ pos+8 ] = '2' then
-        if str[ pos+10 ] < '4' then
-            Error("<path> has to be an executable for KASH Version 2.4. or higher");
-        fi;
+    if str[ pos+8 ] <> '2' then
+        Error("<path> has to be an executable for KASH Version 2.4 or 2.5");
+    elif str[ pos+10 ] < '4' then
+            Error("<path> has to be an executable for KASH Version 2.4 or 2.5");
     fi;
 
     return path;
@@ -99,11 +97,18 @@ end );
 
 #############################################################################
 ##
-#F PrintPolynomialToFile( file, f )
+#F PrintPolynomialToFile( arg )
 ##
-PrintPolynomialToFile := function( file, f )
-    local c, i;
-    PrintTo( file, "f := ");
+PrintPolynomialToFile := function( arg )
+    local c, i, file, f;
+    file := arg[1];
+    f := arg[2];
+    if Length( arg ) > 2 then
+        name := arg[3];
+        AppendTo( file, name, " := ");
+    else
+        PrintTo( file, "f := ");
+    fi;
     c := CoefficientsOfUnivariatePolynomial( f );
     for i in [1..Length(c)] do
         if c[i] >= 0 and i > 1 then AppendTo( file, "+"); fi;
@@ -133,7 +138,7 @@ MaximalOrderDescriptionKant := function( F )
     trsh := Concatenation( KANTOUTPUT, "kant.trash");
 
     # compute generating polynomial and print it
-    f := DefiningPolynomial(F);
+    f := IntegerDefiningPolynomial( F );
     PrintPolynomialToFile( file, f );
     AppendTo( file, "outt := \"", outt,"\"; \n \n");
 
@@ -174,7 +179,7 @@ UnitGroupDescriptionKant := function( F )
     trsh := Concatenation( KANTOUTPUT, "kant.trash");
 
     # compute generating polynomial and print it
-    f := DefiningPolynomial( F );
+    f := IntegerDefiningPolynomial( F );
     PrintPolynomialToFile( file, f );
     AppendTo( file, "outt := \"", outt,"\"; \n \n");
 
@@ -216,7 +221,7 @@ ExponentsOfUnitsDescriptionKant := function( F, elms )
     trsh := Concatenation( KANTOUTPUT, "kant.trash");
     
     # compute generating polynomial
-    f := DefiningPolynomial( F );
+    f := IntegerDefiningPolynomial( F );
     PrintPolynomialToFile( file, f );
 
     # print elms to file
@@ -267,7 +272,7 @@ ExponentsOfUnitsDescriptionWithRankKant := function( F, elms )
     trsh := Concatenation( KANTOUTPUT, "kant.trash");
     
     # compute generating polynomial
-    f := DefiningPolynomial( F );
+    f := IntegerDefiningPolynomial( F );
     PrintPolynomialToFile( file, f );
 
     # print elms to file
@@ -324,7 +329,7 @@ ExponentsOfFractionalIdealDescriptionKant := function( F, elms )
     trsh := Concatenation( KANTOUTPUT, "kant.trash");
     
     # compute generating polynomial
-    f := DefiningPolynomial( F );
+    f := IntegerDefiningPolynomial( F );
     PrintPolynomialToFile( file, f );
 
     # print elms to file
@@ -370,7 +375,7 @@ NormCosetsDescriptionKant := function( F, norm )
     trsh := Concatenation( KANTOUTPUT, "kant.trash");
 
     # compute generating polynomial and print it
-    f := DefiningPolynomial( F );
+    f := IntegerDefiningPolynomial( F );
     PrintPolynomialToFile( file, f );
     AppendTo( file, "norm := ",norm,"; \n");
     AppendTo( file, "outt := \"", outt,"\"; \n \n");
@@ -391,22 +396,6 @@ NormCosetsDescriptionKant := function( F, norm )
     return rec( units := KANTVars, creps := KANTVart );
 end;
 
-
-#############################################################################
-##
-#F PrintPolynomialWithNameToFile( file, f, str )
-##
-PrintPolynomialWithNameToFile := function( file, f, name )
-    local c, i;
-    AppendTo( file, name, " := ");
-    c := CoefficientsOfUnivariatePolynomial( f );
-    for i in [1..Length(c)] do
-        if c[i] >= 0 and i > 1 then AppendTo( file, "+"); fi;
-        AppendTo( file, c[i],"*x^",i-1," ");
-    od;
-    AppendTo( file,"; \n \n");
-end;
-                                                                               
 
 #############################################################################
 ##
@@ -431,8 +420,8 @@ InstallGlobalFunction( PolynomialFactorsDescriptionKant, function( poly, f )
     trsh := Filename( tmpdir, "kant.trash");
                                                                                
     # print the polynomials
-    PrintPolynomialWithNameToFile( file, f, "f" );
-    PrintPolynomialWithNameToFile( file, poly, "poly" );
+    PrintPolynomialToFile( file, f, "f" );
+    PrintPolynomialToFile( file, poly, "poly" );
     AppendTo( file, "outt := \"", outt,"\"; \n \n");
 
     # execute kant
@@ -454,37 +443,6 @@ InstallGlobalFunction( PolynomialFactorsDescriptionKant, function( poly, f )
 end );
 
 
-#############################################################################
-##
-#F  FactorsPolynomialKant, function( <poly>, <H> )
-##
-##  Factorizes the rational polynomial <poly> in the field <H>, a proper
-##  algebraic extension of the rationals, with KANT
-##
-InstallGlobalFunction( FactorsPolynomialKant, function( poly, H )
-    local faktoren, fak, coeff, c, lcoeff;
-                                                                               
-    if H = Rationals then return Factors( poly ); fi;
-
-    faktoren := [ ];
-    lcoeff := LeadingCoefficient( poly );
-    poly := poly / lcoeff;
-    for fak in PolynomialFactorsDescriptionKant(poly,DefiningPolynomial(H)) do
-        coeff := [ ];
-        for c in Reversed( fak ) do
-            if ( c in Rationals ) then
-                Add( coeff, c );
-            else
-                Add( coeff, LinearCombination( Basis(H), c ) );
-            fi;
-        od;
-        Add( faktoren, UnivariatePolynomial( H, One(H)*coeff ) );
-    od;
-    faktoren[1] := lcoeff * faktoren[1];
-
-    return faktoren;
-end );
-                                                                       
 #############################################################################
 ##
 #E

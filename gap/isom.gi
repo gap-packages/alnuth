@@ -38,7 +38,7 @@ function( F, elms ) return IsomorphismOfMultGroupByFieldEl( F, elms );
 end);
 
 InstallOtherMethod( IsomorphismPcpGroup, "for fields def. by polynomial", 
-true, [IsNumberFieldByPolynomial, IsCollection], 0, 
+true, [IsNumberField and IsAlgebraicExtension, IsCollection], 0, 
 function( F, elms ) return IsomorphismOfMultGroupByFieldEl( F, elms ); 
 end);
 

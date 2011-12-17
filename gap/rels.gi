@@ -236,7 +236,7 @@ RelationLatticeMat:= function( F, elms )
       x:=Indeterminate(Rationals);
       c:=x^2-2;
       F2:=FieldByPolynomial(c);
-      elms2 := List( elms, x-> x[1][1] );      
+      elms2 := List( elms, x-> x[1][1]*One(F2) );      
       return RelationLatticePol( F2, elms2 );
   else 
       F2:=F;

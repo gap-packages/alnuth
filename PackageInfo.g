@@ -7,11 +7,11 @@ SetPackageInfo( rec(
 
 PackageName := "Alnuth",
 Subtitle := "Algebraic number theory and an interface to KANT",
-Version := "2.2.2",
-Date := "24/11/2006",
+Version := "2.2.3",
+Date := "11/06/2007",
 
 ArchiveURL := Concatenation([ 
-"http://www.icm.tu-bs.de/ag_algebra/software/assmann/Alnuth/Alnuth-", 
+"http://www.cs.st-and.ac.uk/~bjoern/software/Alnuth/Alnuth-", 
 ~.Version]),
 ArchiveFormats := ".tar.gz",
 
@@ -66,13 +66,13 @@ Status := "accepted",
 CommunicatedBy := "Charles Wright (Eugene)",
 AcceptDate := "01/2004",
 
-README_URL := "http://www.icm.tu-bs.de/ag_algebra/software/assmann/Alnuth/README",
-PackageInfoURL := "http://www.icm.tu-bs.de/ag_algebra/software/assmann/Alnuth/PackageInfo.g",
+README_URL := "http://www.cs.st-and.ac.uk/~bjoern/software/Alnuth/README",
+PackageInfoURL := "http://www.cs.st-and.ac.uk/~bjoern/software/Alnuth/PackageInfo.g",
 
 AbstractHTML := 
 "The <span class=\"pkgname\">Alnuth</span> package provides various methods to compute with number fields which are given by a defining polynomial or by generators. Some of the methods provided in this package are written in <span class=\"pkgname\">GAP</span> code. The other part of the methods is imported from the Computer Algebra System KANT. Hence this package contains some Gap functions and an interface to some functions in the computer algebra system KANT. The main methods included in this package are: creating a number field, computing its maximal order (using KANT), computing its unit group (using KANT) and a presentation of this unit group, computing the elements of a given norm of the number field (using KANT) and determining a presentation for a finitely generated multiplicative subgroup (using KANT).",
 
-PackageWWWHome := "http://www.icm.tu-bs.de/ag_algebra/software/assmann/Alnuth",
+PackageWWWHome := "http://www.cs.st-and.ac.uk/~bjoern/software/Alnuth",
 
 PackageDoc := rec(
   BookName  := "Alnuth",

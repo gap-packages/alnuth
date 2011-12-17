@@ -19,10 +19,7 @@ end );
 #F FieldByPolynomial( f )
 ##
 InstallGlobalFunction( FieldByPolynomialNC, function( f )
-    local F;
-    F := AlgebraicExtension( Rationals, f );
-#    SetIsNumberField( F, true );
-    return F;
+    return AlgebraicExtension( Rationals, f );
 end );
 
 InstallGlobalFunction( FieldByPolynomial, function( f )
@@ -69,25 +66,6 @@ function( F )
     n := Degree( DefiningPolynomial(F) ); 
     c := List( [0..n], i -> c[i+1] * k^(n-i) );
     return UnivariatePolynomial( Rationals, c );
-end );
-
-#############################################################################
-##
-#M  PrintObj( F ) 
-#M  ViewObj( F )
-##
-InstallMethod( PrintObj, "for algebraic extension", true,
-[IsNumberField and IsAlgebraicExtension], 0, 
-function( F )
-    Print( "<algebraic extension over the Rationals of degree ", 
-           DegreeOverPrimeField( F ), ">" );
-end );
-
-InstallMethod( ViewObj, "for algebraic extension", true,
-[IsNumberField and IsAlgebraicExtension], 0, 
-function( F )
-    Print("<algebraic extension over the Rationals of degree ", 
-          DegreeOverPrimeField( F ), ">" );
 end );
 
 

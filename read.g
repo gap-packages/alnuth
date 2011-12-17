@@ -20,9 +20,6 @@ if not IsBound( ALNUTHPATH ) then
     fi;
     ALNUTHPATH := Concatenation( ALNUTHPATH, "/lib/" );
 fi;
-if not IsBound( KANTEXEC ) then 
-    KANTEXEC := "kash"; 
-fi;
 
 if not IsBound( PRIM_TEST )  then   
     PRIM_TEST := 20;
@@ -32,6 +29,8 @@ fi;
 ##
 #R read files
 ##
+ReadPkg("alnuth/defs.g");
+
 ReadPkg("alnuth/gap/kantin.gi");
 ReadPkg("alnuth/gap/matfield.gi");
 ReadPkg("alnuth/gap/polfield.gi");

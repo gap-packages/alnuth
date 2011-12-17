@@ -137,9 +137,9 @@ $$
 
 \> RelationLattice( <F>, <elms> )
 
-Determines a basis for the relation lattice of the field elements <elms>.
+Determines a generating set 
+for the relation lattice of the field elements <elms>.
  
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \Section{Methods to compute with subgroups of the unit group}
 
@@ -161,8 +161,31 @@ This function does not check the input for efficiency reasons and it
 may return wrong results if the input generators do not fulfil the 
 requirements.
 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\Section{Factorisation of polynomials over a number field}
+
+\> FactorsPolynomialKant( <pol>, <F> )
+
+Factors <pol>, a polynomial with coefficients in the rationals, over the
+number field <F>, which have to be constructed by {\tt FieldByPolynomial} or
+may be the rationals itself. In the coefficients of the factors, <a>
+denotes the primitive Element one can obtain from {\tt PrimitiveElement(<F>)},
+i. e. a root of the defining Polynomial of <F>. 
+
+\beginexample
+gap> x := Indeterminate( Rationals );
+x_1
+gap> pol := 2*x^7+2*x^5+8*x^4+8*x^2;
+2*x_1^7+2*x_1^5+8*x_1^4+8*x_1^2
+gap> L := FieldByPolynomial(  x^3-4 );
+<field in characteristic 0>
+gap> FactorsPolynomialKant( pol, L );
+[ !2*x_1, x_1, x_1+(a), x_1^2+(-1*a)*x_1+(a^2), x_1^2+!1 ]
+\endexample
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\Section{ Examples }
+\Section{Examples}
 
 \> ExampleMatField( <l> )
 

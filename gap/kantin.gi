@@ -2,6 +2,7 @@
 ##
 #W kantin.gi            Alnuth -  Kant interface                 Bettina Eick
 #W                                                             Bjoern Assmann
+#W                                                            Andreas Distler
 ##
 
 #############################################################################
@@ -11,6 +12,78 @@
 if not IsBound( KANTVars )    then KANTVars   := false; fi;
 if not IsBound( KANTVart )    then KANTVart   := false; fi;
 if not IsBound( KANTVaru )    then KANTVaru   := false; fi;
+
+#############################################################################
+##
+#F TestKantExecutable( path )
+##
+InstallGlobalFunction( TestKantExecutable, function( path )
+    local str, pos;
+
+    # tests wether there is an executable file behind <path>
+    while Filename( DirectoriesSystemPrograms( ), path ) = fail and
+       not IsExecutableFile( path ) do
+        Error( "<path> has to be an executable" );
+    od;
+    
+    if not IsExecutableFile( path ) then
+        path := Filename( DirectoriesSystemPrograms( ), path );
+    fi;
+
+    # try to find out, if it's a proper KANT-version
+    str := "";
+    Process( DirectoryCurrent( ), path, InputTextNone( ),
+             OutputTextString( str, false ), [ ] );
+    if PositionSublist( str, "KANT" ) = fail then
+        Error( "<path> has to be an executable for KASH" );
+    fi; 
+
+    # check version number, must be higher than 2.4
+    pos := PositionSublist( str, "Version " );
+    if pos = fail then
+        Error( "<path> has to be an executable for KASH" );
+    fi;
+
+    if str[ pos+8 ] < '2' then
+        Error("<path> has to be an executable for KASH Version 2.4. or higher");
+    elif str[ pos+8 ] = '2' then
+        if str[ pos+10 ] < '4' then
+            Error("<path> has to be an executable for KASH Version 2.4. or higher");
+        fi;
+    fi;
+
+    return path;
+end );
+
+#############################################################################
+##
+#F SetKantExecutable( path )
+##
+InstallGlobalFunction( SetKantExecutable, function( path )
+
+    path := TestKantExecutable( path );
+    MakeReadWriteGlobal( "KANTEXEC" );
+    KANTEXEC := path;
+    MakeReadOnlyGlobal( "KANTEXEC" );
+end );
+
+#############################################################################
+##
+#F SetKantExecutablePermanently( path )
+##
+InstallGlobalFunction( SetKantExecutablePermanently, function( path )
+
+    SetKantExecutable( path );
+    PrintTo( Concatenation( PackageInfo("alnuth")[1].InstallationPath,
+                            "/defs.g" ),
+             "###########################################################",
+             "##################\n##\n##  KANTEXEC\n##\n## Set 'KANTEXEC'",
+             " to the name of the executable of KANT\n##  the default",
+             " is fail, if for any reason there is no KANT available\n##\n",
+             "if not IsBound( KANTEXEC ) then\n",
+             "    BindGlobal( \"KANTEXEC\", \"", KANTEXEC,"\" );\n",
+             "fi;");
+end );
 
 #############################################################################
 ##
@@ -35,6 +108,11 @@ MaximalOrderDescriptionKant := function( F )
     local file, inpt, outt, trsh, f;
  
     if IsPrimeField(F) then return [1]; fi;
+
+    # test, wether KANTEXEC is set
+    if KANTEXEC = fail then
+        Error( "KANTEXEC, the executable for Kant, have to be set" );
+    fi; 
 
     # get the path to the kant directory
     file := Concatenation( KANTOUTPUT, "kant.tmp" );
@@ -72,6 +150,11 @@ UnitGroupDescriptionKant := function( F )
 
     if IsPrimeField( F ) then return [-1]; fi;
     
+    # test, wether KANTEXEC is set
+    if KANTEXEC = fail then
+        Error( "KANTEXEC, the executable for Kant, have to be set" );
+    fi; 
+
     # get the path to the kant directory
     file := Concatenation( KANTOUTPUT, "kant.tmp" );
     inpt := Concatenation( KANTOUTPUT, "kant.input" );
@@ -89,7 +172,7 @@ UnitGroupDescriptionKant := function( F )
     Exec(Concatenation(KANTEXEC, " < ",inpt," > ", trsh));
 
     # read results
-    Info( InfoAlnuth, 1, "reading Kant-results into Gap \n");
+    Info( InfoAlnuth, 1, "reading Kant-results into Gap");
     Read(outt);
 
     # delete junk
@@ -108,6 +191,11 @@ ExponentsOfUnitsDescriptionKant := function( F, elms )
     local file, inpt, outt, trsh, f, e;
 
     if IsPrimeField( F ) then return fail; fi;
+
+    # test, wether KANTEXEC is set
+    if KANTEXEC = fail then
+        Error( "KANTEXEC, the executable for Kant, have to be set" );
+    fi; 
 
     # get the path to the kant directory
     file := Concatenation( KANTOUTPUT, "kant.tmp" );
@@ -131,7 +219,7 @@ ExponentsOfUnitsDescriptionKant := function( F, elms )
     Exec(Concatenation(KANTEXEC, " < ",inpt," > ", trsh));
 
     # read results
-    Info( InfoAlnuth, 1, "reading Kant-results into Gap \n");
+    Info( InfoAlnuth, 1, "reading Kant-results into Gap");
     Read(outt);
     Info( InfoAlnuth, 3, "KANTVars");
     Info( InfoAlnuth, 3, KANTVars);
@@ -155,6 +243,11 @@ ExponentsOfUnitsDescriptionWithRankKant := function( F, elms )
 
     if IsPrimeField( F ) then return fail; fi;
 
+    # test, wether KANTEXEC is set
+    if KANTEXEC = fail then
+        Error( "KANTEXEC, the executable for Kant, have to be set" );
+    fi; 
+
     # get the path to the kant directory
     file := Concatenation( KANTOUTPUT, "kant.tmp" );
     inpt := Concatenation( KANTOUTPUT, "kant.input" );
@@ -177,7 +270,7 @@ ExponentsOfUnitsDescriptionWithRankKant := function( F, elms )
     Exec(Concatenation(KANTEXEC, " < ",inpt," > ", trsh));
 
     # read results
-    Info( InfoAlnuth, 1, "reading Kant-results into Gap \n");
+    Info( InfoAlnuth, 1, "reading Kant-results into Gap");
     Read(outt);
     Info( InfoAlnuth, 3, "KANTVars");
     Info( InfoAlnuth, 3, KANTVars);
@@ -186,7 +279,9 @@ ExponentsOfUnitsDescriptionWithRankKant := function( F, elms )
 
 
     # delete junk
-    Exec(Concatenation("rm ",inpt," ",outt," ",file," ",trsh));
+    if InfoLevel( InfoAlnuth ) < 3 then
+        Exec(Concatenation("rm ",inpt," ",outt," ",file," ",trsh));
+    fi;
 
     # return unit group and exponents
     return rec( units := KANTVars, expns := KANTVart, rank:=KANTVaru);
@@ -204,6 +299,11 @@ ExponentsOfFractionalIdealDescriptionKant := function( F, elms )
     local file, inpt, outt, trsh, f, e;
 
     if IsPrimeField( F ) then return fail; fi;
+
+    # test, wether KANTEXEC is set
+    if KANTEXEC = fail then
+        Error( "KANTEXEC, the executable for Kant, have to be set" );
+    fi; 
 
     # get the path to the kant directory
     file := Concatenation( KANTOUTPUT, "kant.tmp" );
@@ -227,7 +327,7 @@ ExponentsOfFractionalIdealDescriptionKant := function( F, elms )
     Exec(Concatenation(KANTEXEC, " < ",inpt," > ", trsh));
 
     # read results
-    Info( InfoAlnuth, 1, "reading Kant-results into Gap \n");
+    Info( InfoAlnuth, 1, "reading Kant-results into Gap ");
     Read(outt);
 
     # delete junk
@@ -245,6 +345,11 @@ NormCosetsDescriptionKant := function( F, norm )
     local file, inpt, outt, trsh, f;
 
     if IsPrimeField(F) then return fail; fi;
+
+    # test, wether KANTEXEC is set
+    if KANTEXEC = fail then
+        Error( "KANTEXEC, the executable for Kant, have to be set" );
+    fi; 
 
     # get the path to the kant directory
     file := Concatenation( KANTOUTPUT, "kant.tmp" );
@@ -264,7 +369,7 @@ NormCosetsDescriptionKant := function( F, norm )
     Exec(Concatenation(KANTEXEC, " < ",inpt," > ", trsh));
 
     # read results
-    Info( InfoAlnuth, 1, "reading Kant-results into Gap \n");
+    Info( InfoAlnuth, 1, "reading Kant-results into Gap");
     Read(outt);
 
     # delete junk
@@ -275,10 +380,102 @@ NormCosetsDescriptionKant := function( F, norm )
 end;
 
 
+#############################################################################
+##
+#F PrintPolynomialWithNameToFile( file, f, str )
+##
+PrintPolynomialWithNameToFile := function( file, f, name )
+    local c, i;
+    AppendTo( file, name, " := ");
+    c := CoefficientsOfUnivariatePolynomial( f );
+    for i in [1..Length(c)] do
+        if c[i] >= 0 and i > 1 then AppendTo( file, "+"); fi;
+        AppendTo( file, c[i],"*x^",i-1," ");
+    od;
+    AppendTo( file,"; \n \n");
+end;
+                                                                               
+
+#############################################################################
+##
+#F  PolynomialFactorsDescriptionKant, function( <poly>, <f>)
+##
+##  Factorizes the polynomial <poly> in the field generated by <f>
+##  with KANT
+##
+InstallGlobalFunction( PolynomialFactorsDescriptionKant, function( poly, f )
+    local file, inpt, outt, trsh, tmpdir;
+                                                                               
+    # test, wether KANTEXEC is set
+    if KANTEXEC = fail then
+        Error( "KANTEXEC, the executable for Kant, have to be set" );
+    fi; 
+
+    # get the path to the kant directory
+    tmpdir := DirectoryTemporary( );
+    file := Filename( tmpdir, "kant.tmp" );
+    inpt := Filename( tmpdir, "kant.input" );
+    outt := Filename( tmpdir, "kant.output");
+    trsh := Filename( tmpdir, "kant.trash");
+                                                                               
+    # print the polynomials
+    PrintPolynomialWithNameToFile( file, f, "f" );
+    PrintPolynomialWithNameToFile( file, poly, "poly" );
+    AppendTo( file, "outt := \"", outt,"\"; \n \n");
+
+    # execute kant
+    Info( InfoAlnuth, 1, "executing Kant");
+    Exec(Concatenation( "cat ",file," ",ALNUTHPATH,"polyfactors.kt > ", inpt));
+    Exec(Concatenation(KANTEXEC, " < ",inpt," > ", trsh));
+                                                                               
+    # read results
+    Info( InfoAlnuth, 1, "reading Kant-results into Gap");
+    Read(outt);
+    Info( InfoAlnuth, 1, "Runtime: ", KANTVars[ Length( KANTVars ) ] );
+    Unbind( KANTVars[ Length( KANTVars ) ] ); 
+                                                                               
+    # delete junk
+    Exec( "rm -r ", Filename( tmpdir, "" ));
+
+    # return info
+    return KANTVars;
+end );
 
 
+#############################################################################
+##
+#F  FactorsPolynomialKant, function( <poly>, <H> )
+##
+##  Factorizes the rational polynomial <poly> in the field <H>, a proper
+##  algebraic extension of the rationals, with KANT
+##
+InstallGlobalFunction( FactorsPolynomialKant, function( poly, H )
+    local faktoren, fak, coeff, c, lcoeff;
+                                                                               
+    if H = Rationals then return Factors( poly ); fi;
 
+    faktoren := [ ];
+    lcoeff := LeadingCoefficient( poly );
+    poly := poly / lcoeff;
+    for fak in PolynomialFactorsDescriptionKant(poly,DefiningPolynomial(H)) do
+        coeff := [ ];
+        for c in Reversed( fak ) do
+            if ( c in Rationals ) then
+                Add( coeff, c );
+            else
+                Add( coeff, LinearCombination( Basis(H), c ) );
+            fi;
+        od;
+        Add( faktoren, UnivariatePolynomial( H, One(H)*coeff ) );
+    od;
+    faktoren[1] := lcoeff * faktoren[1];
 
-
+    return faktoren;
+end );
+                                                                       
+#############################################################################
+##
+#E
+                                                                               
 
 

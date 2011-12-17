@@ -37,6 +37,14 @@ gap> RelationLattice( F, mats );
   [ 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 2 ],
   [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0 ],
   [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 2, -3 ] ]
+gap> pol := UnivariatePolynomial( Rationals, [0,0,8,0,8,2,0,2] );
+2*x_1^7+2*x_1^5+8*x_1^4+8*x_1^2
+gap> f := UnivariatePolynomial( Rationals, [-4,0,0,1] );
+x_1^3-4
+gap> L := FieldByPolynomial( f );
+<field in characteristic 0>
+gap> FactorsPolynomialKant( pol, L );
+[ !2*x_1, x_1, x_1+(a), x_1^2+!1, x_1^2+(-1*a)*x_1+(a^2) ]
 gap> STOP_TEST( "ALNUTH.tst", 100000);   
 
 

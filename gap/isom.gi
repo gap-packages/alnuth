@@ -15,7 +15,7 @@ IsomorphismOfMultGroupByFieldEl := function( F, elms )
     H := PCPOfGroupByFieldElementsByCPCS( F, CPCS );
     # new generating set for <elms>
     G := GroupByGenerators(CPCS.gens);
-    nat := GroupHomomorphismByImages( G, H, CPCS.gens, AsList(Pcp(H)) );
+    nat := GroupHomomorphismByImagesNC( G, H, CPCS.gens, AsList(Pcp(H)) );
    
     # add infos
     SetIsBijective( nat, true );

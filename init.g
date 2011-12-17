@@ -11,6 +11,7 @@ DeclarePackageDocumentation( "alnuth", "doc" );
 #R  read .gd files
 ##
 ReadPkg("alnuth/gap/field.gd");
+ReadPkg("alnuth/gap/kantin.gd");
 
 #############################################################################
 ##

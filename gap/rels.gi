@@ -87,11 +87,15 @@ InstallGlobalFunction( RelationLatticeOfUnits, function( F, elms )
     # solve the first system mod rank
     rels1 := NullspaceModRank( expsTorsion, rank );
 
-    # solve the second
-    rels2 := NullspaceIntMat( exps );
+    #if there are fundamental units solve second
+    if l > 1 then
+        rels2 := NullspaceIntMat( exps );
 
-    # get rels as the intersection of rels1 and rels2
-    rels := LatticeIntersection( rels1, rels2 );
+        # get rels as the intersection of rels1 and rels2
+        rels := LatticeIntersection( rels1, rels2 );
+    else
+        rels := rels1;
+    fi;
 
     # format results
     if Length(rels) = 0 then 

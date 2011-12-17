@@ -47,7 +47,7 @@ AddNaturalHomomorphismOfUnitGroup := function( G )
     gens := GeneratorsOfGroup(G);
     rels := List( gens, x -> 0 ); rels[1] := Order( gens[1] );
     H := AbelianPcpGroup( Length(rels), rels );
-    nat := GroupHomomorphismByImages( G, H, gens, AsList(Pcp(H)) );
+    nat := GroupHomomorphismByImagesNC( G, H, gens, AsList(Pcp(H)) );
 
     # add infos
     SetIsBijective( nat, true );

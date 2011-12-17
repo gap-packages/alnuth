@@ -3,7 +3,7 @@
 #W    init.g       Alnuth -  Kant interface                      Bettina Eick
 ##
 
-DeclarePackage( "alnuth", "2.2.3", function() return true; end );
+DeclarePackage( "alnuth", "2.2.4", function() return true; end );
 DeclarePackageDocumentation( "alnuth", "doc" );
 
 #############################################################################

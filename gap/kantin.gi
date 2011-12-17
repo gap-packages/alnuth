@@ -18,7 +18,7 @@ if not IsBound( KANTVaru )    then KANTVaru   := false; fi;
 #F TestKantExecutable( path )
 ##
 InstallGlobalFunction( TestKantExecutable, function( path )
-    local str, pos;
+    local str, pos, libstr;
 
     # tests wether there is an executable file behind <path>
     while Filename( DirectoriesSystemPrograms( ), path ) = fail and
@@ -34,6 +34,16 @@ InstallGlobalFunction( TestKantExecutable, function( path )
     str := "";
     Process( DirectoryCurrent( ), path, InputTextNone( ),
              OutputTextString( str, false ), [ ] );
+    # set library path if necessary
+    if str = "kash> " then
+        libstr := path{[1..Length(path)-PositionSublist(Reversed(path),"/")]};
+        libstr := Concatenation( libstr, "/lib/" );
+        str := "";
+        Process( DirectoryCurrent( ), path, InputTextNone( ),
+                 OutputTextString( str, false ), [ "-l", libstr ] );
+        path := Concatenation( path, " -l ", libstr );
+    fi;
+
     if PositionSublist( str, "KANT" ) = fail then
         Error( "<path> has to be an executable for KASH" );
     fi; 
@@ -77,9 +87,11 @@ InstallGlobalFunction( SetKantExecutablePermanently, function( path )
     PrintTo( Concatenation( PackageInfo("alnuth")[1].InstallationPath,
                             "/defs.g" ),
              "###########################################################",
-             "##################\n##\n##  KANTEXEC\n##\n## Set 'KANTEXEC'",
-             " to the name of the executable of KANT\n##  the default",
-             " is fail, if for any reason there is no KANT available\n##\n",
+             "##################\n##\n##  KANTEXEC\n##\n##  Here 'KANTEXEC',",
+             " the name of the executable for KASH, is set.\n##  Depending ",
+             "on the installation of KASH the entry may have to be changed.",
+             "\n##  See '4.3 Adjust the path of the executable for KASH' ",
+             "for details.\n##\n",
              "if not IsBound( KANTEXEC ) then\n",
              "    BindGlobal( \"KANTEXEC\", \"", KANTEXEC,"\" );\n",
              "fi;");
@@ -111,7 +123,7 @@ MaximalOrderDescriptionKant := function( F )
 
     # test, wether KANTEXEC is set
     if KANTEXEC = fail then
-        Error( "KANTEXEC, the executable for Kant, have to be set" );
+        Error( "KANTEXEC, the executable for Kant, has to be set" );
     fi; 
 
     # get the path to the kant directory
@@ -152,7 +164,7 @@ UnitGroupDescriptionKant := function( F )
     
     # test, wether KANTEXEC is set
     if KANTEXEC = fail then
-        Error( "KANTEXEC, the executable for Kant, have to be set" );
+        Error( "KANTEXEC, the executable for Kant, has to be set" );
     fi; 
 
     # get the path to the kant directory
@@ -194,7 +206,7 @@ ExponentsOfUnitsDescriptionKant := function( F, elms )
 
     # test, wether KANTEXEC is set
     if KANTEXEC = fail then
-        Error( "KANTEXEC, the executable for Kant, have to be set" );
+        Error( "KANTEXEC, the executable for Kant, has to be set" );
     fi; 
 
     # get the path to the kant directory
@@ -245,7 +257,7 @@ ExponentsOfUnitsDescriptionWithRankKant := function( F, elms )
 
     # test, wether KANTEXEC is set
     if KANTEXEC = fail then
-        Error( "KANTEXEC, the executable for Kant, have to be set" );
+        Error( "KANTEXEC, the executable for Kant, has to be set" );
     fi; 
 
     # get the path to the kant directory
@@ -302,7 +314,7 @@ ExponentsOfFractionalIdealDescriptionKant := function( F, elms )
 
     # test, wether KANTEXEC is set
     if KANTEXEC = fail then
-        Error( "KANTEXEC, the executable for Kant, have to be set" );
+        Error( "KANTEXEC, the executable for Kant, has to be set" );
     fi; 
 
     # get the path to the kant directory
@@ -348,7 +360,7 @@ NormCosetsDescriptionKant := function( F, norm )
 
     # test, wether KANTEXEC is set
     if KANTEXEC = fail then
-        Error( "KANTEXEC, the executable for Kant, have to be set" );
+        Error( "KANTEXEC, the executable for Kant, has to be set" );
     fi; 
 
     # get the path to the kant directory
@@ -408,7 +420,7 @@ InstallGlobalFunction( PolynomialFactorsDescriptionKant, function( poly, f )
                                                                                
     # test, wether KANTEXEC is set
     if KANTEXEC = fail then
-        Error( "KANTEXEC, the executable for Kant, have to be set" );
+        Error( "KANTEXEC, the executable for Kant, has to be set" );
     fi; 
 
     # get the path to the kant directory

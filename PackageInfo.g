@@ -7,10 +7,10 @@ SetPackageInfo( rec(
 
 PackageName := "Alnuth",
 Subtitle := "Algebraic number theory and an interface to KANT",
-Version := "2.1.1",
-Date := "10/03/2005",
+Version := "2.1.2",
+Date := "04/08/2005",
 
-ArchiveURL := "http://www.icm.tu-bs.de/ag_algebra/software/assmann/Alnuth/Alnuth-2.1.1",
+ArchiveURL := "http://www.icm.tu-bs.de/ag_algebra/software/assmann/Alnuth/Alnuth-2.1.2",
 ArchiveFormats := ".tar.gz",
 
 
@@ -89,7 +89,7 @@ Dependencies := rec(
   Version 2.4"] ),
 
 AvailabilityTest := ReturnTrue,
-BannerString := "Loading Alnuth 2.1.1 ... \n",
+BannerString := "Loading Alnuth 2.1.2 ... \n",
 Autoload := true,
 TestFile := "tst/testall.g",
 Keywords := ["algebraic number theory", "number field" , "maximal order", "interface to KANT", "unit group", "elements of given norm" ]

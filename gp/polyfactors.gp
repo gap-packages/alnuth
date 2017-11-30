@@ -3,16 +3,7 @@ f = subst(f,variable(f),'varA);
 pol = Pol(vector(#coeffs-1,i,Polrev(coeffs[i],'varA)));
 n = poldegree(f);
 gettime();
-{
-  if(type(version)!="t_POL" && lex(version(),[2,4,3])>=0,
-    fac = lift(nffactor(f, pol ))
-  , if(poldegree(pol)*3<n,
-      fac = lift(factornf(pol,f));
-    ,
-      nf = nfinit([f, nfbasis(f,1)]);
-      fac = lift(nffactor(nf, pol ))
-  ));
-}
+fac = lift(nffactor(f, pol ));
 zeit = gettime();
 
 p2v(n,b)=vector(n,j,polcoeff(b,j-1));

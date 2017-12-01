@@ -6,7 +6,7 @@ gap> F := ExampleMatField(1);
 gap> DegreeOverPrimeField(F);
 4
 gap> DefiningPolynomial(F);
-x_1^4+6*x_1^3+5*x_1^2-12*x_1-11
+x_1^4+4*x_1^3-394*x_1^2-796*x_1+2101
 gap> basis := Basis(F, 
 > [ [ [ 1, 0, 0, 0 ], [ 0, 1, 0, 0 ], [ 0, 0, 1, 0 ], [ 0, 0, 0, 1 ] ],
 > [ [ -1, 1, 1, 0 ], [ 5, -5, -5, 11 ], [ 3, -4, -7, 11 ], [ 3, -3, -4, 7 ] ],
@@ -30,7 +30,7 @@ gap> F := ExampleMatField(2);
 gap> DegreeOverPrimeField(F);
 4
 gap> DefiningPolynomial(F);
-x_1^4+6*x_1^3+5*x_1^2-12*x_1-11
+x_1^4-18*x_1^3-286*x_1^2+2178*x_1+14641
 gap> basis := Basis(F, 
 > [ [ [ 1, 0, 0, 0 ], [ 0, 1, 0, 0 ], [ 0, 0, 1, 0 ], [ 0, 0, 0, 1 ] ], 
 >   [ [ -1, 1, 1, 0 ], [ -4, -9, -5, 11 ], [ -6, -8, -7, 11 ], 
@@ -55,7 +55,7 @@ gap> F := ExampleMatField(3);
 gap> DegreeOverPrimeField(F);
 4
 gap> DefiningPolynomial(F);
-x_1^4+30*x_1^3-x_1^2-3390*x_1-13691
+x_1^4+4*x_1^3-90*x_1^2-188*x_1+1669
 gap> basis := Basis( F, 
 > [ [ [ 1, 0, 0, 0 ], [ 0, 1, 0, 0 ], [ 0, 0, 1, 0 ], [ 0, 0, 0, 1 ] ], 
 >   [ [ -4, 6, 7, 0 ], [ -31, -60, -35, 77 ], [ -35, -48, -41, 66 ], 
@@ -80,7 +80,7 @@ gap> F := ExampleMatField(4);
 gap> DegreeOverPrimeField(F);
 4
 gap> DefiningPolynomial(F);
-x_1^4+2*x_1^3-7*x_1^2-8*x_1+1
+x_1^4-8*x_1^3-550*x_1^2-1936*x_1-1331
 gap> basis := Basis( F, 
 > [ [ [ 1, 0, 0, 0 ], [ 0, 1, 0, 0 ], [ 0, 0, 1, 0 ], [ 0, 0, 0, 1 ] ], 
 >   [ [ 0, -1, 1, 0 ], [ -1, -4, -5, 11 ], [ -1, 4, 4, -11 ], [ -1, 1, 0, -2 ] ]
@@ -105,7 +105,7 @@ gap> F := ExampleMatField(5);
 gap> DegreeOverPrimeField(F);
 4
 gap> DefiningPolynomial(F);
-x_1^4-364*x_1^3+2751*x_1^2-364*x_1+1
+x_1^4+4*x_1^3-40*x_1^2-88*x_1+244
 gap> basis := Basis( F,
 > [ [ [ 1, 0, 0, 0 ], [ 0, 1, 0, 0 ], [ 0, 0, 1, 0 ], [ 0, 0, 0, 1 ] ], 
 >   [ [ 148, 95, 101, -165 ], [ -257, -165, -175, 286 ], [ 96, 65, 67, -110 ], 
@@ -130,7 +130,7 @@ gap> F := ExampleMatField(6);
 gap> DegreeOverPrimeField(F);
 4
 gap> DefiningPolynomial(F);
-x_1^4+18*x_1^3+75*x_1^2-54*x_1-531
+x_1^4-34*x_1^2+49
 gap> basis := Basis( F,
 > [ [ [ 1, 0, 0, 0 ], [ 0, 1, 0, 0 ], [ 0, 0, 1, 0 ], [ 0, 0, 0, 1 ] ], 
 >   [ [ -6, -2, -3, 0 ], [ 15, 18, 15, -33 ], [ 11, 16, 7, -22 ], 

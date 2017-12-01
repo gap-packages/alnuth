@@ -48,17 +48,17 @@ gap> U := UnitGroup(F);
 
 gap> u := GeneratorsOfGroup( U );;
 
-gap> nat := IsomorphismPcpGroup(U);
-[ [ [ 0, 0, 1, -1 ], [ 0, 0, 1, 0 ], [ -1, 0, 1, 0 ], [ 0, -1, 1, 0 ] ],
-  [ [ 0, 1, 0, 0 ], [ -1, 1, 1, 0 ], [ -1, 0, 1, 1 ], [ -1, 0, 0, 1 ] ] ] ->
-[ g1, g2 ]
-
+gap> nat := IsomorphismPcpGroup(U);;
 gap> H := Image(nat);
 Pcp-group with orders [ 10, 0 ]
+gap> ImageElm( nat, u[1] );
+g1
+gap> ImageElm( nat, u[2] );
+g2
 gap> ImageElm( nat, u[1]*u[2] );
 g1*g2
-gap> PreImagesRepresentative(nat, GeneratorsOfGroup(H)[1] );
-[ [ 0, 0, 1, -1 ], [ 0, 0, 1, 0 ], [ -1, 0, 1, 0 ], [ 0, -1, 1, 0 ] ]
+gap> u[1] = PreImagesRepresentative(nat, GeneratorsOfGroup(H)[1] );
+true
 \endexample
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -79,39 +79,17 @@ Basis( <algebraic extension over the Rationals of degree 4>,
 gap> U := UnitGroup(F);
 <group with 4 generators>
 
-gap> natU := IsomorphismPcpGroup(U);
-[ !-1, 1/28*a^3-3/28*a^2-6/7*a+3/7, 1/56*a^3+1/14*a^2-3/7*a-2/7,
-  1/56*a^3-5/28*a^2+1/14*a+5/7 ] -> [ g1, g2, g3, g4 ]
-
-gap> elms := List( [1..10], x-> Random(F) );
-[ a^3+3/4*a^2-1/2*a+3/2, 2*a^3-a^2+3/5*a+1/2, 5*a^3-3*a^2+3*a-3/2,
-  1/2*a^2-2*a+3, -5/3*a^3+2*a^2-1/2*a-2, -1/2*a^3+1/2*a^2+2*a+1/6,
-  -4/3*a^3-1/2*a^2+3/2*a, -1/5*a^3-1/2*a^2-2*a+3/2, -a^3-1/4*a^2+a-1,
-  -1/2*a^3+2/3*a^2+2 ]
+gap> natU := IsomorphismPcpGroup(U);;
+gap> elms := List( [1..10], x-> Random(F) );;
 
 gap>  PcpPresentationOfMultiplicativeSubgroup( F, elms );
 Pcp-group with orders [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ]
 
-gap>isom := IsomorphismPcpGroup( F, elms );
-[ a^3+3/4*a^2-1/2*a+3/2, 2*a^3-a^2+3/5*a+1/2, 5*a^3-3*a^2+3*a-3/2,
-  1/2*a^2-2*a+3, -5/3*a^3+2*a^2-1/2*a-2, -1/2*a^3+1/2*a^2+2*a+1/6,
-  -4/3*a^3-1/2*a^2+3/2*a, -1/5*a^3-1/2*a^2-2*a+3/2, -a^3-1/4*a^2+a-1,
-  -1/2*a^3+2/3*a^2+2 ] -> [ g1, g2, g3, g4, g5, g6, g7, g8, g9, g10 ]
-
-gap> y := RandomGroupElement( elms );
-(-475709724976707031371325/71806328788189775767952976
--379584641261299592239825/13055696143307231957809632*a
--462249188570593771377595/287225315152759103071811904*a^2+
-2639763613873579813685/2901265809623829323957696*a^3)
-
-gap> z := ImageElm( isom, y );
-g1^-1*g3^-2*g6^2*g8^-1*g9^-1
-
-gap> PreImagesRepresentative( isom, z );
-(-475709724976707031371325/71806328788189775767952976
--379584641261299592239825/13055696143307231957809632*a
--462249188570593771377595/287225315152759103071811904*a^2+
-2639763613873579813685/2901265809623829323957696*a^3)
+gap> isom := IsomorphismPcpGroup( F, elms );;
+gap> y := RandomGroupElement( elms );;
+gap> z := ImageElm( isom, y );;
+gap> y = PreImagesRepresentative( isom, z );
+true
 
 gap> FactorsPolynomialAlgExt( F, g );
 [ x_1+(-a), x_1+(a-2), x_1+(-1/7*a^3+3/7*a^2+31/7*a-40/7),

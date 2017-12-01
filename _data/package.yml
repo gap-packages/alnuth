@@ -1,6 +1,6 @@
 name: Alnuth
-version: 3.0.0
-date: 26/10/2011
+version: 3.1.0
+date: 01/12/2017
 description: |
     Algebraic number theory and an interface to PARI/GP
 
@@ -18,22 +18,20 @@ maintainers:
     - name: Bettina Eick
       url: http://www.icm.tu-bs.de/~beick
 
-GAP: ">= 4.5"
+GAP: ">= 4.8"
 
 needed-pkgs:
     - name: "polycyclic"
       version: ">=1.1"
       url: "http://www.icm.tu-bs.de/ag_algebra/software/polycyclic/"
 
-www: http://www.icm.tu-bs.de/ag_algebra/software/Alnuth/
-readme: README
-packageinfo: http://www.icm.tu-bs.de/ag_algebra/software/Alnuth/PackageInfo.g
+www: https://gap-packages.github.io/alnuth
+readme: README.md
+packageinfo: https://gap-packages.github.io/alnuth/PackageInfo.g
 
 downloads:
     - name: .tar.gz
-      url: http://www.icm.tu-bs.de/ag_algebra/software/Alnuth/Archives/Alnuth-3.0.0.tar.gz
-    - name: -win.zip
-      url: http://www.icm.tu-bs.de/ag_algebra/software/Alnuth/Archives/Alnuth-3.0.0-win.zip
+      url: https://github.com/gap-packages/alnuth/releases/download/v3.1.0/alnuth-3.1.0.tar.gz
 
 abstract: |
     The <span class="pkgname">Alnuth</span> package provides various methods to compute with number fields which are given by a defining polynomial or by generators. Some of the methods provided in this package are written in <span class="pkgname">GAP</span> code. The other part of the methods is imported from the computer algebra system PARI/GP. Hence this package contains some <span class="pkgname">GAP</span> functions and an interface to some functions in the computer algebra system PARI/GP. The main methods included in <span class="pkgname">Alnuth</span> are: creating a number field, computing its maximal order (using PARI/GP), computing its unit group (using PARI/GP) and a presentation of this unit group, computing the elements of a given norm of the number field (using PARI/GP), determining a presentation for a finitely generated multiplicative subgroup (using PARI/GP), and factoring polynomials defined over number fields (using PARI/GP).

@@ -39,7 +39,7 @@ There are two ways of installing a <font face="Gill Sans,Helvetica,Arial">GAP</f
 permission to add files to the installation of <font face="Gill Sans,Helvetica,Arial">GAP</font> on your system
 you may install <font face="Gill Sans,Helvetica,Arial">Alnuth</font> into the <code>pkg</code> subdirectory of the <font face="Gill Sans,Helvetica,Arial">GAP</font>
 installation tree. Otherwise you may install <font face="Gill Sans,Helvetica,Arial">Alnuth</font> in a private
-<code>pkg</code> directory (for details see Subsections <a href="https://www.gap-system.org/Manuals/doc/ref/chap76.html#X82473E4B8756C6CD">Installing a GAP Package</a> and <a href="https://www.gap-system.org/Manuals/doc/ref/chap9.html#X7A4973627A5DB27D">GAP Root Directories</a> in the <font face="Gill Sans,Helvetica,Arial">GAP</font> reference manual).
+<code>pkg</code> directory (for details see Subsections <a href="../../../doc/ref/chap76.html#X82473E4B8756C6CD">Installing a GAP Package</a> and <a href="../../../doc/ref/chap9.html#X7A4973627A5DB27D">GAP Root Directories</a> in the <font face="Gill Sans,Helvetica,Arial">GAP</font> reference manual).
 <p>
 To install the latest version of <font face="Gill Sans,Helvetica,Arial">Alnuth</font> under Linux download one of
 the archives <code>alnuth.tar</code> and <code>alnuth.tar.gz</code>, move it to the
@@ -134,7 +134,7 @@ the actual path on your system.). Please note that in case of a new
 installation of <font face="Gill Sans,Helvetica,Arial">Alnuth</font> you will have to change <code>defs.g</code> again. 
 <p>
 Alternatively you can also change your personal <code>gaprc</code> file (see 
-the Subsection <a href="https://www.gap-system.org/Manuals/doc/ref/chap3.html#X84D4CF587D437C00">The gaprc file</a> in the <font face="Gill Sans,Helvetica,Arial">GAP</font> reference manual)
+the Subsection <a href="../../../doc/ref/chap3.html#X84D4CF587D437C00">The gaprc file</a> in the <font face="Gill Sans,Helvetica,Arial">GAP</font> reference manual)
 for setting the variable AL_EXECUTABLE to a proper value. To do this
 add the appropriate line from above with the <code>BindGlobal</code> command to
 <code>gaprc</code>.
@@ -154,7 +154,7 @@ if <var>path</var> does not execute GP in Version 2.5.0 or higher.
 <p>
 To make the change take effect for all of your <font face="Gill Sans,Helvetica,Arial">GAP</font> sessions, you can
 add <code>SetKantExecutable</code> with the path to the GP executable as argument
-to your personal <code>gaprc</code> file (see the Subsection <a href="https://www.gap-system.org/Manuals/doc/ref/chap3.html#X84D4CF587D437C00">The gaprc file</a>
+to your personal <code>gaprc</code> file (see the Subsection <a href="../../../doc/ref/chap3.html#X84D4CF587D437C00">The gaprc file</a>
 in the <font face="Gill Sans,Helvetica,Arial">GAP</font> reference manual). 
 <p>
 If you want the change to affect all <font face="Gill Sans,Helvetica,Arial">GAP</font> session of all users of the

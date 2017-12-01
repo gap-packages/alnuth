@@ -1,211 +1,181 @@
-# GitHubPagesForGAP
+[![Build Status](https://travis-ci.org/gap-packages/alnuth.svg?branch=master)](https://travis-ci.org/gap-packages/alnuth)
+[![Code Coverage](https://codecov.io/github/gap-packages/alnuth/coverage.svg?branch=master&token=)](https://codecov.io/gh/gap-packages/alnuth)
 
-This repository can be used to quickly set up a website hosted by
-[GitHub](https://github.com/) for GAP packages using a GitHub repository.
-Specifically, this uses [GitHub pages](https://pages.github.com/)
-by adding a `gh-pages` branch to your package repository which
-contains data generated from the `PackageInfo.g` file of your package.
+The GAP package Alnuth (Version 3)
+==================================
 
-## Initial setup
-
-The following instructions assume you do not already have a `gh-pages`
-branch in your repository. If you do have one, you should delete it before
-following these instructions.
-
-1. Go into your clone of your package repository.
-
-2. Setup a `gh-pages` branch in a `gh-pages` subdirectory.
-
-   Users with a recent enough git version (recommended is >= 2.11)
-   can do this using a "worktree", via the following commands:
-
-   ```
-   # Add a new remote pointing to the GitHubPagesForGAP repository
-   git remote add gh-gap https://github.com/fingolfin/GitHubPagesForGAP
-   git fetch gh-gap
-
-   # Create a fresh gh-pages branch from the new remote
-   git branch gh-pages gh-gap/gh-pages --no-track
-
-   # Create a new worktree and change into it
-   git worktree add gh-pages gh-pages
-   cd gh-pages
-   ```
-
-   Everybody else should instead do the following, with the URL
-   in the initial clone command suitably adjusted:
-
-   ```
-   # Create a fresh clone of your repository, and change into it
-   git clone https://github.com/USERNAME/REPOSITORY gh-pages
-   cd gh-pages
-
-   # Add a new remote pointing to the GitHubPagesForGAP repository
-   git remote add gh-gap https://github.com/fingolfin/GitHubPagesForGAP
-   git fetch gh-gap
-
-   # Create a fresh gh-pages branch from the new remote
-   git checkout -b gh-pages gh-gap/gh-pages --no-track
-   ```
-
-5. Add in copies of your PackageInfo.g, README and manual:
-
-   ```
-   cp -f ../PackageInfo.g ../README .
-   cp -f ../doc/*.{css,html,js,txt} doc/
-   ```
-
-6. Now run the `update.g` GAP script. This extracts data from your
-   `PackageInfo.g` file and puts that data into `_data/package.yml`.
-   From this, the website template can populate the web pages with
-   some sensible default values.
-
-   ```
-   gap update.g
-   ```
-
-7. Commit and push everything.
-
-   ```
-   git add PackageInfo.g README doc/ _data/package.yml
-   git commit -m "Setup gh-pages based on GitHubPagesForGAP"
-   git push --set-upstream origin gh-pages
-   ```
-
-That's it. You can now see your new package website under
-https://USERNAME.github.io/REPOSITORY/ (of course after
-adjusting USERNAME and REPOSITORY suitably).
+    Copyright (C) 2011      Bjoern Assmann, Andreas Distler, Bettina Eick
+    
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 2 of the license, or
+    (at your option) any later version.
+    
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+    
+    You should have received a copy of the GNU General Public License
+    along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 
-## Adjusting the content and layout
+Alnuth is an extension, a so called package, for the computer algebra system
+GAP and forms part of a standard installation. For information about GAP see
+<http://www.gap-system.org/>.
 
-GitHubPagesForGAP tries to automatically provide good defaults for
-most packages. However, you can tweak everything about it:
-
-* To adjust the page layout, edit the files `stylesheets/styles.css`
-and `_layouts/default.html`.
-
-* To adjust the content of the front page, edit `index.md` (resp.
-  for the content of the sidebar, edit `_layouts/default.html`
-
-* You can also add additional pages, in various formats (HTML,
-Markdown, Textile, ...).
-
-For details, please consult the [Jekyll](http://jekyllrb.com/)
-manual.
+The functionality of Alnuth lies in ALgebraic NUmber THeory. It provides an
+interface from GAP to certain number theoretic functions from the computer
+algebra system PARI/GP. Most computations with Alnuth rely on this interface.
+The interface is an integral part of the package, but the software PARI/GP
+has to be obtained independently.
 
 
-## Testing the site locally
+New in Version 3
+================
 
-If you would like to test your site on your own machine, without
-uploading it to GitHub (where it is visible to the public), you can do
-so by installing [Jekyll](http://jekyllrb.com/), the static web site
-generator used by GitHub to power GitHub Pages.
-
-Once you have installed Jekyll as described on its homepage, you can
-test the website locally as follows:
-
-1. Go to the `gh-pages` directory we created above.
-
-2. Run jekyll (this launches a tiny web server on your machine):
-
-   ```
-   jekyll serve -w
-   ```
-
-3. Visit the URL http://localhost:4000 in a web browser.
+Up to and including Version 2.3.1, Alnuth was restricted to operating systems
+based on Unix. This is no longer the case and Alnuth can now also be used
+under Windows. Moreover, former versions of Alnuth provided an interface to
+KANT, respectively its shell KASH, instead of one to PARI/GP. This change did
+not influence the availability of GAP functions in the package. Note that any
+further changes and bugfixes will only be made to Version 3 of Alnuth which
+contains the interface to PARI/GP.
 
 
-## Updating after you made a release
+Installing Alnuth
+=================
 
-Whenever you make a release of your package (and perhaps more often than
-that), you will want to update your website. The easiest way is to use
-the `release` script from the [ReleaseTools][]. However, you can also do
-it manually. The steps for doing it are quite similar to the above:
+The package Alnuth is part of the standard distribution of GAP so that in most
+cases there is no need to install it separately. To use Alnuth you need to
+have PARI/GP installed. See the following section for information on PARI/GP.
 
-1. Go to the `gh-pages` directory we created above.
+In case you want to update Alnuth independently of your main GAP installation,
+you can download it from its homepage https://gap-packages.github.io/alnuth/.
+If you are interested in an old version of Alnuth interfacing to KANT/KASH
+you can find all released versions of Alnuth at the package's former homepage
+http://www.icm.tu-bs.de/ag_algebra/software/Alnuth/.
 
-2. Add in copies of your PackageInfo.g, README and manual:
+There are two ways of installing a GAP package. If you have permission to add
+files to the installation of GAP on your system you may install Alnuth into
+the `pkg' subdirectory of the GAP installation tree. Otherwise you may install
+Alnuth in a private `pkg' directory (for details see `76.1 Installing a GAP
+Package' and `9.2 GAP Root Directories' in the reference manual).
 
-   ```
-   cp -f ../PackageInfo.g ../README .
-   cp -f ../doc/*.{css,html,js,txt} doc/
-   ```
+To install the latest version of Alnuth under Linux download one of the
+archives `alnuth.tar' and `alnuth.tar.gz', move it to the directory `pkg' in
+which you want to install, and unpack the archive. If you are using the
+command line you can unpack the former with the command `tar xf alnuth.tar',
+respectively `tar xzf alnuth.tar.gz' for the gzipped tar-archive.
 
-3. Now run the `update.g` GAP script.
-
-4. Commit and push the work we have just done.
-
-   ```
-   git add PackageInfo.g README doc/ _data/package.yml
-   git commit -m "Update web pages"
-   git push
-   ```
-
-A few seconds after you have done this, your changes will be online
-under https://USERNAME.github.io/REPOSITORY/ .
-
-
-## Updating to a newer version of GitHubPagesForGAP
-
-Normally you should not have to ever do this. However, if you really want to,
-you can attempt to update to the most recent version of GitHubPagesForGAP via
-the following instructions. The difficulty of such an update depends on how
-much you tweaked the site after initially cloning GitHubPagesForGAP.
-
-1. Go to the `gh-pages` directory we created above.
-   Make sure that there are no uncommitted changes, as they will be lost
-   when following these instructions.
-
-2. Fetch changes made to GitHubPagesForGAP.
-   ```
-   git fetch gh-gap
-   ```
-
-3. Attempt to merge these changes. This may produce multiple merge conflicts,
-   so ideally, you should be familiar with dealing with such merge conflicts.
-   ```
-   git pull gh-gap gh-pages
-   ```
-   If at any point you don't know how to continue, you can abort the merge
-   process and revert to the original state by issuing this command:
-   ```
-   git merge --abort
-   ```
-
-4. This may produce merge conflicts. Most likely you will have conflicts in
-   the file `_data/package.yml`, but these are easy to resolve as follows:
-   ```
-   gap update.g
-   git add _data/package.yml
-   ```
-   If you are lucky, this is the only conflict (check with `git status`).
+For installation under Windows download the archive `alnuth-win.zip', move it
+to the `pkg' directory in which you want to install, and extract the archive.
 
 
+Getting PARI/GP
+===============
 
-## Packages using GitHubPagesForGAP
-Packages using GitHubPagesForGAP include the following:
+Using Alnuth requires an installation of PARI/GP in Version 2.5 or higher. The
+software PARI/GP is freely available at <http://pari.math.u-bordeaux.fr/>.
 
-* <https://gap-packages.github.io/anupq>
-* <https://gap-packages.github.io/cvec>
-* <https://gap-packages.github.io/genss>
-* <https://gap-packages.github.io/io>
-* <https://gap-packages.github.io/NormalizInterface>
-* <https://gap-packages.github.io/nq>
-* <https://gap-packages.github.io/orb>
-* <https://gap-packages.github.io/polenta>
-* <https://gap-packages.github.io/recog>
-* <https://gap-packages.github.io/recogbase>
-* <https://gap-packages.github.io/SingularInterface>
+Note that the place where PARI/GP is located in your system is independent of
+the place where Alnuth is installed.
+
+In many Linux distributions PARI/GP can be installed via the software package
+manager, but this might sometimes be an older version which cannot be used
+together with Alnuth.
+
+If you install PARI/GP from source make sure you install with GMP support for
+better performance and complete the installation with `make install' so that
+you can start GP by just calling `gp' from the command line.
+
+For Windows it is sufficient to get the basic GP binary which can be found at
+<http://pari.math.u-bordeaux.fr/download.html>.
 
 
-## Contact
+Adjust the path of the executable for GP
+========================================
 
-Please submit bug reports, suggestions for improvements and patches via
-the [issue tracker](https://github.com/fingolfin/GitHubPagesForGAP/issues).
+This package needs to know where the executable for GP is. In the default
+setting Alnuth looks for an executable program named `gp' in the search paths
+of the system. More precisely, for a file `gp' inside one of the directories
+in the list returned by `DirectoriesSystemPrograms()'.
 
-You can also contact me directly via [email](max@quendi.de).
+Under Linux the default setting should work with a standard installation of
+PARI/GP.
 
-Copyright (c) 2013-2016 Max Horn
+For the default setting to work under Windows the downloaded executable file,
+for example `gp-2-5-0.exe' has to be renamed to `gp.exe' and moved to one of
+the directories listed by `DirectoriesSystemPrograms()'.
 
-[ReleaseTools]: https://github.com/fingolfin/ReleaseTools
+If you cannot use the default setting for you purpose, you can find more
+information in the last chapter of the Alnuth manual.
+
+
+Loading the package
+===================
+
+If Alnuth is not loaded when GAP is started you have to request it explicitly
+to use it. This is done by calling `LoadPackage("Alnuth");' in a GAP session.
+If Alnuth had not been loaded already a short banner will be displayed.
+
+    gap> LoadPackage("Alnuth");
+    Loading  Alnuth 3.1.0 (Algebraic number theory and an interface to PARI/GP)
+    by Bjoern Assmann (http://www.dcs.st-and.ac.uk/~bjoern),
+       Andreas Distler (a.distler@tu-bs.de), and
+       Bettina Eick (http://www.icm.tu-bs.de/~beick).
+    Homepage: https://gap-packages.github.io/alnuth
+    true
+    gap>
+
+To load a certain version of Alnuth you can specify the version number as
+second argument in the call to `LoadPackage'. (See `76.2 Loading a GAP
+package' in the reference manual or type `?LoadPackage' within a GAP session).
+
+
+Testing the package
+===================
+
+Once the package is loaded, it is possible to check the correct installation
+running a short test by calling `ReadPackage("Alnuth", "tst/testinstall.g");'.
+
+    gap> ReadPackage("Alnuth", "tst/testinstall.g");
+    Architecture: x86_64-apple-darwin15.6.0-gcc-6-default64
+    
+    test file         GAP4stones     time(msec)
+    -------------------------------------------
+    testing: /Users/user/gap4r8p8/pkg/alnuth/tst/version.tst
+    /Users/user/gap4r8p8/pkg/alnuth/tst/version.tst       0             52
+    testing: /Users/user/gap4r8p8/pkg/alnuth/tst/ALNUTH.tst
+    /Users/user/gap4r8p8/pkg/alnuth/tst/ALNUTH.tst     751            133
+    -------------------------------------------
+    total                    751            133
+    
+    #I  No errors detected while testing
+
+If the test suite runs into an error in the first part, which verifies the
+availability of PARI/GP, check your installation of PARI/GP and consult the
+last chapter of the documentation of Alnuth for more information.
+
+
+Contact
+=======
+
+If you find any bugs or have any suggestions or comments, we would very much
+appreciate it if you would let us know by submitting an issue at the Alnuth
+issue tracker on GitHub <https://github.com/gap-packages/alnuth/issues> or by
+writing to `beick(at)tu-bs.de'.
+
+Andreas Distler (a.distler(at)tu-bs.de)
+    CAUL (Centro de Álgebra da Universidade de Lisboa)
+    Av. Prof. Gama Pinto, 2
+    1649-003 Lisboa
+    Portugal
+
+Bettina Eick (beick(at)tu-bs.de)
+    AG Algebra und Diskrete Mathematik
+    Institut Computational Mathematics
+    TU Braunschweig
+    Pockelsstr. 14
+    D-38106 Braunschweig
+    Germany

@@ -268,7 +268,4 @@ infinity
 # no more examples
 gap> F := ExampleMatField(10);
 fail
-
 gap> STOP_TEST( "examples.tst", 10000000);   
-
-

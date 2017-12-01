@@ -91,7 +91,7 @@ BannerString := Concatenation([
 ~.Version,
 " ... \n" ]),     
 Autoload := false,
-TestFile := "tst/testinstall.g",
+TestFile := "tst/testall.g",
 Keywords := ["algebraic number theory", "number field" , "maximal order",
 "interface to PARI/GP", "unit group", "elements of given norm" ]
 ));

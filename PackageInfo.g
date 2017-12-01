@@ -8,7 +8,7 @@ SetPackageInfo( rec(
 
 PackageName := "Alnuth",
 Subtitle := "Algebraic number theory and an interface to PARI/GP",
-Version := "3.0.0",
+Version := "3.0.0dev",
 Date := "26/10/2011",
 
 PackageWWWHome := "http://www.icm.tu-bs.de/ag_algebra/software/Alnuth/",

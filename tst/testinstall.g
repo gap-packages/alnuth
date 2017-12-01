@@ -1,3 +1,8 @@
 LoadPackage("alnuth");
-ReadTest(Filename(DirectoriesPackageLibrary("alnuth", "tst"), "version.tst"));
-ReadTest(Filename(DirectoriesPackageLibrary("alnuth", "tst"), "ALNUTH.tst"));
+dirs := DirectoriesPackageLibrary( "alnuth", "tst" );
+tests := [
+    "version.tst",
+    "ALNUTH.tst",
+];
+tests := List(tests, f -> Filename(dirs,f));
+TestDirectory(tests, rec(exitGAP := true));

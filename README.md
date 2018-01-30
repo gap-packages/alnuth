@@ -53,8 +53,8 @@ have PARI/GP installed. See the following section for information on PARI/GP.
 In case you want to update Alnuth independently of your main GAP installation,
 you can download it from its homepage https://gap-packages.github.io/alnuth/.
 If you are interested in an old version of Alnuth interfacing to KANT/KASH
-you can find all released versions of Alnuth at the package's former homepage
-http://www.icm.tu-bs.de/ag_algebra/software/Alnuth/.
+you can find all released versions of Alnuth starting from v1.0 (09/10/2003)
+at https://github.com/gap-packages/alnuth/releases.
 
 There are two ways of installing a GAP package. If you have permission to add
 files to the installation of GAP on your system you may install Alnuth into

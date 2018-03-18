@@ -1,6 +1,6 @@
 name: Alnuth
 version: 3.1.0
-date: 01/12/2017
+date: 2017-12-01
 description: |
     Algebraic number theory and an interface to PARI/GP
 
@@ -23,7 +23,7 @@ GAP: ">= 4.8"
 needed-pkgs:
     - name: "polycyclic"
       version: ">=1.1"
-      url: "http://www.icm.tu-bs.de/ag_algebra/software/polycyclic/"
+      url: "https://gap-packages.github.io/polycyclic/"
 
 www: https://gap-packages.github.io/alnuth
 readme: README.md

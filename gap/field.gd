@@ -15,8 +15,10 @@ DeclareOperation( "IsPrimitiveElementOfNumberField",
 DeclareOperation( "RelationLattice", [IsNumberField, IsCollection] );
 
 DeclareProperty( "IsUnitGroup", IsGroup );
+InstallTrueMethod( IsGroup, IsUnitGroup );
 DeclareProperty( "IsUnitGroupIsomorphism", IsMapping);
 DeclareProperty( "IsNumberFieldByMatrices", IsNumberField );
+InstallTrueMethod( IsNumberField, IsNumberFieldByMatrices );
 DeclareProperty( "IsMultGroupByFieldElemsIsomorphism", IsMapping);
 
 DeclareAttribute( "IntegerDefiningPolynomial", IsNumberField );

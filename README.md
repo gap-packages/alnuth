@@ -167,10 +167,6 @@ issue tracker on GitHub <https://github.com/gap-packages/alnuth/issues> or by
 writing to `beick(at)tu-bs.de'.
 
 Andreas Distler (a.distler(at)tu-bs.de)
-    CAUL (Centro de Álgebra da Universidade de Lisboa)
-    Av. Prof. Gama Pinto, 2
-    1649-003 Lisboa
-    Portugal
 
 Bettina Eick (beick(at)tu-bs.de)
     AG Algebra und Diskrete Mathematik

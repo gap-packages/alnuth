@@ -8,8 +8,9 @@ SetPackageInfo( rec(
 
 PackageName := "Alnuth",
 Subtitle := "Algebraic number theory and an interface to PARI/GP",
-Version := "3.1.0",
-Date := "01/12/2017",
+Version := "3.1.1",
+Date := "04/06/2019", # dd/mm/yyyy format
+License := "GPL-2.0-or-later",
 
 SourceRepository := rec(
     Type := "git",
@@ -29,10 +30,9 @@ Persons := [
 
   rec(
       LastName      := "Assmann",
-      FirstNames    := "Bjoern",
+      FirstNames    := "Björn",
       IsAuthor      := true,
       IsMaintainer  := false,
-      WWWHome       := "http://www.dcs.st-and.ac.uk/~bjoern"
   ),
   rec(
       LastName      := "Distler",
@@ -40,13 +40,6 @@ Persons := [
       IsAuthor      := true,
       IsMaintainer  := true,
       Email         := "a.distler@tu-bs.de",
-      PostalAddress := Concatenation( [
-            "CAUL (Centro de Álgebra da Universidade de Lisboa)\n",
-            "Av. Prof. Gama Pinto, 2\n",
-            "1649-003 Lisboa\n",
-            "Portugal" ] ),
-      Place         := "Lisboa",
-      Institution   := "Centro de Álgebra da Universidade de Lisboa"
  ),
  rec(
       LastName      := "Eick",

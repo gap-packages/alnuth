@@ -1,6 +1,13 @@
 This file describes changes between different versions of Alnuth
 ================================================================
 
+## 3.1.1 (2019-06-04)
+
+  - added implications IsUnitGroup => IsGroup and IsNumberFieldByMatrices
+    => IsNumberField for improved compatibility with future GAP releases
+  - fixed a link in the README
+  - removed outdated author contact information
+
 ## 3.1.0 (2017-12-01)
 
   - upgraded to support PARI 2.9.0 (this required to remove support for

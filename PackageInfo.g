@@ -33,7 +33,6 @@ Persons := [
       FirstNames    := "Björn",
       IsAuthor      := true,
       IsMaintainer  := false,
-      WWWHome       := "http://www.dcs.st-and.ac.uk/~bjoern"
   ),
   rec(
       LastName      := "Distler",
@@ -41,13 +40,6 @@ Persons := [
       IsAuthor      := true,
       IsMaintainer  := true,
       Email         := "a.distler@tu-bs.de",
-      PostalAddress := Concatenation( [
-            "CAUL (Centro de Álgebra da Universidade de Lisboa)\n",
-            "Av. Prof. Gama Pinto, 2\n",
-            "1649-003 Lisboa\n",
-            "Portugal" ] ),
-      Place         := "Lisboa",
-      Institution   := "Centro de Álgebra da Universidade de Lisboa"
  ),
  rec(
       LastName      := "Eick",

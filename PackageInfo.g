@@ -8,8 +8,8 @@ SetPackageInfo( rec(
 
 PackageName := "Alnuth",
 Subtitle := "Algebraic number theory and an interface to PARI/GP",
-Version := "3.1.1",
-Date := "04/06/2019", # dd/mm/yyyy format
+Version := "3.1.2",
+Date := "28/01/2020", # dd/mm/yyyy format
 License := "GPL-2.0-or-later",
 
 SourceRepository := rec(
@@ -46,12 +46,14 @@ Persons := [
       FirstNames    := "Bettina",
       IsAuthor      := true,
       IsMaintainer  := true,
-      Email         := "b.eick@tu-bs.de",
-      WWWHome       := "http://www.icm.tu-bs.de/~beick",
-      PostalAddress := Concatenation( [
-            "Institut Computational Mathematics\n",
-            "TU Braunschweig\n",
-            "Pockelsstr. 14\n D-38106 Braunschweig\n Germany" ] ),
+      Email         := "beick@tu-bs.de",
+      WWWHome       := "http://www.iaa.tu-bs.de/beick",
+      PostalAddress := Concatenation(
+               "Institut Analysis und Algebra\n",
+               "TU Braunschweig\n",
+               "Universitätsplatz 2\n",
+               "D-38106 Braunschweig\n",
+               "Germany" ),
       Place         := "Braunschweig",
       Institution   := "TU Braunschweig"
  ),

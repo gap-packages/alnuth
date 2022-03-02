@@ -8,8 +8,8 @@ SetPackageInfo( rec(
 
 PackageName := "Alnuth",
 Subtitle := "Algebraic number theory and an interface to PARI/GP",
-Version := "3.1.2",
-Date := "28/01/2020", # dd/mm/yyyy format
+Version := "3.2.0",
+Date := "02/03/2022", # dd/mm/yyyy format
 License := "GPL-2.0-or-later",
 
 SourceRepository := rec(

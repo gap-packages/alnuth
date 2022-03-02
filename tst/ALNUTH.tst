@@ -78,8 +78,9 @@ gap> pol := UnivariatePolynomial( Rationals, [ 1, 0, -1, 1 ] );
 x_1^3-x_1^2+1
 gap> L := FieldByPolynomial( pol );
 <algebraic extension over the Rationals of degree 3>
-gap> cosets := NormCosetsOfNumberField( L, 5 );
-[ a^2-2*a ]
+gap> cosets := NormCosetsOfNumberField( L, 5 );;
+gap> [Norm(cosets[1]), Length(cosets)];
+[ 5, 1 ]
 gap> ExponentsOfFractionalIdealDescription( L, cosets );
 [ [ 1 ] ]
 gap> STOP_TEST( "ALNUTH.tst", 100000);   

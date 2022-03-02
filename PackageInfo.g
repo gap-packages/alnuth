@@ -38,7 +38,7 @@ Persons := [
       LastName      := "Distler",
       FirstNames    := "Andreas",
       IsAuthor      := true,
-      IsMaintainer  := true,
+      IsMaintainer  := false,
       Email         := "a.distler@tu-bs.de",
  ),
  rec(

@@ -17,12 +17,12 @@ The GAP package Alnuth (Version 3)
     GNU General Public License for more details.
     
     You should have received a copy of the GNU General Public License
-    along with this program. If not, see <http://www.gnu.org/licenses/>.
+    along with this program. If not, see <https://www.gnu.org/licenses/>.
 
 
 Alnuth is an extension, a so called package, for the computer algebra system
 GAP and forms part of a standard installation. For information about GAP see
-<http://www.gap-system.org/>.
+<https://www.gap-system.org/>.
 
 The functionality of Alnuth lies in ALgebraic NUmber THeory. It provides an
 interface from GAP to certain number theoretic functions from the computer
@@ -76,7 +76,7 @@ Getting PARI/GP
 ===============
 
 Using Alnuth requires an installation of PARI/GP in Version 2.5 or higher. The
-software PARI/GP is freely available at <http://pari.math.u-bordeaux.fr/>.
+software PARI/GP is freely available at <https://pari.math.u-bordeaux.fr/>.
 
 Note that the place where PARI/GP is located in your system is independent of
 the place where Alnuth is installed.
@@ -90,7 +90,7 @@ better performance and complete the installation with `make install' so that
 you can start GP by just calling `gp' from the command line.
 
 For Windows it is sufficient to get the basic GP binary which can be found at
-<http://pari.math.u-bordeaux.fr/download.html>.
+<https://pari.math.u-bordeaux.fr/download.html>.
 
 
 Adjust the path of the executable for GP

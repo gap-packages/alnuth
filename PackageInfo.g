@@ -81,7 +81,7 @@ Dependencies := rec(
   SuggestedOtherPackages := [], 
   ExternalConditions := 
 [["needs the PARI/GP computer algebra system Version 2.5 or higher",
-"http://pari.math.u-bordeaux.fr/" ] ]
+"https://pari.math.u-bordeaux.fr/" ] ]
 ),
 
 AvailabilityTest := ReturnTrue,

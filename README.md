@@ -116,7 +116,7 @@ to use it. This is done by calling `LoadPackage("Alnuth");` in a GAP session.
 If Alnuth had not been loaded already a short banner will be displayed.
 
     gap> LoadPackage("Alnuth");
-    Loading  Alnuth 3.2.0 (Algebraic number theory and an interface to PARI/GP)
+    Loading  Alnuth 3.2.1 (Algebraic number theory and an interface to PARI/GP)
     by Björn Assmann,
        Andreas Distler (a.distler@tu-bs.de), and
        Bettina Eick (http://www.iaa.tu-bs.de/beick).

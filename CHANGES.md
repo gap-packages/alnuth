@@ -1,7 +1,7 @@
 This file describes changes between different versions of Alnuth
 ================================================================
 
-## X.Y.Z (YYYY-MM-DD)
+## 3.2.1 (2022-04-05)
 
   - set the GAP Team as maintainer of this package
   - various janitorial changes

@@ -8,8 +8,8 @@ SetPackageInfo( rec(
 
 PackageName := "Alnuth",
 Subtitle := "Algebraic number theory and an interface to PARI/GP",
-Version := "3.2.0",
-Date := "02/03/2022", # dd/mm/yyyy format
+Version := "3.2.1",
+Date := "05/04/2022", # dd/mm/yyyy format
 License := "GPL-2.0-or-later",
 
 SourceRepository := rec(
@@ -45,7 +45,7 @@ Persons := [
       LastName      := "Eick",
       FirstNames    := "Bettina",
       IsAuthor      := true,
-      IsMaintainer  := true,
+      IsMaintainer  := false,
       Email         := "beick@tu-bs.de",
       WWWHome       := "http://www.iaa.tu-bs.de/beick",
       PostalAddress := Concatenation(
@@ -56,6 +56,13 @@ Persons := [
                "Germany" ),
       Place         := "Braunschweig",
       Institution   := "TU Braunschweig"
+ ),
+ rec(
+      LastName      := "GAP Team",
+      FirstNames    := "The",
+      IsAuthor      := false,
+      IsMaintainer  := true,
+      Email         := "support@gap-system.org",
  ),
 ],
 
@@ -81,7 +88,7 @@ Dependencies := rec(
   SuggestedOtherPackages := [], 
   ExternalConditions := 
 [["needs the PARI/GP computer algebra system Version 2.5 or higher",
-"http://pari.math.u-bordeaux.fr/" ] ]
+"https://pari.math.u-bordeaux.fr/" ] ]
 ),
 
 AvailabilityTest := ReturnTrue,

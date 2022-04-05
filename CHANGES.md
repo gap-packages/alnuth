@@ -1,6 +1,11 @@
 This file describes changes between different versions of Alnuth
 ================================================================
 
+## X.Y.Z (YYYY-MM-DD)
+
+  - set the GAP Team as maintainer of this package
+  - various janitorial changes
+
 ## 3.2.0 (2022-03-02)
 
   - upgraded to support PARI 2.13 (thanks to Bill Allombert for the patch)

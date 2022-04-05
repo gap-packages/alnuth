@@ -45,7 +45,7 @@ Persons := [
       LastName      := "Eick",
       FirstNames    := "Bettina",
       IsAuthor      := true,
-      IsMaintainer  := true,
+      IsMaintainer  := false,
       Email         := "beick@tu-bs.de",
       WWWHome       := "http://www.iaa.tu-bs.de/beick",
       PostalAddress := Concatenation(
@@ -56,6 +56,13 @@ Persons := [
                "Germany" ),
       Place         := "Braunschweig",
       Institution   := "TU Braunschweig"
+ ),
+ rec(
+      LastName      := "GAP Team",
+      FirstNames    := "The",
+      IsAuthor      := false,
+      IsMaintainer  := true,
+      Email         := "support@gap-system.org",
  ),
 ],
 

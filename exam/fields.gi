@@ -8,7 +8,7 @@
 ## ExampleMatField provides somes examples of fields which are generated
 ## by matrices in GL(d,Z) or GL(d,Q)
 ##
-ExampleMatField := function(n)
+BindGlobal( "ExampleMatField", function(n)
    if n = 1 then
        return FieldByMatricesNC(ExamUnimod(1){[1..4]});
    elif n = 2 then 
@@ -30,6 +30,6 @@ ExampleMatField := function(n)
    else
        return fail;
    fi;
-end;
+end );
 
 

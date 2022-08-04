@@ -43,7 +43,7 @@ end );
 ##
 #F NullspaceModRank( M, n)
 ##
-NullspaceModRank := function( M, n )
+BindGlobal( "NullspaceModRank", function( M, n )
     local  snf, null, nullM, i, gcdex;                                
     snf := NormalFormIntMat( M, 1 + 4 );
     null := IdentityMat( Length( M ) );
@@ -55,7 +55,7 @@ NullspaceModRank := function( M, n )
             return v * M mod n = 0 * M[1];
         end ) );
     return nullM;
-end;
+end );
 
 #############################################################################
 ##
@@ -108,7 +108,7 @@ end );
 ##
 #F ExponentsOfFractionalIdealDescription( F, elms )
 ##
-ExponentsOfFractionalIdealDescription:= function( F, elms )
+BindGlobal( "ExponentsOfFractionalIdealDescription", function( F, elms )
     local base, flat, coef, exps, gens;
 
     # catch a trivial case
@@ -121,7 +121,7 @@ ExponentsOfFractionalIdealDescription:= function( F, elms )
 
     # return exponents
     return exps;
-end;
+end );
 
 
 #############################################################################
@@ -200,7 +200,7 @@ end );
 ## The function determines the relation lattice for <elms>, i.e. 
 ## relations rels between <elms> such that elms^rels=1
 ##
-RelationLatticePol:= function( F, elms )
+BindGlobal( "RelationLatticePol", function( F, elms )
   local rul,units,i,rl,F2,x;
 
   if DegreeOverPrimeField(F)=1 then
@@ -227,9 +227,9 @@ RelationLatticePol:= function( F, elms )
   fi;
 
   return NormalFormIntMat( rl * rul, 2).normal;
-end;
+end );
 
-RelationLatticeMat:= function( F, elms )
+BindGlobal( "RelationLatticeMat", function( F, elms )
   local rul,units,i,rl,F2,x,c,elms2;
 
   if DegreeOverPrimeField(F)=1 then
@@ -259,7 +259,7 @@ RelationLatticeMat:= function( F, elms )
   fi;
 
   return NormalFormIntMat( rl * rul, 2).normal;
-end;
+end );
 
 
 InstallMethod( RelationLattice, "for fields by polynomial", true,

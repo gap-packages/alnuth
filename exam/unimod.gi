@@ -19,7 +19,7 @@
 ##
 #F ExamUnimod(n)
 ##
-ExamUnimod:=function(n)
+BindGlobal( "ExamUnimod", function(n)
    local matrixlist;
    matrixlist:=
  
@@ -160,7 +160,7 @@ ExamUnimod:=function(n)
 
 
     return matrixlist[n];
-end;
+end );
 
 
 

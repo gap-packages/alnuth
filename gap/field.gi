@@ -10,7 +10,7 @@
 #F ListElmPower( range, elm )
 #M EquationOrderBasis( F )
 ##
-ListElmPower := function( range, elm )
+BindGlobal( "ListElmPower", function( range, elm )
     local list, i;
 
     if not IsRange( range ) then
@@ -30,7 +30,7 @@ ListElmPower := function( range, elm )
         Add( list, list[i] * elm );
     od;
     return list;
-end;   
+end );   
 
 InstallMethod( EquationOrderBasis, "for number field", true,
 [IsNumberField], 0, 
@@ -97,17 +97,17 @@ end );
 ##
 #F IsIntegerOfNumberField( F, k )
 ##
-IsIntegerOfNumberField := function( F, k )
+BindGlobal( "IsIntegerOfNumberField", function( F, k )
     local c;
     c := Coefficients( MaximalOrderBasis(F), k );
     return ForAll( c, IsInt );
-end;
+end );
 
 #############################################################################
 ##
 #M UnitGroup( F )
 ##
-AddNaturalHomomorphismOfUnitGroup := function( G )
+BindGlobal( "AddNaturalHomomorphismOfUnitGroup", function( G )
     local gens, rels, H, nat;
 
     # the generators of G are independent and the first one is torsion
@@ -120,9 +120,9 @@ AddNaturalHomomorphismOfUnitGroup := function( G )
     SetIsBijective( nat, true );
     SetIsUnitGroupIsomorphism( nat, true );
     SetIsomorphismPcpGroup( G, nat );
-end;
+end );
 
-AddUnitGroupOfNumberField := function( F, units )
+BindGlobal( "AddUnitGroupOfNumberField", function( F, units )
     local gens, G;
 
     # check if units are known
@@ -137,9 +137,9 @@ AddUnitGroupOfNumberField := function( F, units )
     SetFieldOfUnitGroup( G, F );
     AddNaturalHomomorphismOfUnitGroup( G );
     SetUnitGroup( F, G );
-end;
+end );
 
-UnitGroupOfNumberField := function( F )
+BindGlobal( "UnitGroupOfNumberField", function( F )
     local eqn, uni, gen, G, r, H, nat;
 
     # determine generators
@@ -158,7 +158,7 @@ UnitGroupOfNumberField := function( F )
 
     # return
     return G;
-end;
+end );
 
 InstallMethod( UnitGroup, "for number field", true,
 [IsNumberField], 0, function( F ) return
@@ -179,15 +179,15 @@ end );
 #F ExponentsOfUnitsOfNumberField( F, elms )
 #M ExponentsOfUnits( F, elms )
 ##
-AL_ExponentsTrivialUnits := function( unit, one ) 
+BindGlobal( "AL_ExponentsTrivialUnits", function( unit, one ) 
     if unit = one then
         return [ 0 ];
     else
         return [ 1 ];
     fi;
-end;
+end );
 
-ExponentsOfUnitsOfNumberField := function( F, elms )
+BindGlobal( "ExponentsOfUnitsOfNumberField", function( F, elms )
     local base, coef, exps, gens;
 
     # catch a trivial case
@@ -215,7 +215,7 @@ ExponentsOfUnitsOfNumberField := function( F, elms )
     else
         return exps.expns;
     fi;
-end;
+end );
 
 InstallMethod( ExponentsOfUnits, "for number fields", true,
 [IsNumberField, IsCollection], 0, function( F, elms )
@@ -225,7 +225,7 @@ return ExponentsOfUnitsOfNumberField( F, elms ); end);
 ##
 #F ExponentsOfUnitsWithRank( F, elms )
 ##
-ExponentsOfUnitsWithRank := function( F, elms )
+BindGlobal( "ExponentsOfUnitsWithRank", function( F, elms )
     local base, flat, coef, exps, gens;
 
     # determine exponents
@@ -239,7 +239,7 @@ ExponentsOfUnitsWithRank := function( F, elms )
 
     # return exponents
     return rec(exps:=exps.expns, rank:=exps.rank);
-end;
+end );
 
 #############################################################################
 ##

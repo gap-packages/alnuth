@@ -16,7 +16,7 @@ InstallSubsetMaintenance( IsNumberFieldByMatrices,
 ##
 #F AL_SplitSemisimple( base )
 ##
-AL_SplitSemisimple := function( base )
+BindGlobal( "AL_SplitSemisimple", function( base )
     local  d, b, f, s, i;
     d := Length( base );
     b := PrimitiveAlgebraElement( [  ], base );
@@ -35,7 +35,7 @@ AL_SplitSemisimple := function( base )
                 poly := f[x] );
         end );
     return s;
-end;
+end );
 
 #############################################################################
 ##
@@ -43,7 +43,7 @@ end;
 ##
 ## <mats> is an abelian rational matrix group
 ##
-AL_RadicalOfAbelianRMGroup := function( mats, d )
+BindGlobal( "AL_RadicalOfAbelianRMGroup", function( mats, d )
     local coms, i, j, new, base, full, nath, indm, l, algb, newv, tmpb, subb,
           f, g, h, mat;
  
@@ -94,7 +94,7 @@ AL_RadicalOfAbelianRMGroup := function( mats, d )
         fi;
     od;
     return rec( radical := base, nathom := nath, algebra := algb );
-end;
+end );
 
 #############################################################################
 ##
@@ -102,7 +102,8 @@ end;
 ##
 ## <mats> is an abelian rational matrix group
 ##
-AL_HomogeneousSeriesAbelianRMGroup := function( mats, d )
+DeclareGlobalFunction( "AL_HomogeneousSeriesAbelianRMGroup" );
+InstallGlobalFunction( "AL_HomogeneousSeriesAbelianRMGroup", function( mats, d )
     local radb, splt, nath,inducedgens, l, sers, i, sub, full, acts, rads;
 
     # catch the trivial case and set up
@@ -141,13 +142,13 @@ AL_HomogeneousSeriesAbelianRMGroup := function( mats, d )
                             return x * radb.radical; fi;end );
     Append( sers, rads{[2..Length(rads)]} );
     return sers;
-end;
+end );
 
 #############################################################################
 ##
 #F AL_MatricesGeneratingNumberField( gens )
 ##
-AL_MatricesGeneratingNumberField := function( gens )
+BindGlobal( "AL_MatricesGeneratingNumberField", function( gens )
     local d, series, G;
     d := Length(gens[1]);
     if ForAny( gens, x -> Length(x) <> d ) then 
@@ -172,7 +173,7 @@ AL_MatricesGeneratingNumberField := function( gens )
         return false;
     fi;
     return true;
-end;
+end );
 
 #############################################################################
 ##
@@ -234,9 +235,9 @@ end );
 #M CanonicalBasis( F )
 #M Basis( F )
 ##
-BasisVectorsOfMatrixField := function( F )
+BindGlobal( "BasisVectorsOfMatrixField", function( F )
     return AlgebraBase( GeneratorsOfField(F) );
-end;
+end );
 
 InstallMethod( CanonicalBasis, "for matrix field", true, 
 [IsNumberFieldByMatrices], 0, 
@@ -282,7 +283,7 @@ return Length( Basis( F ) ); end);
 #F IntegralMatrix
 #F SuitablePrimitiveElementCheck( F, k )
 ##
-IntegralMatrix := function( mat ) 
+BindGlobal( "IntegralMatrix", function( mat ) 
     local l,n,i,j,a;
     l := [];
     n := Length( mat );
@@ -293,9 +294,9 @@ IntegralMatrix := function( mat )
     od;
     a := Lcm( l );
     return a*mat;
-end;
+end );
 
-SuitablePrimitiveElementCheck := function( F, k )
+BindGlobal( "SuitablePrimitiveElementCheck", function( F, k )
     local d, g, sumCoef;
     d := DegreeOverPrimeField( F );
     g := MinimalPolynomial( Rationals, k );
@@ -318,7 +319,7 @@ SuitablePrimitiveElementCheck := function( F, k )
         Info( InfoAlnuth, 3, sumCoef );
         return rec( prim := k, min := g, sumCoef := sumCoef);
     fi;
-end; 
+end ); 
 
 
 #############################################################################
@@ -327,7 +328,7 @@ end;
 #M IntegerPrimitiveElement( F )
 #M PrimitiveElement( F )
 ##
-SuitablePrimitiveElementOfMatrixField := function( F )
+BindGlobal( "SuitablePrimitiveElementOfMatrixField", function( F )
     local k, d, b, l, i, c, primtmp,prim, poss; 
     # try to find a primitive element wiht small coeff in the minpol
     prim := rec( prim := [], min := [], sumCoef := infinity);
@@ -373,7 +374,7 @@ SuitablePrimitiveElementOfMatrixField := function( F )
     SetIntegerDefiningPolynomial( F, prim.min );
     Info( InfoAlnuth, 2, "prim is ", prim);
     return prim.prim;
-end;
+end );
 
 InstallMethod( IntegerPrimitiveElement, "for matrix field", true, 
 [IsNumberFieldByMatrices], 0, function( F ) return 

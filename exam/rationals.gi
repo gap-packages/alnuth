@@ -10,7 +10,7 @@
 ## such that the associated algebra over Q is simple over 
 ##
 
-ExamRationals:=function(n)
+BindGlobal( "ExamRationals", function(n)
     local matrixlist;
 
     matrixlist:=
@@ -298,4 +298,4 @@ ExamRationals:=function(n)
 
 
     return matrixlist[n];
-end;
+end );

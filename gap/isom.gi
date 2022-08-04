@@ -7,7 +7,7 @@
 ##
 #F IsomorphismOfMultGroupByFieldEl( F, elms )
 ##
-IsomorphismOfMultGroupByFieldEl := function( F, elms )
+BindGlobal( "IsomorphismOfMultGroupByFieldEl", function( F, elms )
     local gens, rels, H, nat,CPCS,G;
 
     # calculate a constructive pc-sequence
@@ -24,7 +24,7 @@ IsomorphismOfMultGroupByFieldEl := function( F, elms )
     nat!.CPCS := CPCS;
     nat!.field := F;
     return nat;
-end;
+end );
 
 #############################################################################
 ##

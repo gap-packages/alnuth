@@ -1,24 +1,25 @@
-
-\Chapter{An example application}
+<Chapter Label="An example application">
+<Heading>An example application</Heading>
 
 In this section we outline two example computations with the functions
-of the previous chapter. The first example uses number fields defined 
+of the previous chapter. The first example uses number fields defined
 by matrices and the second example considers number fields defined by
 a polynomial.
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\Section{Number fields defined by matrices}
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<Section Label="Number fields defined by matrices">
+<Heading>Number fields defined by matrices</Heading>
 
-\beginexample
+<Example><![CDATA[
 gap> m1 := [ [ 1, 0, 0, -7 ], 
-             [ 7, 1, 0, -7 ], 
-             [ 0, 7, 1, -7 ],
-             [ 0, 0, 7, -6 ] ];;
+>            [ 7, 1, 0, -7 ], 
+>            [ 0, 7, 1, -7 ], 
+>            [ 0, 0, 7, -6 ] ];;
 
 gap> m2 := [ [ 0, 0, -13, 14 ], 
-             [ -1, 0, -13, 1 ], 
-             [ 13, -1, -13, 1 ], 
-             [ 0, 13, -14, 1 ] ];;
+>            [ -1, 0, -13, 1 ], 
+>            [ 13, -1, -13, 1 ], 
+>            [ 0, 13, -14, 1 ] ];;
 
 gap> F := FieldByMatricesNC( [m1, m2] );
 <rational matrix field of unknown degree>
@@ -59,14 +60,17 @@ gap> ImageElm( nat, u[1]*u[2] );
 g1*g2
 gap> u[1] = PreImagesRepresentative(nat, GeneratorsOfGroup(H)[1] );
 true
-\endexample
+]]></Example>
+</Section>
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\Section{Number fields defined by a polynomial}
 
-\beginexample
+<!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
+<Section Label="Number fields defined by a polynomial">
+<Heading>Number fields defined by a polynomial</Heading>
+
+<Example><![CDATA[
 gap> g := UnivariatePolynomial( Rationals, [ 16, 64, -28, -4, 1 ] );
-x_1^4-4*x_1^3-28*x_1^2+64*x_1+16
+x^4-4*x^3-28*x^2+64*x+16
 
 gap> F := FieldByPolynomialNC(g);
 <algebraic extension over the Rationals of degree 4>
@@ -94,31 +98,6 @@ true
 gap> FactorsPolynomialAlgExt( F, g );
 [ x_1+(-a), x_1+(a-2), x_1+(-1/7*a^3+3/7*a^2+31/7*a-40/7),
   x_1+(1/7*a^3-3/7*a^2-31/7*a+26/7) ]
-\endexample
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+]]></Example>
+</Section>
+</Chapter>

@@ -7,7 +7,7 @@
 SetPackageInfo( rec(
 
 PackageName := "Alnuth",
-Subtitle := "Algebraic number theory and an interface to PARI/GP",
+Subtitle := "ALgebraic NUmber THeory and an interface to PARI/GP",
 Version := "3.2.1dev",
 Date := "05/04/2022", # dd/mm/yyyy format
 License := "GPL-2.0-or-later",
@@ -75,12 +75,12 @@ AbstractHTML :=
 
 PackageDoc := rec(
   BookName  := "Alnuth",
-  ArchiveURLSubset := ["doc", "htm"],
-  HTMLStart := "htm/chapters.htm",
+  ArchiveURLSubset := ["doc"],
+  HTMLStart := "doc/chap0_mj.html",
   PDFFile   := "doc/manual.pdf",
   SixFile   := "doc/manual.six",
-  LongTitle := "Algebraic number theory and an interface to PARI/GP",
-  Autoload  := true),
+  LongTitle := "ALgebraic NUmber THeory and an interface to PARI/GP",
+),
 
 Dependencies := rec(
   GAP := ">= 4.8",
@@ -94,5 +94,27 @@ Dependencies := rec(
 AvailabilityTest := ReturnTrue,
 TestFile := "tst/testall.g",
 Keywords := ["algebraic number theory", "number field" , "maximal order",
-"interface to PARI/GP", "unit group", "elements of given norm" ]
+"interface to PARI/GP", "unit group", "elements of given norm" ],
+
+
+
+# GAP code written by:
+# Björn Assmann, Andreas Distler, Bettina Eick
+# —
+# GP code written by: Bill Allombert
+#
+# Note: PARI/GP is not part of this package. It can be obtained from https://pari.math.u-bordeaux.fr/
+
+
+AutoDoc := rec(
+    entities := rec(
+        #VERSION := ~.Version,
+        #DATE := ~.Date,
+        Polycyclic := "<Package>Polycyclic</Package>" ,
+    ),
+    TitlePage := rec(
+        TitleComment := "<E>Note:</E> PARI/GP is <E>not</E> part of this package. It can be obtained from <URL>https://pari.math.u-bordeaux.fr/</URL>",
+    ),
+),
+
 ));

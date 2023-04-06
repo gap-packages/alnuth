@@ -11,7 +11,7 @@
 ReadPackage("alnuth", "gap/setup.gd");
 ReadPackage("alnuth", "gap/factors.gd");
 ReadPackage("alnuth", "gap/field.gd");
-ReadPackage("alnuth", "gap/kantin.gd");
+ReadPackage("alnuth", "gap/pari.gd");
 
 #############################################################################
 ##

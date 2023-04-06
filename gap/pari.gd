@@ -1,6 +1,6 @@
 #############################################################################
 ##
-#W kantin.gd        Alnuth - ALgebraic NUmber THeory           Bettina Eick
+#W pari.gd          Alnuth - ALgebraic NUmber THeory           Bettina Eick
 #W                                                           Bjoern Assmann
 #W                                                          Andreas Distler
 ##

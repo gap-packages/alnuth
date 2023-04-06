@@ -41,7 +41,7 @@ ReadPackage("alnuth", "defs.g");
 
 ReadPackage("alnuth", "gap/setup.gi");
 ReadPackage("alnuth", "gap/factors.gi");
-ReadPackage("alnuth", "gap/kantin.gi");
+ReadPackage("alnuth", "gap/pari.gi");
 ReadPackage("alnuth", "gap/matfield.gi");
 ReadPackage("alnuth", "gap/polfield.gi");
 ReadPackage("alnuth", "gap/field.gi");

@@ -9,7 +9,7 @@
 ##
 #F PolynomialWithNameToStringList( f[, name] )
 ##
-InstallGlobalFunction(PolynomialWithNameToStringList, function( arg )
+BindGlobal("PolynomialWithNameToStringList", function( arg )
     local c, f, stringlist, i;
 
     # get input
@@ -39,7 +39,7 @@ end);
 ##
 #F CoefficientsToStringList(name, coeffs)
 ##
-InstallGlobalFunction(CoefficientsToStringList, function(name, coeffs)
+BindGlobal("CoefficientsToStringList", function(name, coeffs)
     local stringlist, c;
 
     stringlist := ["{"];
@@ -52,6 +52,36 @@ InstallGlobalFunction(CoefficientsToStringList, function(name, coeffs)
     Add(stringlist, "0]; }\n");
 
     return stringlist;
+end);
+
+#############################################################################
+##
+#F ProcessPariGP(input, codefile)
+##
+BindGlobal("ProcessPariGP", function(input, codefile)
+    local output, paricode;
+
+    # test, wether AL_EXECUTABLE is set
+    if AL_EXECUTABLE = fail then
+        Error( "AL_EXECUTABLE, the executable for PARI/GP, has to be set" );
+    fi;
+
+    # add the prepared code fragments for the calculations in PARI/GP
+    paricode := InputTextFile(Filename(AL_PATH, codefile));
+
+    # execute PARI/GP
+    Info(InfoAlnuth, 1, "executing PARI/GP with ", codefile);
+    output := "";
+    Process(DirectoryCurrent(), AL_EXECUTABLE, 
+            InputTextString(Concatenation(input, ReadAll(paricode))),
+            OutputTextString(output,false), 
+            Concatenation(AL_OPTIONS, [AL_STACKSIZE])
+           );
+
+    # close open input stream from file with GP code
+    CloseStream(paricode);
+
+    return EvalString(output);
 end);
 
 #############################################################################
@@ -192,37 +222,3 @@ InstallGlobalFunction( PolynomialFactorsDescriptionPari, function( F, coeffs )
     # return result
     return result;
 end );
-
-#############################################################################
-##
-#F ProcessPariGP(input, codefile)
-##
-InstallGlobalFunction(ProcessPariGP, function(input, codefile)
-    local output, paricode;
-
-    # test, wether AL_EXECUTABLE is set
-    if AL_EXECUTABLE = fail then
-        Error( "AL_EXECUTABLE, the executable for PARI/GP, has to be set" );
-    fi;
-
-    # add the prepared code fragments for the calculations in PARI/GP
-    paricode := InputTextFile(Filename(AL_PATH, codefile));
-
-    # execute PARI/GP
-    Info(InfoAlnuth, 1, "executing PARI/GP with ", codefile);
-    output := "";
-    Process(DirectoryCurrent(), AL_EXECUTABLE, 
-            InputTextString(Concatenation(input, ReadAll(paricode))),
-            OutputTextString(output,false), 
-            Concatenation(AL_OPTIONS, [AL_STACKSIZE])
-           );
-
-    # close open input stream from file with GP code
-    CloseStream(paricode);
-
-    return EvalString(output);
-end);
-
-#############################################################################
-##
-#E

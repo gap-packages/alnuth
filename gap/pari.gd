@@ -7,18 +7,6 @@
 
 #############################################################################
 ##
-#F PolynomialWithNameToStringList( f[, name] )
-##
-DeclareGlobalFunction("PolynomialWithNameToStringList");
-
-#############################################################################
-##
-#F CoefficientsToStringList( name, coeffs )
-##
-DeclareGlobalFunction("CoefficientsToStringList");
-
-#############################################################################
-##
 #F MaximalOrderDescriptionPari( F )
 ##
 DeclareGlobalFunction("MaximalOrderDescriptionPari");
@@ -59,13 +47,3 @@ DeclareGlobalFunction("NormCosetsDescriptionPari");
 ##  using PARI/GP
 ##
 DeclareGlobalFunction( "PolynomialFactorsDescriptionPari" );
-
-#############################################################################
-##
-#F ProcessPariGP(input, codefile)
-##
-DeclareGlobalFunction("ProcessPariGP");
-
-#############################################################################
-##
-#E

@@ -41,7 +41,11 @@ ReadPackage("alnuth", "defs.g");
 
 ReadPackage("alnuth", "gap/setup.gi");
 ReadPackage("alnuth", "gap/factors.gi");
-ReadPackage("alnuth", "gap/pari.gi");
+if IsPackageMarkedForLoading("OscarInterface", "") then
+    ReadPackage("alnuth", "gap/oscar.gi");
+else
+    ReadPackage("alnuth", "gap/pari.gi");
+fi;
 ReadPackage("alnuth", "gap/matfield.gi");
 ReadPackage("alnuth", "gap/polfield.gi");
 ReadPackage("alnuth", "gap/field.gi");

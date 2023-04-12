@@ -134,7 +134,7 @@ BindGlobal("PolynomialFactorsDescriptionOscar", function(F, coeffs)
   for f in JuliaToGAP(IsList, Oscar.collect(facs.fac)) do
     # Convert factor to GAP
     g := Julia.map(Oscar.coordinates, f[1].coeffs);
-    g := CallJuliaFunctionWithKeywordArguments(Oscar.GAP.julia_to_gap, [g], rec( recursive := true));
+    g := JuliaToGAP(IsList, g, true);
     g := Reversed(g);
 
     # add as many copies as necessary

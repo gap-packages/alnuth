@@ -161,7 +161,7 @@ if <A>path</A> does not execute GP in Version 2.5.0 or higher.
 <P/>
 
 To make the change take effect for all of your &GAP; sessions, you can
-add <C>SetKantExecutable</C> with the path to the GP executable as argument
+add <C>SetAlnuthExternalExecutable</C> with the path to the GP executable as argument
 to your personal <C>gaprc</C> file (see the Subsection <Ref BookName="ref"
 Sect="The gap.ini and gaprc files"/> in the &GAP; reference manual).
 </Description>

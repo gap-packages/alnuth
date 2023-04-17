@@ -14,9 +14,6 @@
 ##
 DeclareGlobalFunction("FactorsPolynomialPari");
 
-##  ensure backwards compatibility with formerly documented functionality
-DeclareSynonym("FactorsPolynomialKant", FactorsPolynomialPari);
-
 #############################################################################
 ##
 #F  FactorsPolynomialAlgExt, function( <H>, <poly> )

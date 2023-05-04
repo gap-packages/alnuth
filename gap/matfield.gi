@@ -184,6 +184,7 @@ InstallGlobalFunction( FieldByMatricesNC, function( gens )
     F := FieldByGenerators( gens);
     SetIsNumberField( F, true );
     SetIsNumberFieldByMatrices( F, true );
+    SetIsFinite( F, false );
     return F;
 end );  
 

@@ -4,6 +4,8 @@ gap> F := FieldByMatrices( mats );
 <rational matrix field of degree 4>
 gap> DegreeOverPrimeField( F );
 4
+gap> IsFinite( F );
+false
 gap> EquationOrderBasis( F );
 Basis( <rational matrix field of degree 4>, 
 [ [ [ 1, 0, 0, 0 ], [ 0, 1, 0, 0 ], [ 0, 0, 1, 0 ], [ 0, 0, 0, 1 ] ], 

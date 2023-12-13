@@ -11,10 +11,3 @@
 ReadPackage("alnuth", "gap/setup.gd");
 ReadPackage("alnuth", "gap/factors.gd");
 ReadPackage("alnuth", "gap/field.gd");
-if not IsPackageMarkedForLoading("OscarInterface", "") then
-    ReadPackage("alnuth", "gap/pari.gd");
-fi;
-
-#############################################################################
-##
-#E

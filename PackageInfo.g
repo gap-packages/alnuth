@@ -40,8 +40,8 @@ Persons := [
       IsAuthor      := true,
       IsMaintainer  := false,
       Email         := "a.distler@tu-bs.de",
- ),
- rec(
+  ),
+  rec(
       LastName      := "Eick",
       FirstNames    := "Bettina",
       IsAuthor      := true,
@@ -56,14 +56,30 @@ Persons := [
                "Germany" ),
       Place         := "Braunschweig",
       Institution   := "TU Braunschweig"
- ),
- rec(
+  ),
+  rec(
+      LastName      := "Horn",
+      FirstNames    := "Max",
+      IsAuthor      := false,
+      IsMaintainer  := true,
+      Email         := "mhorn@rptu.de",
+      WWWHome       := "https://www.quendi.de/math",
+      PostalAddress := Concatenation(
+                         "Fachbereich Mathematik\n",
+                         "RPTU Kaiserslautern-Landau\n",
+                         "Gottlieb-Daimler-Straße 48\n",
+                         "67663 Kaiserslautern\n",
+                         "Germany" ),
+      Place         := "Kaiserslautern, Germany",
+      Institution   := "RPTU Kaiserslautern-Landau"
+  ),
+  rec(
       LastName      := "GAP Team",
       FirstNames    := "The",
       IsAuthor      := false,
       IsMaintainer  := true,
       Email         := "support@gap-system.org",
- ),
+  ),
 ],
 
 Status := "accepted",

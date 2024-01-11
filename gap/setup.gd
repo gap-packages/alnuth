@@ -17,9 +17,9 @@ DeclareGlobalFunction("SetAlnuthExternalExecutable");
 
 #############################################################################
 ##
-#F SuitablePariExecutable(path)
+#F AL_SuitablePariExecutable(path)
 ##
-DeclareGlobalFunction("SuitablePariExecutable");
+DeclareGlobalFunction("AL_SuitablePariExecutable");
 
 #############################################################################
 ##
@@ -31,15 +31,15 @@ DeclareGlobalFunction("PariVersion");
 ##
 #F SetAlnuthExternalExecutablePermanently(path)
 ##
-## Changes the file defs.g to set a new default value for AL_EXECUTABLE
+## Deprecated wrapper around setting the persistent executable preference.
 ##
 DeclareGlobalFunction("SetAlnuthExternalExecutablePermanently");
 
 #############################################################################
 ##
-#F RestoreAlnuthExternalExecutablePermanently(path)
+#F RestoreAlnuthExternalExecutablePermanently()
 ##
-## restores the original content of the file defs.g
+## Deprecated wrapper around restoring the default executable preference.
 ##
 DeclareGlobalFunction("RestoreAlnuthExternalExecutablePermanently");
 

@@ -3,17 +3,11 @@
 #W setup.gi         Alnuth - ALgebraic NUmber THeory        Andreas Distler
 ##
 
-#############################################################################
-##
-#F _ChangeGlobalVariable( name, val )
-##
-BindGlobal( "_ChangeGlobalVariable", function(name, val)
-
-    MakeReadWriteGlobal(name);
-    UnbindGlobal(name);
-    BindGlobal(name, val);
-
-end );
+BindGlobal("AL_InfoDeprecatedWrapper", function(name, replacement)
+    Info(InfoObsolete, 1,
+         "The function `", name, "` is deprecated. Use ", replacement,
+         " instead.");
+end);
 
 #############################################################################
 ##
@@ -21,14 +15,11 @@ end );
 ##
 InstallGlobalFunction( SetPariStackSize, function( size )
 
-    # test input
-    while not IsPosInt( size ) do 
-        Error("<size>, the amount of memory in MB, must be a positive integer");
-    od;
+    if not IsPosInt( size ) then 
+        ErrorNoReturn("<size>, the amount of memory in MB, must be a positive integer");
+    fi;
 
-    # set global variable to given value
-    _ChangeGlobalVariable("AL_STACKSIZE",
-                         Concatenation("-s", String(size), "M"));
+    SetUserPreference("alnuth", "PariStackSize", size);
 
 end );
 
@@ -37,60 +28,48 @@ end );
 #F SetAlnuthExternalExecutable( path )
 ##
 InstallGlobalFunction( SetAlnuthExternalExecutable, function( path )
+    AL_InfoDeprecatedWrapper(
+        "SetAlnuthExternalExecutable",
+        "SetUserPreference(\"alnuth\", \"PariGpPath\", path)"
+    );
 
-    # tests wether there is an executable file behind <path>
-    while Filename( DirectoriesSystemPrograms( ), path ) = fail and
-       not IsExecutableFile( path ) do
-        Error( "<path> has to be an executable" );
-    od;
-    
-    if not IsExecutableFile( path ) then
-        path := Filename( DirectoriesSystemPrograms( ), path );
-        if not IsExecutableFile( path ) then
-            Info( InfoWarning, 1, "No permission to execute ", path );
-            return fail;
-        fi;
+    if not AL_SuitablePariExecutable(path) then
+        ErrorNoReturn(
+            "<path> must name a usable PARI/GP executable in version 2.5 or higher"
+        );
     fi;
 
-    if SuitablePariExecutable(path) then
-        # set AL_EXECUTABLE
-        _ChangeGlobalVariable("AL_EXECUTABLE", path);
-        return path;
-    else
-        return fail;
-    fi;
+    SetUserPreference("alnuth", "PariGpPath", path);
+    return UserPreference("alnuth", "PariGpPath");
 end );
 
 #############################################################################
 ##
-#F SuitablePariExecutable( path )
+#F AL_SuitablePariExecutable( path )
 ##
-InstallGlobalFunction( SuitablePariExecutable, function( path )
-    local str, pos, version;
+InstallGlobalFunction( AL_SuitablePariExecutable, function( path )
+    local resolved, version;
 
-    # try to find out, if it is a suitable version of PARI/GP
-    str := "";
-    Process( DirectoryCurrent( ), path, InputTextNone( ),
-             OutputTextString( str, false ), [ "-f" ] );
-    if PositionSublist( str, "PARI" ) = fail then
+    if path = "" then
+        return true;
+    fi;
+
+    resolved := AL_ResolvePariGpPath(path);
+    if resolved = fail then
+        Info(InfoWarning, 1, path, " is not an executable file.");
+        return false;
+    fi;
+
+    version := "";
+    Process(DirectoryCurrent(), resolved, InputTextNone(),
+            OutputTextString(version, false), [ "--version-short" ]);
+    version := Chomp(version);
+
+    if version = "" then
         Info(InfoWarning, 1, path,
              " does not seem to be an executable for PARI/GP.");
         return false;
     fi;
-
-    pos := PositionSublist( str, "Version " );
-    if pos = fail then
-        Info(InfoWarning, 1, path,
-             " does not seem to be an executable for PARI/GP.");
-        return false;
-    else
-        # go to beginning of version number
-        pos := pos + 8;
-    fi;
-
-    # check version number, should be 2.5.X, has to be at least 2.3.X 
-    version := str{[ pos..pos+PositionProperty(str{[ pos..Length(str) ]},
-                                               char-> char = ' ') - 2 ]};
     if not CompareVersionNumbers(version, "2.5") then
         Info( InfoWarning, 1, path,
              " seems to be an executable for PARI/GP Version ",
@@ -107,12 +86,13 @@ end );
 #F PariVersion( )
 ##
 InstallGlobalFunction( PariVersion, function( )
-    local str;
+    local exe, str;
 
-    if IsExecutableFile(AL_EXECUTABLE) then
+    exe := AL_CurrentPariGpPath();
+    if exe <> fail then
         # use the command line option to obtain version number of PARI/GP
         str := "";
-        Process( DirectoryCurrent( ), AL_EXECUTABLE, InputTextNone( ),
+        Process( DirectoryCurrent( ), exe, InputTextNone( ),
                  OutputTextString( str, false ), [ "--version-short" ] );
         Print( str );
     fi;
@@ -123,25 +103,20 @@ end );
 #F SetAlnuthExternalExecutablePermanently( path )
 ##
 InstallGlobalFunction( SetAlnuthExternalExecutablePermanently, function( path )
-    SetAlnuthExternalExecutable( path );
-    if not IsWritableFile(Filename(DirectoriesPackageLibrary("alnuth", ""),
-                          "defs.g")) then
-        Info(InfoWarning, 1, "No write access to file <defs.g>.");
-        return AL_EXECUTABLE;
+    AL_InfoDeprecatedWrapper(
+        "SetAlnuthExternalExecutablePermanently",
+        "SetUserPreference(\"alnuth\", \"PariGpPath\", path); WriteGapIniFile()"
+    );
+
+    if not AL_SuitablePariExecutable(path) then
+        ErrorNoReturn(
+            "<path> must name a usable PARI/GP executable in version 2.5 or higher"
+        );
     fi;
 
-    PrintTo(Filename(DirectoriesPackageLibrary("alnuth", ""), "defs.g"),
-            "###########################################################",
-            "##################\n##\n##  AL_EXECUTABLE\n##\n##  ",
-            "Here 'AL_EXECUTABLE', the path to the executable of PARI/GP, ",
-            "is set.\n##  Depending on the installation of PARI/GP the entry",
-            "may have to be changed.\n##  See '4.3 Adjust the path of the ",
-            "executable for PARI/GP' for details.\n##\n",
-            "if not IsBound(AL_EXECUTABLE) then\n",
-            "    BindGlobal( \"AL_EXECUTABLE\", \"", AL_EXECUTABLE,"\" );\n",
-            "fi;\n");
-
-    return AL_EXECUTABLE;
+    SetUserPreference("alnuth", "PariGpPath", path);
+    WriteGapIniFile();
+    return UserPreference("alnuth", "PariGpPath");
 end );
 
 #############################################################################
@@ -149,22 +124,14 @@ end );
 #F RestoreAlnuthExternalExecutablePermanently( )
 ##
 InstallGlobalFunction( RestoreAlnuthExternalExecutablePermanently, function( )
-    if not IsWritableFile(Filename(DirectoriesPackageLibrary("alnuth", ""),
-                          "defs.g")) then
-        Info(InfoWarning, 1, "No write access to file <defs.g>.");
-        return fail;
-    fi;
-    PrintTo(Filename(DirectoriesPackageLibrary("alnuth", ""), "defs.g"),
-            "###########################################################",
-            "##################\n##\n##  AL_EXECUTABLE\n##\n##  ",
-            "Here 'AL_EXECUTABLE', the path to the executable of PARI/GP, ",
-            "is set.\n##  Depending on the installation of PARI/GP the entry",
-            "may have to be changed.\n##  See '4.3 Adjust the path of the ",
-            "executable for PARI/GP' for details.\n##\n",
-            "if not IsBound(AL_EXECUTABLE) then\n",
-            "    BindGlobal(\"AL_EXECUTABLE\", ",
-            "Filename(DirectoriesSystemPrograms(), \"gp\"));\n",
-            "fi;\n");
+    AL_InfoDeprecatedWrapper(
+        "RestoreAlnuthExternalExecutablePermanently",
+        "SetUserPreference(\"alnuth\", \"PariGpPath\", AL_DefaultPariGpPath()); WriteGapIniFile()"
+    );
+
+    SetUserPreference("alnuth", "PariGpPath", AL_DefaultPariGpPath());
+    WriteGapIniFile();
+    return UserPreference("alnuth", "PariGpPath");
 end );
 
 #############################################################################

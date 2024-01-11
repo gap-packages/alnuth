@@ -63,9 +63,11 @@ Computes a primitive element and a defining polynomial for the given number
 field. The defining polynomial is the minimal polynomial of the primitive
 element. Since <A>F</A> contains various primitive elements,
 <C>PrimitiveElement</C> tries to find a primitive element which has a
-minimal polynomial with small coefficients. Via the global variable
-<A>PRIM_TEST</A> the user can decide how many primitive elements will be
-compared. The default value is 20.
+minimal polynomial with small coefficients. Via the user preference
+<C>PrimitiveElementTrials</C> the user can decide how many primitive
+elements will be compared. The default value is 20.
+(See <Ref BookName="ref" Func="SetUserPreference"/> for more information about
+user preferences.)
 </Description>
 </ManSection>
 

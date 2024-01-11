@@ -1,17 +1,19 @@
 This file describes changes between different versions of Alnuth
 ================================================================
 
-## 4.0.0 (2025-MM-DD)
+## 4.0.0 (2026-MM-DD)
 
-  - added support for using OSCAR as external CAS (in addition toPARI/GP);
+  - added support for using OSCAR as external CAS (in addition to PARI/GP);
     by default OSCAR support is automatically activated when Alnuth is loaded
-    in GAP running inside OSCAR, but the user can switch between both systems
-    by setting `AL_FUNCS := PARI_AL_FUNCS;` or  `AL_FUNCS := OSCAR_AL_FUNCS;`
+    in GAP running inside OSCAR, in all other situations PARI/GP remains the
+    default.
   - converted the manual to GAPDoc
   - renamed `FactorsPolynomialPari` to `FactorsPolynomialAlnuth` to better
     reflect that it uses the active external CAS, not just PARI/GP (the
     old name is still supported as a synonym for now)
-  
+  - replaced the old `AL_*` configuration globals by GAP's user preference system;
+    the old variables are still used a fallback, but user preferences are preferred
+    if set. For details, please consult the README and the package manual.
 
 ## 3.2.1 (2022-04-05)
 

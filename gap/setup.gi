@@ -5,30 +5,18 @@
 
 #############################################################################
 ##
-#F _ChangeGlobalVariable( name, val )
-##
-BindGlobal( "_ChangeGlobalVariable", function(name, val)
-
-    MakeReadWriteGlobal(name);
-    UnbindGlobal(name);
-    BindGlobal(name, val);
-
-end );
-
-#############################################################################
-##
 #F SetPariStackSize( size )
 ##
 InstallGlobalFunction( SetPariStackSize, function( size )
 
     # test input
-    while not IsPosInt( size ) do 
-        Error("<size>, the amount of memory in MB, must be a positive integer");
-    od;
+# TODO: is this check still needed? the user prefs code also does checks...
+    if not IsPosInt( size ) then 
+        ErrorNoReturn("<size>, the amount of memory in MB, must be a positive integer");
+    fi;
 
     # set global variable to given value
-    _ChangeGlobalVariable("AL_STACKSIZE",
-                         Concatenation("-s", String(size), "M"));
+    SetUserPreference("alnuth", "AL_STACKSIZE", size);
 
 end );
 
@@ -38,11 +26,13 @@ end );
 ##
 InstallGlobalFunction( SetAlnuthExternalExecutable, function( path )
 
+# TODO: this should probably be part of the userprefs `check` function?
+
     # tests wether there is an executable file behind <path>
-    while Filename( DirectoriesSystemPrograms( ), path ) = fail and
-       not IsExecutableFile( path ) do
-        Error( "<path> has to be an executable" );
-    od;
+    if Filename( DirectoriesSystemPrograms( ), path ) = fail and
+       not IsExecutableFile( path ) then
+        ErrorNoReturn( "<path> has to be an executable" );
+    fi;
     
     if not IsExecutableFile( path ) then
         path := Filename( DirectoriesSystemPrograms( ), path );
@@ -52,9 +42,8 @@ InstallGlobalFunction( SetAlnuthExternalExecutable, function( path )
         fi;
     fi;
 
-    if SuitablePariExecutable(path) then
-        # set AL_EXECUTABLE
-        _ChangeGlobalVariable("AL_EXECUTABLE", path);
+    if AL_SuitablePariExecutable(path) then
+        SetUserPreference("alnuth", "AL_EXECUTABLE", path);
         return path;
     else
         return fail;
@@ -63,10 +52,12 @@ end );
 
 #############################################################################
 ##
-#F SuitablePariExecutable( path )
+#F AL_SuitablePariExecutable( path )
 ##
-InstallGlobalFunction( SuitablePariExecutable, function( path )
+InstallGlobalFunction( AL_SuitablePariExecutable, function( path )
     local str, pos, version;
+
+# TODO: this should probably be part of the userprefs `check` function?
 
     # try to find out, if it is a suitable version of PARI/GP
     str := "";
@@ -107,12 +98,13 @@ end );
 #F PariVersion( )
 ##
 InstallGlobalFunction( PariVersion, function( )
-    local str;
+    local exe, str;
 
-    if IsExecutableFile(AL_EXECUTABLE) then
+    exe := UserPreference("alnuth", "AL_EXECUTABLE");
+    if IsExecutableFile(exe) then
         # use the command line option to obtain version number of PARI/GP
         str := "";
-        Process( DirectoryCurrent( ), AL_EXECUTABLE, InputTextNone( ),
+        Process( DirectoryCurrent( ), exe, InputTextNone( ),
                  OutputTextString( str, false ), [ "--version-short" ] );
         Print( str );
     fi;
@@ -123,25 +115,10 @@ end );
 #F SetAlnuthExternalExecutablePermanently( path )
 ##
 InstallGlobalFunction( SetAlnuthExternalExecutablePermanently, function( path )
-    SetAlnuthExternalExecutable( path );
-    if not IsWritableFile(Filename(DirectoriesPackageLibrary("alnuth", ""),
-                          "defs.g")) then
-        Info(InfoWarning, 1, "No write access to file <defs.g>.");
-        return AL_EXECUTABLE;
-    fi;
-
-    PrintTo(Filename(DirectoriesPackageLibrary("alnuth", ""), "defs.g"),
-            "###########################################################",
-            "##################\n##\n##  AL_EXECUTABLE\n##\n##  ",
-            "Here 'AL_EXECUTABLE', the path to the executable of PARI/GP, ",
-            "is set.\n##  Depending on the installation of PARI/GP the entry",
-            "may have to be changed.\n##  See '4.3 Adjust the path of the ",
-            "executable for PARI/GP' for details.\n##\n",
-            "if not IsBound(AL_EXECUTABLE) then\n",
-            "    BindGlobal( \"AL_EXECUTABLE\", \"", AL_EXECUTABLE,"\" );\n",
-            "fi;\n");
-
-    return AL_EXECUTABLE;
+# TODO
+   # SetAlnuthExternalExecutable( path );
+    
+    Error("TODO: explain how to use WriteGapIniFile ");
 end );
 
 #############################################################################
@@ -149,22 +126,8 @@ end );
 #F RestoreAlnuthExternalExecutablePermanently( )
 ##
 InstallGlobalFunction( RestoreAlnuthExternalExecutablePermanently, function( )
-    if not IsWritableFile(Filename(DirectoriesPackageLibrary("alnuth", ""),
-                          "defs.g")) then
-        Info(InfoWarning, 1, "No write access to file <defs.g>.");
-        return fail;
-    fi;
-    PrintTo(Filename(DirectoriesPackageLibrary("alnuth", ""), "defs.g"),
-            "###########################################################",
-            "##################\n##\n##  AL_EXECUTABLE\n##\n##  ",
-            "Here 'AL_EXECUTABLE', the path to the executable of PARI/GP, ",
-            "is set.\n##  Depending on the installation of PARI/GP the entry",
-            "may have to be changed.\n##  See '4.3 Adjust the path of the ",
-            "executable for PARI/GP' for details.\n##\n",
-            "if not IsBound(AL_EXECUTABLE) then\n",
-            "    BindGlobal(\"AL_EXECUTABLE\", ",
-            "Filename(DirectoriesSystemPrograms(), \"gp\"));\n",
-            "fi;\n");
+# TODO
+    Error("TODO: explain how to use WriteGapIniFile ");
 end );
 
 #############################################################################

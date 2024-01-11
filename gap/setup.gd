@@ -17,9 +17,9 @@ DeclareGlobalFunction("SetAlnuthExternalExecutable");
 
 #############################################################################
 ##
-#F SuitablePariExecutable(path)
+#F AL_SuitablePariExecutable(path)
 ##
-DeclareGlobalFunction("SuitablePariExecutable");
+DeclareGlobalFunction("AL_SuitablePariExecutable");
 
 #############################################################################
 ##

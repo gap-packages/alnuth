@@ -5,12 +5,6 @@
 
 #############################################################################
 ##
-#F ChangeGlobalVariable(name, path)
-##
-DeclareGlobalFunction("ChangeGlobalVariable");
-
-#############################################################################
-##
 #F SetPariStackSize(size)
 ##
 DeclareGlobalFunction("SetPariStackSize");
@@ -23,9 +17,9 @@ DeclareGlobalFunction("SetAlnuthExternalExecutable");
 
 #############################################################################
 ##
-#F SuitablePariExecutable(path)
+#F AL_SuitablePariExecutable(path)
 ##
-DeclareGlobalFunction("SuitablePariExecutable");
+DeclareGlobalFunction("AL_SuitablePariExecutable");
 
 #############################################################################
 ##

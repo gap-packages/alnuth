@@ -149,11 +149,13 @@ BindGlobal("PolynomialFactorsDescriptionOscar", function(F, coeffs)
   return result;
 end);
 
-# Now make the functions also available under the *Pari name, so that the calling
-# code does not have to be changed.
-BindGlobal("MaximalOrderDescriptionPari", MaximalOrderDescriptionOscar);
-BindGlobal("UnitGroupDescriptionPari", UnitGroupDescriptionOscar);
-BindGlobal("ExponentsOfUnitsDescriptionWithRankPari", ExponentsOfUnitsDescriptionWithRankOscar);
-BindGlobal("ExponentsOfFractionalIdealDescriptionPari", ExponentsOfFractionalIdealDescriptionOscar);
-BindGlobal("NormCosetsDescriptionPari", NormCosetsDescriptionOscar);
-BindGlobal("PolynomialFactorsDescriptionPari", PolynomialFactorsDescriptionOscar);
+BindGlobal("OSCAR_AL_FUNCS", rec(
+    MaximalOrderDescription := MaximalOrderDescriptionOscar,
+    UnitGroupDescription := UnitGroupDescriptionOscar,
+    ExponentsOfUnitsDescriptionWithRank := ExponentsOfUnitsDescriptionWithRankOscar,
+    ExponentsOfFractionalIdealDescription := ExponentsOfFractionalIdealDescriptionOscar,
+    NormCosetsDescription := NormCosetsDescriptionOscar,
+    PolynomialFactorsDescription := PolynomialFactorsDescriptionOscar,
+));
+
+AL_FUNCS := OSCAR_AL_FUNCS;

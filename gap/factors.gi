@@ -85,7 +85,7 @@ InstallGlobalFunction(FactorsPolynomialPari, function( poly )
     lcoeff := LeadingCoefficient( poly );
     coeffs := CoefficientsOfUnivariatePolynomial( poly / lcoeff );
     coeffs := List( Reversed( coeffs ), ExtRepOfObj );
-    for fak in PolynomialFactorsDescriptionPari( H, coeffs ) do
+    for fak in AL_FUNCS.PolynomialFactorsDescription( H, coeffs ) do
         coeff := [ ];
         for c in Reversed( fak ) do
             if ( c in Rationals ) then

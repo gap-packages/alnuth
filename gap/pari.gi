@@ -222,3 +222,14 @@ BindGlobal( "PolynomialFactorsDescriptionPari", function( F, coeffs )
     # return result
     return result;
 end );
+
+BindGlobal("PARI_AL_FUNCS", rec(
+    MaximalOrderDescription := MaximalOrderDescriptionPari,
+    UnitGroupDescription := UnitGroupDescriptionPari,
+    ExponentsOfUnitsDescriptionWithRank := ExponentsOfUnitsDescriptionWithRankPari,
+    ExponentsOfFractionalIdealDescription := ExponentsOfFractionalIdealDescriptionPari,
+    NormCosetsDescription := NormCosetsDescriptionPari,
+    PolynomialFactorsDescription := PolynomialFactorsDescriptionPari,
+));
+
+AL_FUNCS := PARI_AL_FUNCS;

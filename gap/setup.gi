@@ -5,15 +5,15 @@
 
 #############################################################################
 ##
-#F ChangeGlobalVariable( name, val )
+#F _ChangeGlobalVariable( name, val )
 ##
-InstallGlobalFunction(ChangeGlobalVariable, function(name, val)
+BindGlobal( "_ChangeGlobalVariable", function(name, val)
 
     MakeReadWriteGlobal(name);
     UnbindGlobal(name);
     BindGlobal(name, val);
 
-end);
+end );
 
 #############################################################################
 ##
@@ -27,7 +27,7 @@ InstallGlobalFunction( SetPariStackSize, function( size )
     od;
 
     # set global variable to given value
-    ChangeGlobalVariable("AL_STACKSIZE", 
+    _ChangeGlobalVariable("AL_STACKSIZE",
                          Concatenation("-s", String(size), "M"));
 
 end );
@@ -54,7 +54,7 @@ InstallGlobalFunction( SetAlnuthExternalExecutable, function( path )
 
     if SuitablePariExecutable(path) then
         # set AL_EXECUTABLE
-        ChangeGlobalVariable("AL_EXECUTABLE", path);
+        _ChangeGlobalVariable("AL_EXECUTABLE", path);
         return path;
     else
         return fail;

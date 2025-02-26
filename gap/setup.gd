@@ -5,12 +5,6 @@
 
 #############################################################################
 ##
-#F ChangeGlobalVariable(name, path)
-##
-DeclareGlobalFunction("ChangeGlobalVariable");
-
-#############################################################################
-##
 #F SetPariStackSize(size)
 ##
 DeclareGlobalFunction("SetPariStackSize");

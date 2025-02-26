@@ -24,17 +24,24 @@ BindGlobal("_OscarField", function(F)
 end);
 
 BindGlobal("MaximalOrderDescriptionOscar", function(F)
-  local K, O, basis;
+  local K, O, basis, T, eqn, b;
 
   K := _OscarField(F);
   O := Oscar.maximal_order(K);
   basis := Julia.map(Oscar.coordinates,Oscar.basis(O,K));
 
-  return JuliaToGAP(IsList, basis, true);
+  T := JuliaToGAP(IsList, basis, true);
+
+  # convert to GAP
+  eqn := EquationOrderBasis(F);
+  b := List( T, x -> LinearCombination( eqn, x ) );
+
+  # return result
+  return [T, b];
 end);
 
 BindGlobal("UnitGroupDescriptionOscar", function(F)
-  local K, O, U_m, U, m, basis;
+  local K, O, U_m, U, m, basis, result, eqn;
 
   K := _OscarField(F);
   O := Oscar.maximal_order(K);
@@ -44,7 +51,18 @@ BindGlobal("UnitGroupDescriptionOscar", function(F)
 
   basis := Julia.map(Oscar.coordinates, Julia.map(K, Julia.map(m, Oscar.gens(U))));
 
-  return JuliaToGAP(IsList, basis, true);
+  result := JuliaToGAP(IsList, basis, true);
+
+  # convert to GAP
+  eqn := EquationOrderBasis(F);
+  if result = [-1] then
+      result := [-1*eqn[1]];
+  else
+      result := List( result, x -> LinearCombination( eqn, x ) );
+  fi;
+
+  # return result
+  return result;
 end);
 
 BindGlobal("ExponentsOfUnitsDescriptionWithRankOscar", function(F, elms)

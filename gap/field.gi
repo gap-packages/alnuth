@@ -81,7 +81,7 @@ function( F )
         return EquationOrderBasis(F);
     fi;
     e := EquationOrderBasis(F);
-    T := MaximalOrderDescriptionPari(F);
+    T := AL_FUNCS.MaximalOrderDescription(F);
     b := List( T, x -> LinearCombination( e, x ) );
     B := Objectify(NewType(FamilyObj(F), IsFiniteBasisDefault and
                                          IsRelativeBasisDefaultRep),
@@ -144,7 +144,7 @@ BindGlobal( "UnitGroupOfNumberField", function( F )
 
     # determine generators
     eqn := EquationOrderBasis(F);
-    uni := UnitGroupDescriptionPari(F);
+    uni := AL_FUNCS.UnitGroupDescription(F);
     if uni=[-1] then
         G:=GroupByGenerators([-1*eqn[1]]);
     else
@@ -203,7 +203,7 @@ BindGlobal( "ExponentsOfUnitsOfNumberField", function( F, elms )
     # determine exponents
     base := EquationOrderBasis( F );
     coef := List( elms, x -> Coefficients( base, x ) );
-    exps := ExponentsOfUnitsDescriptionWithRankPari( F, coef );
+    exps := AL_FUNCS.ExponentsOfUnitsDescriptionWithRank( F, coef );
 
     # add unit group if this is not yet known
     gens := List( exps.units, x -> LinearCombination( base, x ) );
@@ -231,7 +231,7 @@ BindGlobal( "ExponentsOfUnitsWithRank", function( F, elms )
     # determine exponents
     base := EquationOrderBasis( F );
     coef := List( elms, x -> Coefficients( base, x ) );
-    exps := ExponentsOfUnitsDescriptionWithRankPari( F, coef );
+    exps := AL_FUNCS.ExponentsOfUnitsDescriptionWithRank( F, coef );
 
     # add unit group if this is not yet known
     gens := List( exps.units, x -> LinearCombination( base, x ) );
@@ -253,7 +253,7 @@ InstallGlobalFunction( NormCosetsOfNumberField, function( F, norm )
 
     # get representatives mod unit group
     base := EquationOrderBasis( F );
-    reps := NormCosetsDescriptionPari( F, norm );
+    reps := AL_FUNCS.NormCosetsDescription( F, norm );
 
     # add unit group if this is not yet known
     gens := List( reps.units, x -> LinearCombination( base, x ) );

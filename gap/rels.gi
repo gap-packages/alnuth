@@ -117,7 +117,7 @@ BindGlobal( "ExponentsOfFractionalIdealDescription", function( F, elms )
     # determine exponents
     base := EquationOrderBasis( F );
     coef := List( elms, x -> Coefficients( base, x ) );
-    exps := ExponentsOfFractionalIdealDescriptionPari( F, coef );
+    exps := AL_FUNCS.ExponentsOfFractionalIdealDescription( F, coef );
 
     # return exponents
     return exps;

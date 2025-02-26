@@ -91,6 +91,11 @@ Dependencies := rec(
 "https://pari.math.u-bordeaux.fr/" ] ]
 ),
 
+Extensions := [
+    rec( needed := [ [ "OscarInterface", ">= 1.0.0" ] ],
+         filename := "gap/oscar.gi" ),
+],
+
 AvailabilityTest := ReturnTrue,
 TestFile := "tst/testall.g",
 Keywords := ["algebraic number theory", "number field" , "maximal order",

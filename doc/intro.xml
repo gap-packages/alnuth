@@ -9,23 +9,23 @@ on number fields we refer to <Cite Key="Sta79"/>.
 
 Some of the methods provided in this package are written in &GAP; code.
 The other part of the methods is imported from the Computer Algebra
-System PARI/GP <Cite Key="PARI2"/>. Hence this package contains some &GAP;
-functions  and an interface to some functions in the computer algebra
-system PARI/GP. Therefore one has to have PARI/GP installed to use the
+Systems PARI/GP <Cite Key="PARI2"/> respectively OSCAR <Cite Key="Oscar25"/>, <Cite Key="OSCAR"/>.
+Hence this package contains some &GAP;
+functions  and an interface to some functions to these computer algebra
+systems. Therefore one has to have PARI/GP or OSCAR installed to use the
 full functionality of &Alnuth;.
 <P/>
 
 We note that only a very small part of the functions available in PARI/GP
-are linked to &GAP; and PARI/GP provides many more methods for
+respectively OSCAR are linked to &GAP; and they provides many more methods for
 computations in number fields.
 <P/>
 
 The main methods included in &Alnuth; are: creating a number field,
-computing its maximal order (using PARI/GP), computing its unit group (using
-PARI/GP) and a presentation of this unit group, computing the elements of a
-given norm of the number field (using PARI/GP), determining a presentation
-for a finitely generated multiplicative subgroup (using PARI/GP), and
-factoring polynomials defined over number fields (using PARI/GP). For
+computing its maximal order, computing its unit group and a presentation
+of this unit group, computing the elements of a given norm of the number
+field, determining a presentation for a finitely generated multiplicative
+subgroup, and factoring polynomials defined over number fields. For
 background on algorithms for number fields we refer to <Cite Key="Poh93"/>,
 <Cite Key="PZa89"/> and <Cite Key="Coh93"/>.
 <P/>
@@ -33,8 +33,8 @@ background on algorithms for number fields we refer to <Cite Key="Poh93"/>,
 The functions provided by &Alnuth; are introduced in the following
 chapter. Then an example application is outlined. In the final chapter
 of this manual the installation of the package and configuration of
-the interface, including hints on the installation of PARI/GP, are
-described.
+the interface, including hints on the installation of PARI/GP
+respectively OSCAR, are described.
 <P/>
 
 <!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
@@ -57,6 +57,10 @@ are much obliged to Max Horn.
 The second author acknowledges the financial support at CAUL within
 the projects PTDC/MAT/101993/2008 and ISFL-1-143, financed by FEDER
 and FCT, in the development of Version 3 of &Alnuth;.
+<P/>
+
+Support for using OSCAR instead of PARI/GP was added by Claus Fieker
+and Max Horn.
 <P/>
 
 </Section>

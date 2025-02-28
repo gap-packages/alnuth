@@ -17,5 +17,5 @@ AutoDoc(rec(
         ],
         bib := "manual.bib",
     ),
-    #extract_examples := true,
+    extract_examples := true,
 ));

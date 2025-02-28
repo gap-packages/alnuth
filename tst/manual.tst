@@ -34,7 +34,7 @@ g1*g2
 gap> u[1] = PreImagesRepresentative(nat, GeneratorsOfGroup(H)[1] );
 true
 gap> g := UnivariatePolynomial( Rationals, [ 16, 64, -28, -4, 1 ] );
-x_1^4-4*x_1^3-28*x_1^2+64*x_1+16
+x^4-4*x^3-28*x^2+64*x+16
 gap> F := FieldByPolynomialNC(g);
 <algebraic extension over the Rationals of degree 4>
 gap> PrimitiveElement(F);

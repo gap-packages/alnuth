@@ -22,9 +22,9 @@ gap> SplittingField( pol );
 
 # example from email to Bill Allombert (10/05/11)
 gap> pol := UnivariatePolynomial( Rationals, [ 1, 2, 2, 2, 2, 1, 1 ] );
-x_1^6+x_1^5+2*x_1^4+2*x_1^3+2*x_1^2+2*x_1+1
+x^6+x^5+2*x^4+2*x^3+2*x^2+2*x+1
 gap> f := UnivariatePolynomial( Rationals, [ 1, 1, 1 ] );
-x_1^2+x_1+1
+x^2+x+1
 gap> K := SplittingField( pol );
 <algebraic extension over the Rationals of degree 48>
 gap> FactorsPolynomialAlgExt( K, f );

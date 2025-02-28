@@ -6,7 +6,7 @@ gap> F := ExampleMatField(1);
 gap> DegreeOverPrimeField(F);
 4
 gap> DefiningPolynomial(F);
-x_1^4+4*x_1^3-394*x_1^2-796*x_1+2101
+x^4+4*x^3-394*x^2-796*x+2101
 gap> basis := Basis(F, 
 > [ [ [ 1, 0, 0, 0 ], [ 0, 1, 0, 0 ], [ 0, 0, 1, 0 ], [ 0, 0, 0, 1 ] ],
 > [ [ -1, 1, 1, 0 ], [ 5, -5, -5, 11 ], [ 3, -4, -7, 11 ], [ 3, -3, -4, 7 ] ],
@@ -30,7 +30,7 @@ gap> F := ExampleMatField(2);
 gap> DegreeOverPrimeField(F);
 4
 gap> DefiningPolynomial(F);
-x_1^4-18*x_1^3-286*x_1^2+2178*x_1+14641
+x^4-18*x^3-286*x^2+2178*x+14641
 gap> basis := Basis(F, 
 > [ [ [ 1, 0, 0, 0 ], [ 0, 1, 0, 0 ], [ 0, 0, 1, 0 ], [ 0, 0, 0, 1 ] ], 
 >   [ [ -1, 1, 1, 0 ], [ -4, -9, -5, 11 ], [ -6, -8, -7, 11 ], 
@@ -55,7 +55,7 @@ gap> F := ExampleMatField(3);
 gap> DegreeOverPrimeField(F);
 4
 gap> DefiningPolynomial(F);
-x_1^4+4*x_1^3-90*x_1^2-188*x_1+1669
+x^4+4*x^3-90*x^2-188*x+1669
 gap> basis := Basis( F, 
 > [ [ [ 1, 0, 0, 0 ], [ 0, 1, 0, 0 ], [ 0, 0, 1, 0 ], [ 0, 0, 0, 1 ] ], 
 >   [ [ -4, 6, 7, 0 ], [ -31, -60, -35, 77 ], [ -35, -48, -41, 66 ], 
@@ -80,7 +80,7 @@ gap> F := ExampleMatField(4);
 gap> DegreeOverPrimeField(F);
 4
 gap> DefiningPolynomial(F);
-x_1^4-8*x_1^3-550*x_1^2-1936*x_1-1331
+x^4-8*x^3-550*x^2-1936*x-1331
 gap> basis := Basis( F, 
 > [ [ [ 1, 0, 0, 0 ], [ 0, 1, 0, 0 ], [ 0, 0, 1, 0 ], [ 0, 0, 0, 1 ] ], 
 >   [ [ 0, -1, 1, 0 ], [ -1, -4, -5, 11 ], [ -1, 4, 4, -11 ], [ -1, 1, 0, -2 ] ]
@@ -105,7 +105,7 @@ gap> F := ExampleMatField(5);
 gap> DegreeOverPrimeField(F);
 4
 gap> DefiningPolynomial(F);
-x_1^4+4*x_1^3-40*x_1^2-88*x_1+244
+x^4+4*x^3-40*x^2-88*x+244
 gap> basis := Basis( F,
 > [ [ [ 1, 0, 0, 0 ], [ 0, 1, 0, 0 ], [ 0, 0, 1, 0 ], [ 0, 0, 0, 1 ] ], 
 >   [ [ 148, 95, 101, -165 ], [ -257, -165, -175, 286 ], [ 96, 65, 67, -110 ], 
@@ -130,7 +130,7 @@ gap> F := ExampleMatField(6);
 gap> DegreeOverPrimeField(F);
 4
 gap> DefiningPolynomial(F);
-x_1^4-34*x_1^2+49
+x^4-34*x^2+49
 gap> basis := Basis( F,
 > [ [ [ 1, 0, 0, 0 ], [ 0, 1, 0, 0 ], [ 0, 0, 1, 0 ], [ 0, 0, 0, 1 ] ], 
 >   [ [ -6, -2, -3, 0 ], [ 15, 18, 15, -33 ], [ 11, 16, 7, -22 ], 
@@ -155,7 +155,7 @@ gap> F := ExampleMatField(7);
 gap> DegreeOverPrimeField(F);
 4
 gap> DefiningPolynomial(F);
-x_1^4-9118*x_1^3+39843*x_1^2-9118*x_1+1
+x^4-9118*x^3+39843*x^2-9118*x+1
 gap> basis := Basis( F,
 > [ [ [ 1, 0, 0, 0 ], [ 0, 1, 0, 0 ], [ 0, 0, 1, 0 ], [ 0, 0, 0, 1 ] ], 
 >   [ [ -16591/25, -4204252/75, -1139984/125, 933941/25 ], 
@@ -186,7 +186,7 @@ gap> F := ExampleMatField(8);
 gap> DegreeOverPrimeField(F);
 4
 gap> DefiningPolynomial(F);
-x_1^4-2693461698*x_1^3+915480803*x_1^2-183198*x_1+1
+x^4-2693461698*x^3+915480803*x^2-183198*x+1
 gap> basis := Basis( F,
 > [ [ [ 1, 0, 0, 0 ], [ 0, 1, 0, 0 ], [ 0, 0, 1, 0 ], [ 0, 0, 0, 1 ] ], 
 >   [ [ 350938712911/294, 1500326345/2, 22032258785/49, 12381906785/28 ], 
@@ -225,7 +225,7 @@ gap> F := ExampleMatField(9);
 gap> DegreeOverPrimeField(F);
 4
 gap> DefiningPolynomial(F);
-x_1^4-50691194176*x_1^3+13505436470112846*x_1^2-5255736770373376*x_1+1
+x^4-50691194176*x^3+13505436470112846*x^2-5255736770373376*x+1
 gap> basis := Basis( F,
 > [ [ [ 1, 0, 0, 0 ], [ 0, 1, 0, 0 ], [ 0, 0, 1, 0 ], [ 0, 0, 0, 1 ] ], 
 >   [

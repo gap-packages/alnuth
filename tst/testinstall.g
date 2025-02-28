@@ -1,4 +1,8 @@
 LoadPackage("alnuth");
+
+# ensure name of indeterminate matches the manual
+x := Indeterminate(Rationals, "x");
+
 dirs := DirectoriesPackageLibrary( "alnuth", "tst" );
 tests := [
     "version.tst",

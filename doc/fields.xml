@@ -241,8 +241,7 @@ defining polynomial of <A>F</A>.
 <Func Name="FactorsPolynomialAlnuth" Arg="pol"/>
 <Description>
 takes a polynomial <A>pol</A> defined over an algebraic extension of the
-Rationals and factors it using the active number theory system (PARI/GP
-or OSCAR).
+Rationals and factors it using the external CAS (PARI/GP or OSCAR).
 <P/>
 
 The alias <C>FactorsPolynomialPari</C> is provided for backwards compatibility.

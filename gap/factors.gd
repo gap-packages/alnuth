@@ -5,14 +5,15 @@
 
 #############################################################################
 ##
-#F  FactorsPolynomialPari, function( <poly> )
+#F  FactorsPolynomialAlnuth, function( <poly> )
 ##
 ##  Factorizes the polynomial <poly> defined over an algebraic extension of
 ##  the rationals using PARI/GP
 ##
 ##  As a method of 'Factors' ? AD
 ##
-DeclareGlobalFunction("FactorsPolynomialPari");
+DeclareGlobalFunction("FactorsPolynomialAlnuth");
+DeclareObsoleteSynonym( "FactorsPolynomialPari", "FactorsPolynomialAlnuth" );
 
 #############################################################################
 ##

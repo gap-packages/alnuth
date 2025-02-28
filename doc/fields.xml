@@ -238,10 +238,13 @@ defining polynomial of <A>F</A>.
 </ManSection>
 
 <ManSection>
-<Func Name="FactorsPolynomialPari" Arg="pol"/>
+<Func Name="FactorsPolynomialAlnuth" Arg="pol"/>
 <Description>
 takes a polynomial <A>pol</A> defined over an algebraic extension of the
-Rationals and factors it using PARI/GP.
+Rationals and factors it using the external CAS (PARI/GP or OSCAR).
+<P/>
+
+The alias <C>FactorsPolynomialPari</C> is provided for backwards compatibility.
 
 <Example><![CDATA[
 gap> x := Indeterminate( Rationals, "x" );;
@@ -252,7 +255,7 @@ gap> L := FieldByPolynomial( x^3-4 );
 gap> y := Indeterminate( L, "y" );;
 gap> FactorsPolynomialAlgExt( L, pol );
 [ !2*y, y, y+a, y^2+!1, y^2+(-a)*y+a^2 ]
-gap> FactorsPolynomialPari( last[5] );
+gap> FactorsPolynomialAlnuth( last[5] );
 [ y^2+(-a)*y+a^2 ]
 ]]></Example>
 </Description>

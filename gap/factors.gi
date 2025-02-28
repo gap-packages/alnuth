@@ -48,7 +48,7 @@ InstallGlobalFunction( FactorsPolynomialAlgExt, function( H, poly )
         return irf[i][2];
     fi;
 
-    faktoren := FactorsPolynomialPari( AlgExtEmbeddedPol( H, poly ));
+    faktoren := FactorsPolynomialAlnuth( AlgExtEmbeddedPol( H, poly ));
     StoreFactorsAlgExtPol( H, poly, faktoren );
 
     return faktoren;
@@ -57,14 +57,14 @@ end );
 
 #############################################################################
 ##
-#F  FactorsPolynomialPari, function( <poly> )
+#F  FactorsPolynomialAlnuth, function( <poly> )
 ##
 ##  Factorizes the polynomial <poly> defined over an algebraic extension of
 ##  the rationals using PARI/GP
 ##
 ##  As a method of 'Factors' ? AD
 ##
-InstallGlobalFunction(FactorsPolynomialPari, function( poly )
+InstallGlobalFunction(FactorsPolynomialAlnuth, function( poly )
     local faktoren, fak, coeff, c, lcoeff, irf, i, coeffs, H;
 
     H := CoefficientsRing( DefaultRing( poly ));

@@ -7,8 +7,8 @@
 SetPackageInfo( rec(
 
 PackageName := "Alnuth",
-Subtitle := "ALgebraic NUmber THeory and an interface to PARI/GP",
-Version := "3.2.1dev",
+Subtitle := "ALgebraic NUmber THeory and an interface to PARI/GP and OSCAR",
+Version := "4.0.0dev",
 Date := "05/04/2022", # dd/mm/yyyy format
 License := "GPL-2.0-or-later",
 
@@ -40,8 +40,8 @@ Persons := [
       IsAuthor      := true,
       IsMaintainer  := false,
       Email         := "a.distler@tu-bs.de",
- ),
- rec(
+  ),
+  rec(
       LastName      := "Eick",
       FirstNames    := "Bettina",
       IsAuthor      := true,
@@ -56,14 +56,30 @@ Persons := [
                "Germany" ),
       Place         := "Braunschweig",
       Institution   := "TU Braunschweig"
- ),
- rec(
+  ),
+  rec(
+      LastName      := "Horn",
+      FirstNames    := "Max",
+      IsAuthor      := false,
+      IsMaintainer  := true,
+      Email         := "mhorn@rptu.de",
+      WWWHome       := "https://www.quendi.de/math",
+      PostalAddress := Concatenation(
+                         "Fachbereich Mathematik\n",
+                         "RPTU Kaiserslautern-Landau\n",
+                         "Gottlieb-Daimler-Straße 48\n",
+                         "67663 Kaiserslautern\n",
+                         "Germany" ),
+      Place         := "Kaiserslautern, Germany",
+      Institution   := "RPTU Kaiserslautern-Landau"
+  ),
+  rec(
       LastName      := "GAP Team",
       FirstNames    := "The",
       IsAuthor      := false,
       IsMaintainer  := true,
       Email         := "support@gap-system.org",
- ),
+  ),
 ],
 
 Status := "accepted",
@@ -71,7 +87,7 @@ CommunicatedBy := "Charles Wright (Eugene)",
 AcceptDate := "01/2004",
 
 AbstractHTML := 
-"The <span class=\"pkgname\">Alnuth</span> package provides various methods to compute with number fields which are given by a defining polynomial or by generators. Some of the methods provided in this package are written in <span class=\"pkgname\">GAP</span> code. The other part of the methods is imported from the computer algebra system PARI/GP. Hence this package contains some <span class=\"pkgname\">GAP</span> functions and an interface to some functions in the computer algebra system PARI/GP. The main methods included in <span class=\"pkgname\">Alnuth</span> are: creating a number field, computing its maximal order (using PARI/GP), computing its unit group (using PARI/GP) and a presentation of this unit group, computing the elements of a given norm of the number field (using PARI/GP), determining a presentation for a finitely generated multiplicative subgroup (using PARI/GP), and factoring polynomials defined over number fields (using PARI/GP).",
+"The <span class=\"pkgname\">Alnuth</span> package provides various methods to compute with number fields which are given by a defining polynomial or by generators. Some of the methods provided in this package are written in <span class=\"pkgname\">GAP</span> code. The other part of the methods is imported from an another computer algebra system, currently either PARI/GP or OSCAR. Hence this package contains some <span class=\"pkgname\">GAP</span> functions and an interface to some functions in the computer algebra systems PARI/GP and OSCAR. The main methods included in <span class=\"pkgname\">Alnuth</span> are: creating a number field, computing its maximal order (using the external CAS), computing its unit group (using the external CAS) and a presentation of this unit group, computing the elements of a given norm of the number field (using the external CAS), determining a presentation for a finitely generated multiplicative subgroup (using the external CAS), and factoring polynomials defined over number fields (using the external CAS).",
 
 PackageDoc := rec(
   BookName  := "Alnuth",
@@ -79,7 +95,7 @@ PackageDoc := rec(
   HTMLStart := "doc/chap0_mj.html",
   PDFFile   := "doc/manual.pdf",
   SixFile   := "doc/manual.six",
-  LongTitle := "ALgebraic NUmber THeory and an interface to PARI/GP",
+  LongTitle := "ALgebraic NUmber THeory and an interface to PARI/GP and OSCAR",
 ),
 
 Dependencies := rec(
@@ -99,7 +115,9 @@ Extensions := [
 AvailabilityTest := ReturnTrue,
 TestFile := "tst/testall.g",
 Keywords := ["algebraic number theory", "number field" , "maximal order",
-"interface to PARI/GP", "unit group", "elements of given norm" ],
+"interface to PARI/GP",
+"interface to number theory in OSCAR",
+"unit group", "elements of given norm" ],
 
 
 
@@ -109,7 +127,8 @@ Keywords := ["algebraic number theory", "number field" , "maximal order",
 # GP code written by: Bill Allombert
 #
 # Note: PARI/GP is not part of this package. It can be obtained from https://pari.math.u-bordeaux.fr/
-
+# -
+# OSCAR code written by: Claus Fieker, Max Horn, see <https://www.oscar-system.org>
 
 AutoDoc := rec(
     entities := rec(
@@ -118,7 +137,7 @@ AutoDoc := rec(
         Polycyclic := "<Package>Polycyclic</Package>" ,
     ),
     TitlePage := rec(
-        TitleComment := "<E>Note:</E> PARI/GP is <E>not</E> part of this package. It can be obtained from <URL>https://pari.math.u-bordeaux.fr/</URL>",
+        TitleComment := "<E>Note:</E> PARI/GP is <E>not</E> part of this package. It can be obtained from <URL>https://pari.math.u-bordeaux.fr/</URL>. If you use GAP via OSCAR, then OSCAR will automatically be used instead of PARI/GP.",
     ),
 ),
 

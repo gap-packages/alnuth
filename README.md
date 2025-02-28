@@ -31,6 +31,13 @@ The interface is an integral part of the package, but the software PARI/GP
 has to be obtained independently.
 
 
+New in Version 4
+================
+
+Alnuth now has two backends: besides the existing interface to PARI/GP, it now
+also integrates with the OSCAR computer algebra system <https://www.oscar-system.org/>
+when loaded in GAP running inside OSCAR.
+
 New in Version 3
 ================
 

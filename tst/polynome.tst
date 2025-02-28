@@ -1,5 +1,5 @@
 # this needs RadiRoot to be loaded
-gap> START_TEST("Factorisation of polynomials using PARI/GP");  
+gap> START_TEST("Factorisation of polynomials using Alnuth");
 
 # some splitting fields
 gap> pol := UnivariatePolynomial( Rationals, [ -1, 0, 0, 0, 1, 0, 1 ] );;

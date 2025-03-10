@@ -38,6 +38,10 @@ Alnuth now has two backends: besides the existing interface to PARI/GP, it now
 also integrates with the OSCAR computer algebra system <https://www.oscar-system.org/>
 when loaded in GAP running inside OSCAR.
 
+Moreover many settings in Alnuth that were so far controlled by proprietary controls
+now use the GAP user preferences system.
+TODO: give concrete example, suggest were to learn how to update settings
+
 New in Version 3
 ================
 

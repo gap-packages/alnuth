@@ -355,7 +355,7 @@ BindGlobal( "SuitablePrimitiveElementOfMatrixField", function( F )
     b := Basis(F);
     l := List( [1..d], x -> 0 ); Append( l, [1,1,-1] );
     i := 1;
-    while poss < PRIM_TEST do
+    while poss < UserPreference("alnuth", "PRIM_TEST") do
         Info( InfoAlnuth, 3, "another try to calculate primitive element");
         Info( InfoAlnuth, 3, i );
         c := List( [1..d], x -> RandomList( l ) );

@@ -11,7 +11,7 @@ This file describes changes between different versions of Alnuth
   - renamed `FactorsPolynomialPari` to `FactorsPolynomialAlnuth` to better
     reflect that it uses the active external CAS, not just PARI/GP (the
     old name is still supported as a synonym for now)
-  
+  - switched to using GAP's user preference system
 
 ## 3.2.1 (2022-04-05)
 

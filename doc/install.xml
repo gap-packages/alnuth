@@ -119,6 +119,8 @@ If you cannot use the default setting for you purpose, you have
 two options to specify a new place and name for the GP executable.
 <P/>
 
+TODO: explain user prefs instead
+
 If you are able to edit the file <C>defs.g</C> in the main directory of
 &Alnuth;, then you can change the line
 <Log><![CDATA[

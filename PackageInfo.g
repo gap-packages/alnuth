@@ -48,6 +48,7 @@ Persons := [
       IsMaintainer  := false,
       Email         := "beick@tu-bs.de",
       WWWHome       := "http://www.iaa.tu-bs.de/beick",
+      GitHubUsername:= "beick",
       PostalAddress := Concatenation(
                "Institut Analysis und Algebra\n",
                "TU Braunschweig\n",
@@ -64,6 +65,7 @@ Persons := [
       IsMaintainer  := true,
       Email         := "mhorn@rptu.de",
       WWWHome       := "https://www.quendi.de/math",
+      GitHubUsername:= "fingolfin",
       PostalAddress := Concatenation(
                          "Fachbereich Mathematik\n",
                          "RPTU Kaiserslautern-Landau\n",

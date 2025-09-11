@@ -1,4 +1,4 @@
-[![Build Status](https://github.com/gap-packages/alnuth/actions/workflows/CI.yml/badge.svg)](https://github.com/gap-packages/alnuth/actions/workflows/CI.yml)
+[![CI](https://github.com/gap-packages/alnuth/actions/workflows/CI.yml/badge.svg)](https://github.com/gap-packages/alnuth/actions/workflows/CI.yml)
 [![Code Coverage](https://codecov.io/github/gap-packages/alnuth/coverage.svg?branch=master&token=)](https://codecov.io/gh/gap-packages/alnuth)
 
 The GAP package Alnuth (Version 3)

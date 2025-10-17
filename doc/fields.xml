@@ -1,6 +1,6 @@
 
-<Chapter Label="Methods for number fields">
-<Heading>Methods for number fields</Heading>
+<Chapter Label="Working with number fields">
+<Heading>Working with number fields</Heading>
 
 An algebraic number field is a finite-dimensional extension of the
 rational numbers <M>&QQ;</M>. Such a number field has a primitive element

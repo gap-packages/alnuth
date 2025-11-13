@@ -121,25 +121,20 @@ Keywords := ["algebraic number theory", "number field" , "maximal order",
 "interface to number theory in OSCAR",
 "unit group", "elements of given norm" ],
 
-
-
-# GAP code written by:
-# Björn Assmann, Andreas Distler, Bettina Eick
-# —
-# GP code written by: Bill Allombert
-#
-# Note: PARI/GP is not part of this package. It can be obtained from https://pari.math.u-bordeaux.fr/
-# -
-# OSCAR code written by: Claus Fieker, Max Horn, see <https://www.oscar-system.org>
-
 AutoDoc := rec(
     entities := rec(
-        #VERSION := ~.Version,
-        #DATE := ~.Date,
-        Polycyclic := "<Package>Polycyclic</Package>" ,
-    ),
-    TitlePage := rec(
-        TitleComment := "<E>Note:</E> PARI/GP is <E>not</E> part of this package. It can be obtained from <URL>https://pari.math.u-bordeaux.fr/</URL>. If you use GAP via OSCAR, then OSCAR will automatically be used instead of PARI/GP.",
+        VERSION := ~.Version,
+        RELEASEYEAR := ~.Date{[7..10]},
+        RELEASEDATE := function(date)
+          local day, month, year, allMonths;
+          day := Int(date{[1,2]});
+          month := Int(date{[4,5]});
+          year := Int(date{[7..10]});
+          allMonths := [ "January", "February", "March", "April", "May", "June", "July",
+                         "August", "September", "October", "November", "December"];
+          return Concatenation(String(day)," ", allMonths[month], " ", String(year));
+        end(~.Date),
+        Polycyclic := "<Package>Polycyclic</Package>",
     ),
 ),
 

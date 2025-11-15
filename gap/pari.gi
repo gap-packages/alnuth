@@ -89,7 +89,7 @@ end);
 #F MaximalOrderDescriptionPari( F )
 ##
 BindGlobal("MaximalOrderDescriptionPari", function( F )
-    local input, result;
+    local input, T, eqn, b;
  
     if IsPrimeField(F) then return [1]; fi;
 
@@ -97,10 +97,14 @@ BindGlobal("MaximalOrderDescriptionPari", function( F )
     input := PolynomialWithNameToStringList(IntegerDefiningPolynomial(F));
 
     # execute PARI/GP
-    result := ProcessPariGP(Concatenation(input), "maxord.gp");
+    T := ProcessPariGP(Concatenation(input), "maxord.gp");
+
+    # convert to GAP
+    eqn := EquationOrderBasis(F);
+    b := List( T, x -> LinearCombination( eqn, x ) );
 
     # return result
-    return result;
+    return [T, b];
 end);
 
 #############################################################################
@@ -108,7 +112,7 @@ end);
 #F UnitGroupDescriptionPari( F )
 ##
 BindGlobal("UnitGroupDescriptionPari", function( F )
-    local input, result;
+    local input, result, eqn;
 
     if IsPrimeField( F ) then return [-1]; fi;
     
@@ -117,6 +121,14 @@ BindGlobal("UnitGroupDescriptionPari", function( F )
 
     # execute PARI/GP
     result := ProcessPariGP(Concatenation(input), "units.gp");
+
+    # convert to GAP
+    eqn := EquationOrderBasis(F);
+    if result = [-1] then
+        result := [-1*eqn[1]];
+    else
+        result := List( result, x -> LinearCombination( eqn, x ) );
+    fi;
 
     # return result
     return result;

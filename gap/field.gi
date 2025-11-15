@@ -75,21 +75,20 @@ end );
 ##  
 InstallMethod(MaximalOrderBasis, "for number field", true,[IsNumberField], 0, 
 function( F ) 
-    local e, T, b, B;
+    local e, Tb, B;
   
     if DegreeOverPrimeField(F)=1 then
         return EquationOrderBasis(F);
     fi;
     e := EquationOrderBasis(F);
-    T := AL_FUNCS.MaximalOrderDescription(F);
-    b := List( T, x -> LinearCombination( e, x ) );
+    Tb := AL_FUNCS.MaximalOrderDescription(F);
     B := Objectify(NewType(FamilyObj(F), IsFiniteBasisDefault and
                                          IsRelativeBasisDefaultRep),
                            rec());
     SetUnderlyingLeftModule( B, F );
-    SetBasisVectors( B, b );
+    SetBasisVectors( B, Tb[2] );
     B!.basis := e;
-    B!.basechangeMatrix := Immutable( T^-1 );
+    B!.basechangeMatrix := Immutable( Tb[1]^-1 );
     return B;
 end );
 
@@ -140,17 +139,12 @@ BindGlobal( "AddUnitGroupOfNumberField", function( F, units )
 end );
 
 BindGlobal( "UnitGroupOfNumberField", function( F )
-    local eqn, uni, gen, G, r, H, nat;
+    local uni, G;
 
     # determine generators
-    eqn := EquationOrderBasis(F);
     uni := AL_FUNCS.UnitGroupDescription(F);
-    if uni=[-1] then
-        G:=GroupByGenerators([-1*eqn[1]]);
-    else
-        gen := List( uni, x -> LinearCombination( eqn, x ) );
-        G := GroupByGenerators(gen);
-    fi;
+    G := GroupByGenerators(uni);
+
     # add info
     SetIsUnitGroup( G, true );
     SetFieldOfUnitGroup( G, F );
@@ -161,8 +155,7 @@ BindGlobal( "UnitGroupOfNumberField", function( F )
 end );
 
 InstallMethod( UnitGroup, "for number field", true,
-[IsNumberField], 0, function( F ) return
-UnitGroupOfNumberField( F ); end);
+[IsNumberField], UnitGroupOfNumberField);
 
 #############################################################################
 ##

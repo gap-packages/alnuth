@@ -104,6 +104,7 @@ Dependencies := rec(
   GAP := ">= 4.8",
   NeededOtherPackages := [[ "polycyclic", ">=1.1" ]],
   SuggestedOtherPackages := [], 
+  NeededSystemPackages := rec( Ubuntu := [["pari-gp"]], Homebrew := [["pari"]] ),
   ExternalConditions := 
 [["needs the PARI/GP computer algebra system Version 2.5 or higher",
 "https://pari.math.u-bordeaux.fr/" ] ]

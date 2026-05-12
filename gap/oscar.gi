@@ -7,36 +7,37 @@
 ##  This file is a drop-in replacement for pari.gi, thus alls functions are
 ##  also made available with "Pari" in their name.
 
-# store isomorphism between GAP and OSCAR univariate polynomial ring over the
-# rationals as we need it a lot
-BindGlobal("_PolyRingIso", Oscar.iso_gap_oscar(PolynomialRing(Rationals)));
+BindGlobal("OSCAR_AL_FUNCS", rec());
 
-# given a GAP number field, compute an isomorphic Oscar number field f
-# TODO: also store the isomorphism
-# TODO: turn this into an attribute resp. a method for JuliaWrapper / JuliaData ???
-BindGlobal("_OscarField", function(F)
+# store isomorphism between GAP and OSCAR univariate polynomial ring over the
+# rationals as we need it again and again, for each new number field
+OSCAR_AL_FUNCS.PolyRingIso := Oscar.iso_gap_oscar(PolynomialRing(Rationals));
+
+# Given a GAP number field, return an isomorphic Oscar number field.
+# This field is also cached
+OSCAR_AL_FUNCS.OscarField := function(F)
   local f;
   if not IsBound(F!.oscarField) then
-    f := _PolyRingIso(IntegerDefiningPolynomial(F));
+    f := OSCAR_AL_FUNCS.PolyRingIso(IntegerDefiningPolynomial(F));
     F!.oscarField := Oscar.number_field(f)[1];
   fi;
   return F!.oscarField;
-end);
+end;
 
-BindGlobal("MaximalOrderDescriptionOscar", function(F)
+OSCAR_AL_FUNCS.MaximalOrderDescription := function(F)
   local K, O, basis;
 
-  K := _OscarField(F);
+  K := OSCAR_AL_FUNCS.OscarField(F);
   O := Oscar.maximal_order(K);
   basis := Julia.map(Oscar.coordinates,Oscar.basis(O,K));
 
   return JuliaToGAP(IsList, basis, true);
-end);
+end;
 
-BindGlobal("UnitGroupDescriptionOscar", function(F)
+OSCAR_AL_FUNCS.UnitGroupDescription := function(F)
   local K, O, U_m, U, m, basis;
 
-  K := _OscarField(F);
+  K := OSCAR_AL_FUNCS.OscarField(F);
   O := Oscar.maximal_order(K);
   U_m := Oscar.unit_group(O);
   U := U_m[1];
@@ -45,12 +46,12 @@ BindGlobal("UnitGroupDescriptionOscar", function(F)
   basis := Julia.map(Oscar.coordinates, Julia.map(K, Julia.map(m, Oscar.gens(U))));
 
   return JuliaToGAP(IsList, basis, true);
-end);
+end;
 
-BindGlobal("ExponentsOfUnitsDescriptionWithRankOscar", function(F, elms)
+OSCAR_AL_FUNCS.ExponentsOfUnitsDescriptionWithRank := function(F, elms)
   local K, O, U_m, U, m, basis, units, rank, expns, x;
 
-  K := _OscarField(F);
+  K := OSCAR_AL_FUNCS.OscarField(F);
   O := Oscar.maximal_order(K);
   U_m := Oscar.unit_group(O);
   U := U_m[1];
@@ -71,12 +72,12 @@ BindGlobal("ExponentsOfUnitsDescriptionWithRankOscar", function(F, elms)
   # return result
   return rec(units := units, expns := expns, rank := rank);
 
-end);
+end;
 
-BindGlobal("ExponentsOfFractionalIdealDescriptionOscar", function(F, elms)
+OSCAR_AL_FUNCS.ExponentsOfFractionalIdealDescription := function(F, elms)
   local K, O, tmp, ideals, result, blah, vec, I;
 
-  K := _OscarField(F);
+  K := OSCAR_AL_FUNCS.OscarField(F);
   O := Oscar.maximal_order(K);
 
   tmp := Julia.map(x -> Oscar.factor(K(GAPToJulia(x)) * O), elms);
@@ -96,12 +97,12 @@ BindGlobal("ExponentsOfFractionalIdealDescriptionOscar", function(F, elms)
   od;
 
   return result;
-end);
+end;
 
-BindGlobal("NormCosetsDescriptionOscar", function(F, norm)
+OSCAR_AL_FUNCS.NormCosetsDescription := function(F, norm)
   local K, O, U_m, U, m, basis, units, eqn, creps;
 
-  K := _OscarField(F);
+  K := OSCAR_AL_FUNCS.OscarField(F);
   O := Oscar.maximal_order(K);
   U_m := Oscar.unit_group(O);
   U := U_m[1];
@@ -116,16 +117,16 @@ BindGlobal("NormCosetsDescriptionOscar", function(F, norm)
 
   # return result
   return rec(units := units, creps := creps);
-end);
+end;
 
+OSCAR_AL_FUNCS.Vector_nf_elem := JuliaType( Julia.Vector, [ Oscar_jl.nf_elem ] );
 
-
-BindGlobal("PolynomialFactorsDescriptionOscar", function(F, coeffs)
+OSCAR_AL_FUNCS.PolynomialFactorsDescription := function(F, coeffs)
   local K, cf, poly, facs, result, f, g, i;
 
-  K := _OscarField(F);
+  K := OSCAR_AL_FUNCS.OscarField(F);
 
-  cf := JuliaEvalString( "Vector{nf_elem}")(Reversed(List(coeffs, x -> K(GAPToJulia(x)))));
+  cf := OSCAR_AL_FUNCS.Vector_nf_elem(Reversed(List(coeffs, x -> K(GAPToJulia(x)))));
   poly := Oscar.polynomial(K, cf);
   facs := Oscar.factor(poly);
   Assert(0, Oscar.is_one(facs.unit));
@@ -147,15 +148,6 @@ BindGlobal("PolynomialFactorsDescriptionOscar", function(F, coeffs)
   SortBy(result, Length);
 
   return result;
-end);
-
-BindGlobal("OSCAR_AL_FUNCS", rec(
-    MaximalOrderDescription := MaximalOrderDescriptionOscar,
-    UnitGroupDescription := UnitGroupDescriptionOscar,
-    ExponentsOfUnitsDescriptionWithRank := ExponentsOfUnitsDescriptionWithRankOscar,
-    ExponentsOfFractionalIdealDescription := ExponentsOfFractionalIdealDescriptionOscar,
-    NormCosetsDescription := NormCosetsDescriptionOscar,
-    PolynomialFactorsDescription := PolynomialFactorsDescriptionOscar,
-));
+end;
 
 AL_FUNCS := OSCAR_AL_FUNCS;

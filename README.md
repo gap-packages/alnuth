@@ -21,6 +21,15 @@ Alnuth now has two backends: besides the existing interface to PARI/GP, it now
 also integrates with the OSCAR computer algebra system <https://www.oscar-system.org/>
 when loaded in GAP running inside OSCAR.
 
+Moreover many settings in Alnuth that were so far controlled by proprietary controls
+now use the GAP user preferences system.
+In particular, the old globals `AL_EXECUTABLE`, `AL_OPTIONS`,
+`AL_STACKSIZE`, and `PRIM_TEST` are deprecated in favor of
+`SetUserPreference("alnuth", ...)`, while `AL_PATH` is gone entirely.
+Deprecated globals still trigger a warning, but except for `AL_PATH` they are
+used as a fallback if the corresponding new user preference is not set or
+invalid.
+
 ## New in Version 3
 
 Up to and including Version 2.3.1, Alnuth was restricted to operating systems
@@ -96,6 +105,29 @@ the directories listed by `DirectoriesSystemPrograms()`.
 
 If you cannot use the default setting for you purpose, you can find more
 information in the last chapter of the Alnuth manual.
+The most important user preferences are:
+
+- `SetUserPreference("alnuth", "PariGpPath", "/path/to/gp");`
+- `SetUserPreference("alnuth", "PariStackSize", 256);`
+- `SetUserPreference("alnuth", "PrimitiveElementTrials", 40);`
+
+Then call `WriteGapIniFile();` to write the current non-default settings to
+your `gap.ini`.
+
+Users upgrading from older Alnuth versions should note these replacements:
+
+- `AL_EXECUTABLE` becomes `PariGpPath`
+- `AL_OPTIONS` becomes `PariGpOptions`
+- `AL_STACKSIZE` becomes `PariStackSize`
+- `PRIM_TEST` becomes `PrimitiveElementTrials`
+- `AL_PATH` no longer exists; Alnuth now locates its bundled GP code itself
+
+The deprecated globals still act as a fallback if the corresponding user
+preference is unusable, but they trigger a warning and should be replaced.
+
+The old functions `SetAlnuthExternalExecutable` and
+`SetAlnuthExternalExecutablePermanently` still exist as deprecated
+compatibility wrappers around the new preferences.
 
 
 ## Loading the package

@@ -10,7 +10,7 @@
 #
 gap> START_TEST("alnuth01.tst");
 
-# doc/fields.xml:249-260
+# doc/fields.xml:251-262
 gap> x := Indeterminate( Rationals, "x" );;
 gap> pol := 2*x^7+2*x^5+8*x^4+8*x^2;
 2*x^7+2*x^5+8*x^4+8*x^2

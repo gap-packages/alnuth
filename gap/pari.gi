@@ -59,23 +59,27 @@ end);
 #F ProcessPariGP(input, codefile)
 ##
 BindGlobal("ProcessPariGP", function(input, codefile)
-    local output, paricode;
+    local exe, output, paricode, memopt;
 
-    # test, wether AL_EXECUTABLE is set
-    if AL_EXECUTABLE = fail then
-        Error( "AL_EXECUTABLE, the executable for PARI/GP, has to be set" );
+    exe := AL_CurrentPariGpPath();
+    if exe = fail then
+        Error("Alnuth couldn't locate a usable PARI/GP executable.\n",
+              "You may the `PariGpPath` user preference to point to one.");
     fi;
 
     # add the prepared code fragments for the calculations in PARI/GP
-    paricode := InputTextFile(Filename(AL_PATH, codefile));
+    paricode := InputTextFile(
+        Filename(DirectoriesPackageLibrary("alnuth", "gp"), codefile)
+    );
 
     # execute PARI/GP
     Info(InfoAlnuth, 1, "executing PARI/GP with ", codefile);
     output := "";
-    Process(DirectoryCurrent(), AL_EXECUTABLE, 
+    memopt := Concatenation("-s", String(AL_CurrentPariStackSize()), "M");
+    Process(DirectoryCurrent(), exe,
             InputTextString(Concatenation(input, ReadAll(paricode))),
             OutputTextString(output,false), 
-            Concatenation(AL_OPTIONS, [AL_STACKSIZE])
+            Concatenation(AL_CurrentPariGpOptions(), [memopt])
            );
 
     # close open input stream from file with GP code

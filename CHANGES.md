@@ -1,7 +1,7 @@
 This file describes changes between different versions of Alnuth
 ================================================================
 
-## 4.0.0 (2026-MM-DD)
+## 4.0.0 (2026-05-14)
 
   - added support for using OSCAR as external CAS (in addition to PARI/GP);
     by default OSCAR support is automatically activated when Alnuth is loaded

@@ -1,17 +1,20 @@
 <Chapter Label="Installation">
 <Heading>Installation</Heading>
 
-This package provides an interface between &GAP; and PARI/GP.
-PARI/GP itself is not part of this package.  It has to be obtained and
-installed independently of this package. &Alnuth; works with PARI/GP
-Version 2.5 or higher.
+This package provides an interface between &GAP; and either PARI/GP or
+OSCAR. When &Alnuth; is loaded in &GAP; running inside OSCAR, it
+automatically uses OSCAR. Otherwise, &Alnuth; uses PARI/GP, which has to be
+obtained and installed independently of this package. &Alnuth; works with
+PARI/GP Version 2.5 or higher.
 
 <!-- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -->
 <Section Label="Installing Alnuth">
 <Heading>Installing Alnuth</Heading>
 
 The package &Alnuth; is part of the standard distribution of &GAP; so that
-in most cases there is no need to install it separately. To use &Alnuth;
+in most cases there is no need to install it separately. If you are using
+&GAP; inside OSCAR, then &Alnuth; is already bundled and automatically uses
+OSCAR, so no further installation is required. Otherwise, to use &Alnuth;
 you need to have PARI/GP installed. See the following section for
 information on PARI/GP.
 <P/>
@@ -47,8 +50,8 @@ command <C>tar xzf alnuth.tar.gz</C>.
 <Section Label="Getting PARI/GP">
 <Heading>Getting PARI/GP</Heading>
 
-Using &Alnuth; requires an installation of PARI/GP in Version 2.5 or
-higher. The software PARI/GP is freely available at
+Using &Alnuth; outside OSCAR requires an installation of PARI/GP in
+Version 2.5 or higher. The software PARI/GP is freely available at
 <URL>https://pari.math.u-bordeaux.fr/</URL>
 <P/>
 
@@ -85,10 +88,10 @@ For Windows it is sufficient to get the basic GP binary which can be found at
 <Section Label="Adjust the path of the executable for GP">
 <Heading>Adjust the path of the executable for GP</Heading>
 
-This package needs to know where the executable for GP is. In the
-default setting &Alnuth; looks for an executable program named <C>gp</C> in
-the search paths of the system. More precisely, for a file <C>gp</C> inside
-one of the directories in the list returned by
+When &Alnuth; is used outside OSCAR, it needs to know where the executable
+for GP is. In the default setting &Alnuth; looks for an executable program
+named <C>gp</C> in the search paths of the system. More precisely, for a
+file <C>gp</C> inside one of the directories in the list returned by
 <C>DirectoriesSystemPrograms()</C> (called in a &GAP; session).
 <P/>
 
@@ -210,11 +213,12 @@ banner will be displayed.
 <P/>
 <Log><![CDATA[
 gap> LoadPackage("alnuth");
-Loading  Alnuth 3.2.1 (ALgebraic NUmber THeory and an interface to PARI/GP)
+Loading Alnuth 4.0.0 (ALgebraic NUmber THeory and an interface to PARI/GP and OSCAR)
 by Björn Assmann,
    Andreas Distler (a.distler@tu-bs.de), and
    Bettina Eick (http://www.iaa.tu-bs.de/beick).
 maintained by:
+   Max Horn (https://www.quendi.de/math) and
    The GAP Team (support@gap-system.org).
 Homepage: https://gap-packages.github.io/alnuth
 Report issues at https://github.com/gap-packages/alnuth/issues
@@ -250,9 +254,10 @@ The architecture, timings and memory usage will usually differ; other
 discrepancies in the output indicate some problem.
 <P/>
 
-If the test suite runs into an error in the first part, which verifies the
-availability of PARI/GP, check your installation of PARI/GP and consult the
-last chapter of the documentation of &Alnuth; for more information.
+If the test suite runs into an error in the first part, which when running
+outside OSCAR verifies the availability of PARI/GP, check your installation
+of PARI/GP and consult the last chapter of the documentation of &Alnuth; for
+more information.
 <P/>
 
 If you find any bugs or have any suggestions or comments, we would very much

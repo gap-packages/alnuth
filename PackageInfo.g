@@ -111,7 +111,7 @@ Dependencies := rec(
 ),
 
 Extensions := [
-    rec( needed := [ [ "OscarInterface", ">= 1.0.0" ] ],
+    rec( needed := [ [ "OscarInterface", ">= 1.3.0" ] ],
          filename := "gap/oscar.gi" ),
 ],
 

@@ -119,14 +119,14 @@ OSCAR_AL_FUNCS.NormCosetsDescription := function(F, norm)
   return rec(units := units, creps := creps);
 end;
 
-OSCAR_AL_FUNCS.Vector_nf_elem := JuliaType( Julia.Vector, [ Oscar_jl.nf_elem ] );
+OSCAR_AL_FUNCS.Vector_AbsSimpleNumFieldElem := JuliaType( Julia.Vector, [ Oscar_jl.AbsSimpleNumFieldElem ] );
 
 OSCAR_AL_FUNCS.PolynomialFactorsDescription := function(F, coeffs)
   local K, cf, poly, facs, result, f, g, i;
 
   K := OSCAR_AL_FUNCS.OscarField(F);
 
-  cf := OSCAR_AL_FUNCS.Vector_nf_elem(Reversed(List(coeffs, x -> K(GAPToJulia(x)))));
+  cf := OSCAR_AL_FUNCS.Vector_AbsSimpleNumFieldElem(Reversed(List(coeffs, x -> K(GAPToJulia(x)))));
   poly := Oscar_jl.polynomial(K, cf);
   facs := Oscar_jl.factor(poly);
   Assert(0, Oscar_jl.is_one(facs.unit));

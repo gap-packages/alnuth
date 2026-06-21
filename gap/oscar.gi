@@ -61,12 +61,12 @@ OSCAR_AL_FUNCS.ExponentsOfUnitsDescriptionWithRank := function(F, elms)
   units := JuliaToGAP(IsList, basis, true);
 
   # the order of the torsion part of the full unit group
-  rank := Oscar_jl.GAP.julia_to_gap(Oscar_jl.order(U_m[1][1]));
+  rank := Oscar_jl.GAP.GapObj(Oscar_jl.order(U_m[1][1]));
 
   expns := [];
   for x in elms do
      # map GAP int vector to Oscar element
-     Add(expns, Oscar_jl.GAP.julia_to_gap(Oscar_jl.preimage(m, K(GAPToJulia(x))).coeff)[1]);
+     Add(expns, Oscar_jl.GAP.GapObj(Oscar_jl.preimage(m, K(GAPToJulia(x))).coeff)[1]);
   od;
 
   # return result

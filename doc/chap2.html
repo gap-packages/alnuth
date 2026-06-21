@@ -1,0 +1,294 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+<title>GAP (Alnuth) - Chapter 2: Working with number fields</title>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<meta name="generator" content="GAPDoc2HTML" />
+<link rel="stylesheet" type="text/css" href="manual.css" />
+<script src="manual.js" type="text/javascript"></script>
+<script type="text/javascript">overwriteStyle();</script>
+</head>
+<body class="chap2"  onload="jscontent()">
+
+
+<div class="chlinktop"><span class="chlink1">Goto Chapter: </span><a href="chap0.html">Top</a>  <a href="chap1.html">1</a>  <a href="chap2.html">2</a>  <a href="chap3.html">3</a>  <a href="chap4.html">4</a>  <a href="chapBib.html">Bib</a>  <a href="chapInd.html">Ind</a>  </div>
+
+<div class="chlinkprevnexttop">&nbsp;<a href="chap0.html">[Top of Book]</a>&nbsp;  <a href="chap0.html#contents">[Contents]</a>&nbsp;  &nbsp;<a href="chap1.html">[Previous Chapter]</a>&nbsp;  &nbsp;<a href="chap3.html">[Next Chapter]</a>&nbsp;  </div>
+
+<p id="mathjaxlink" class="pcenter"><a href="chap2_mj.html">[MathJax on]</a></p>
+<p><a id="X7DC995CB8412F8E2" name="X7DC995CB8412F8E2"></a></p>
+<div class="ChapSects"><a href="chap2.html#X7DC995CB8412F8E2">2 <span class="Heading">Working with number fields</span></a>
+<div class="ContSect"><span class="tocline"><span class="nocss">&nbsp;</span><a href="chap2.html#X86AD0C3F7D38C269">2.1 <span class="Heading">Creation of number fields</span></a>
+</span>
+<div class="ContSSBlock">
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2.html#X8085204B7DE2C8BA">2.1-1 FieldByMatricesNC</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2.html#X805CFBEB877FCBA3">2.1-2 FieldByMatrixBasisNC</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2.html#X7AD9823687E61ABC">2.1-3 FieldByPolynomialNC</a></span>
+</div></div>
+<div class="ContSect"><span class="tocline"><span class="nocss">&nbsp;</span><a href="chap2.html#X79007A477D53B572">2.2 <span class="Heading">Methods for number fields</span></a>
+</span>
+<div class="ContSSBlock">
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2.html#X86DB31B57FB4F570">2.2-1 PrimitiveElement</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2.html#X843C2BE881A3576A">2.2-2 IsPrimitiveElementOfNumberField</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2.html#X7845CECE86A83219">2.2-3 DegreeOverPrimeField</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2.html#X8185FEF1811EA43F">2.2-4 EquationOrderBasis</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2.html#X7902A7877B65FDA1">2.2-5 UnitGroup</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2.html#X7D9484BA7AF4201C">2.2-6 IsUnitOfNumberField</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2.html#X80389D828474FC64">2.2-7 ExponentsOfUnits</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2.html#X84CAE4627F0CD639">2.2-8 IsCyclotomicField</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2.html#X7A43318584DB3756">2.2-9 NormCosetsOfNumberField</a></span>
+</div></div>
+<div class="ContSect"><span class="tocline"><span class="nocss">&nbsp;</span><a href="chap2.html#X833A0296798E0463">2.3 <span class="Heading">Presentations of multiplicative subgroups</span></a>
+</span>
+<div class="ContSSBlock">
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2.html#X7975303583E6058B">2.3-1 PcpPresentationOfMultiplicativeSubgroup</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2.html#X7C6E88FE82BB9DE3">2.3-2 RelationLattice</a></span>
+</div></div>
+<div class="ContSect"><span class="tocline"><span class="nocss">&nbsp;</span><a href="chap2.html#X86F68B4883142B5A">2.4 <span class="Heading">Methods to compute with subgroups of the unit group</span></a>
+</span>
+<div class="ContSSBlock">
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2.html#X82B056EC85CF150D">2.4-1 RelationLatticeOfUnits</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2.html#X7B8C89C980CB15F7">2.4-2 IntersectionOfUnitSubgroups</a></span>
+</div></div>
+<div class="ContSect"><span class="tocline"><span class="nocss">&nbsp;</span><a href="chap2.html#X7F656B217EF114DA">2.5 <span class="Heading">Factorisation of polynomials over a number field</span></a>
+</span>
+<div class="ContSSBlock">
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2.html#X815A5FBE805119CC">2.5-1 FactorsPolynomialAlgExt</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2.html#X7CC3F0458523CB22">2.5-2 FactorsPolynomialAlnuth</a></span>
+</div></div>
+<div class="ContSect"><span class="tocline"><span class="nocss">&nbsp;</span><a href="chap2.html#X7A489A5D79DA9E5C">2.6 <span class="Heading">Examples</span></a>
+</span>
+<div class="ContSSBlock">
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2.html#X7B4AE27B7BB8A9ED">2.6-1 ExampleMatField</a></span>
+</div></div>
+</div>
+
+<h3>2 <span class="Heading">Working with number fields</span></h3>
+
+<p>An algebraic number field is a finite-dimensional extension of the rational numbers <span class="SimpleMath">ℚ</span>. Such a number field has a primitive element and it can be defined by the minimal polynomial of this primitive element. Another important way to define an algebraic number field is by a set of rational matrices which generate a number field.</p>
+
+<p><a id="X86AD0C3F7D38C269" name="X86AD0C3F7D38C269"></a></p>
+
+<h4>2.1 <span class="Heading">Creation of number fields</span></h4>
+
+<p>We provide functions to create number fields defined by rational matrices or by rational polynomials.</p>
+
+<p><a id="X8085204B7DE2C8BA" name="X8085204B7DE2C8BA"></a></p>
+
+<h5>2.1-1 FieldByMatricesNC</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; FieldByMatricesNC</code>( <var class="Arg">matrices</var> )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; FieldByMatrices</code>( <var class="Arg">matrices</var> )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
+<p>Creates a field generated by the rational matrices <var class="Arg">matrices</var>. In the faster NC version, the function assumes that the input generates a field and there are no checks on this performed.</p>
+
+<p><a id="X805CFBEB877FCBA3" name="X805CFBEB877FCBA3"></a></p>
+
+<h5>2.1-2 FieldByMatrixBasisNC</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; FieldByMatrixBasisNC</code>( <var class="Arg">matrices</var> )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; FieldByMatrixBasis</code>( <var class="Arg">matrices</var> )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
+<p>Creates a field with basis <var class="Arg">matrices</var>. The list <var class="Arg">matrices</var> must consist of rational matrices which form a basis for a number field. In the faster NC version, the function assumes that the input is a matrix basis for a field and no checks are performed.</p>
+
+<p><a id="X7AD9823687E61ABC" name="X7AD9823687E61ABC"></a></p>
+
+<h5>2.1-3 FieldByPolynomialNC</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; FieldByPolynomialNC</code>( <var class="Arg">polynomial</var> )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; FieldByPolynomial</code>( <var class="Arg">polynomial</var> )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
+<p>Creates a field defined by <var class="Arg">polynomial</var>. The polynomial <var class="Arg">polynomial</var> must be an irreducible rational polynomial. In the faster NC version, no checks on the input are performed.</p>
+
+<p><a id="X79007A477D53B572" name="X79007A477D53B572"></a></p>
+
+<h4>2.2 <span class="Heading">Methods for number fields</span></h4>
+
+<p>We outline a number of functions for number fields.</p>
+
+<p><a id="X86DB31B57FB4F570" name="X86DB31B57FB4F570"></a></p>
+
+<h5>2.2-1 PrimitiveElement</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; PrimitiveElement</code>( <var class="Arg">F</var> )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; DefiningPolynomial</code>( <var class="Arg">F</var> )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
+<p>Computes a primitive element and a defining polynomial for the given number field. The defining polynomial is the minimal polynomial of the primitive element. Since <var class="Arg">F</var> contains various primitive elements, <code class="code">PrimitiveElement</code> tries to find a primitive element which has a minimal polynomial with small coefficients. Via the user preference <code class="code">PrimitiveElementTrials</code> the user can decide how many primitive elements will be compared. The default value is 20. (See <code class="func">SetUserPreference</code> (<a href="https://docs.gap-system.org/doc/ref/chap3.html#X7B0AD104839B6C3C"><span class="RefLink">Reference: SetUserPreference</span></a>) for more information about user preferences.)</p>
+
+<p><a id="X843C2BE881A3576A" name="X843C2BE881A3576A"></a></p>
+
+<h5>2.2-2 IsPrimitiveElementOfNumberField</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; IsPrimitiveElementOfNumberField</code>( <var class="Arg">F</var>, <var class="Arg">a</var> )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
+<p>Checks if the given element generates the field.</p>
+
+<p><a id="X7845CECE86A83219" name="X7845CECE86A83219"></a></p>
+
+<h5>2.2-3 DegreeOverPrimeField</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; DegreeOverPrimeField</code>( <var class="Arg">F</var> )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
+<p>Returns the degree of <var class="Arg">F</var> over the rationals.</p>
+
+<p><a id="X8185FEF1811EA43F" name="X8185FEF1811EA43F"></a></p>
+
+<h5>2.2-4 EquationOrderBasis</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; EquationOrderBasis</code>( <var class="Arg">F</var> )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; MaximalOrderBasis</code>( <var class="Arg">F</var> )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; IsIntegerOfNumberField</code>( <var class="Arg">F</var>, <var class="Arg">k</var> )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
+<p>These functions return bases for the equation order or the maximal order of the number field <var class="Arg">F</var>. Also, they allow to check if a given element is an integer in the given number field.</p>
+
+<p><a id="X7902A7877B65FDA1" name="X7902A7877B65FDA1"></a></p>
+
+<h5>2.2-5 UnitGroup</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; UnitGroup</code>( <var class="Arg">F</var> )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
+<p>determines the unit group of <var class="Arg">F</var>.</p>
+
+<p>Recall that the unit group of <var class="Arg">F</var> is a finitely generated abelian group. The function <code class="code">IsomorphismPcpGroup</code> from the <strong class="pkg">Polycyclic</strong> <a href="chapBib.html#biBPolycyclic">[EHN11]</a> package gives an isomorphism to a pcp group which can be used for various computations with the unit group.</p>
+
+<p><a id="X7D9484BA7AF4201C" name="X7D9484BA7AF4201C"></a></p>
+
+<h5>2.2-6 IsUnitOfNumberField</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; IsUnitOfNumberField</code>( <var class="Arg">F</var>, <var class="Arg">k</var> )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
+<p>checks whether the element <var class="Arg">k</var> is a unit in <var class="Arg">F</var>.</p>
+
+<p><a id="X80389D828474FC64" name="X80389D828474FC64"></a></p>
+
+<h5>2.2-7 ExponentsOfUnits</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; ExponentsOfUnits</code>( <var class="Arg">F</var>, <var class="Arg">elms</var> )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
+<p>This function determines the exponent vectors of the elements in <var class="Arg">elms</var> with respect to the generators of the unit group of <var class="Arg">F</var>. If the unit group of <var class="Arg">F</var> is not known, then the function computes this unit group also.</p>
+
+<p><a id="X84CAE4627F0CD639" name="X84CAE4627F0CD639"></a></p>
+
+<h5>2.2-8 IsCyclotomicField</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; IsCyclotomicField</code>( <var class="Arg">F</var> )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
+<p>Check whether <var class="Arg">F</var> is cyclotomic.</p>
+
+<p><a id="X7A43318584DB3756" name="X7A43318584DB3756"></a></p>
+
+<h5>2.2-9 NormCosetsOfNumberField</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; NormCosetsOfNumberField</code>( <var class="Arg">F</var>, <var class="Arg">norm</var> )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
+<p>Returns a description for the set of all elements of norm <var class="Arg">norm</var> in <var class="Arg">F</var>. These elements can be written as a finite union of cosets of the unit group of <var class="Arg">F</var>. The function returns coset representatives for these cosets.</p>
+
+<p><a id="X833A0296798E0463" name="X833A0296798E0463"></a></p>
+
+<h4>2.3 <span class="Heading">Presentations of multiplicative subgroups</span></h4>
+
+<p>Suppose that a finite number of invertible elements of a number field are given. Then these elements generate a finitely generated abelian group. However, it is a non-trivial task to provide a presentation for this abelian group. The most useful representation for such groups is as pcp group.</p>
+
+<p><a id="X7975303583E6058B" name="X7975303583E6058B"></a></p>
+
+<h5>2.3-1 PcpPresentationOfMultiplicativeSubgroup</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; PcpPresentationOfMultiplicativeSubgroup</code>( <var class="Arg">F</var>, <var class="Arg">elms</var> )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; IsomorphismPcpGroup</code>( <var class="Arg">F</var>, <var class="Arg">elms</var> )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
+<p>Determine a pcp presentation for the multiplicative group of <span class="SimpleMath"><var class="Arg">F</var>backslash{0}</span> generated by <var class="Arg">elms</var> and an isomorphism on this presentation. Note, that the method <code class="code">IsomorphismPcpGroup</code> is defined in the <strong class="pkg">Polycyclic</strong> package <a href="chapBib.html#biBPolycyclic">[EHN11]</a>. We refer to the manual of this package for further background.</p>
+
+<p>In the determination of the Pcp-presentation of a multiplicative subgroup generated by <var class="Arg">elms</var> the relations between the elements in <var class="Arg">elms</var> play an important role. Let <span class="SimpleMath">elms={e_1,dots,e_l}</span> be a finite subset of a field <var class="Arg">F</var>. The relation lattice for <var class="Arg">elms</var> is</p>
+
+<p class="pcenter">
+rl(elms):=\left\{(h_1,\dots,h_l) \in ℤ^l | e_1^{h_1} \cdots
+e_l^{h_l} = 1\right\} .
+</p>
+
+<p><a id="X7C6E88FE82BB9DE3" name="X7C6E88FE82BB9DE3"></a></p>
+
+<h5>2.3-2 RelationLattice</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; RelationLattice</code>( <var class="Arg">F</var>, <var class="Arg">elms</var> )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
+<p>Determines a generating set for the relation lattice of the field elements <var class="Arg">elms</var>.</p>
+
+<p><a id="X86F68B4883142B5A" name="X86F68B4883142B5A"></a></p>
+
+<h4>2.4 <span class="Heading">Methods to compute with subgroups of the unit group</span></h4>
+
+<p><a id="X82B056EC85CF150D" name="X82B056EC85CF150D"></a></p>
+
+<h5>2.4-1 RelationLatticeOfUnits</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; RelationLatticeOfUnits</code>( <var class="Arg">F</var>, <var class="Arg">elms</var> )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
+<p>Determines a basis for the relation lattice of the units <var class="Arg">elms</var> in triangularized form. Note that this method is more efficient than the method <code class="code">RelationLattice</code>.</p>
+
+<p><a id="X7B8C89C980CB15F7" name="X7B8C89C980CB15F7"></a></p>
+
+<h5>2.4-2 IntersectionOfUnitSubgroups</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; IntersectionOfUnitSubgroups</code>( <var class="Arg">F</var>, <var class="Arg">gen1</var>, <var class="Arg">gen2</var> )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
+<p>The lists <var class="Arg">gen1</var> and <var class="Arg">gen2</var> are supposed to generate two subgroups <span class="SimpleMath">U_1</span> and <span class="SimpleMath">U_2</span> of the unit group of <var class="Arg">F</var>. This function determines the intersection of <span class="SimpleMath">U_1</span> with <span class="SimpleMath">U_2</span>. The result is returned as a list of vectors generating the lattice <span class="SimpleMath">{ e ∈ ℤ^n ∣ g_1^e_1 ⋯ g_n^e_n ∈ U_2 }</span> for <var class="Arg">gen1</var> = <span class="SimpleMath">[g_1, ..., g_n]</span>.</p>
+
+<p>For efficiency reasons this function does not check the input and it may return wrong results if the input generators do not fulfil the requirements.</p>
+
+<p><a id="X7F656B217EF114DA" name="X7F656B217EF114DA"></a></p>
+
+<h4>2.5 <span class="Heading">Factorisation of polynomials over a number field</span></h4>
+
+<p><a id="X815A5FBE805119CC" name="X815A5FBE805119CC"></a></p>
+
+<h5>2.5-1 FactorsPolynomialAlgExt</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; FactorsPolynomialAlgExt</code>( <var class="Arg">F</var>, <var class="Arg">pol</var> )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
+<p>embeds the rational polynomial <var class="Arg">pol</var> into the polynomial ring over the number field <var class="Arg">F</var>, which has to be constructed by <code class="code">FieldByPolynomial</code> or <code class="code">AlgebraicExtension</code>, and returns the factorization of the embedded polynomial. By default <var class="Arg">a</var> denotes the primitive element of the field one can obtain from <code class="code">PrimitiveElement(<var class="Arg">F</var>)</code>, that is, a root of the defining polynomial of <var class="Arg">F</var>.</p>
+
+<p><a id="X7CC3F0458523CB22" name="X7CC3F0458523CB22"></a></p>
+
+<h5>2.5-2 FactorsPolynomialAlnuth</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; FactorsPolynomialAlnuth</code>( <var class="Arg">pol</var> )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
+<p>takes a polynomial <var class="Arg">pol</var> defined over an algebraic extension of the Rationals and factors it using the external CAS (PARI/GP or OSCAR).</p>
+
+<p>The alias <code class="code">FactorsPolynomialPari</code> is provided for backwards compatibility.</p>
+
+
+<div class="example"><pre>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">x := Indeterminate( Rationals, "x" );;</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">pol := 2*x^7+2*x^5+8*x^4+8*x^2;</span>
+2*x^7+2*x^5+8*x^4+8*x^2
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">L := FieldByPolynomial( x^3-4 );</span>
+&lt;algebraic extension over the Rationals of degree 3&gt;
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">y := Indeterminate( L, "y" );;</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">FactorsPolynomialAlgExt( L, pol );</span>
+[ !2*y, y, y+a, y^2+!1, y^2+(-a)*y+a^2 ]
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">FactorsPolynomialAlnuth( last[5] );</span>
+[ y^2+(-a)*y+a^2 ]
+</pre></div>
+
+<p><a id="X7A489A5D79DA9E5C" name="X7A489A5D79DA9E5C"></a></p>
+
+<h4>2.6 <span class="Heading">Examples</span></h4>
+
+<p><a id="X7B4AE27B7BB8A9ED" name="X7B4AE27B7BB8A9ED"></a></p>
+
+<h5>2.6-1 ExampleMatField</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; ExampleMatField</code>( <var class="Arg">l</var> )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
+<p>This function returns some examples of fields generated by matrices. There are 9 such example fields provided and they can be obtained by assigning the input <var class="Arg">l</var> to an integer between 1 and 9. Some of the properties of the examples are summarized in the following table.</p>
+
+
+<div class="example"><pre>
+                    degree over Q  number of generators  dim. of generators
+ExampleMatField(1)              4                     4                   4
+ExampleMatField(2)              4                     4                   4
+ExampleMatField(3)              4                     4                   4
+ExampleMatField(4)              4                    13                   4
+ExampleMatField(5)              4                    13                   4
+ExampleMatField(6)              4                     7                   4
+ExampleMatField(7)              4                    18                   4
+ExampleMatField(8)              4                    13                   4
+ExampleMatField(9)              4                     7                   4
+</pre></div>
+
+
+<div class="chlinkprevnextbot">&nbsp;<a href="chap0.html">[Top of Book]</a>&nbsp;  <a href="chap0.html#contents">[Contents]</a>&nbsp;  &nbsp;<a href="chap1.html">[Previous Chapter]</a>&nbsp;  &nbsp;<a href="chap3.html">[Next Chapter]</a>&nbsp;  </div>
+
+
+<div class="chlinkbot"><span class="chlink1">Goto Chapter: </span><a href="chap0.html">Top</a>  <a href="chap1.html">1</a>  <a href="chap2.html">2</a>  <a href="chap3.html">3</a>  <a href="chap4.html">4</a>  <a href="chapBib.html">Bib</a>  <a href="chapInd.html">Ind</a>  </div>
+
+<hr />
+<p class="foot">generated by <a href="https://www.math.rwth-aachen.de/~Frank.Luebeck/GAPDoc">GAPDoc2HTML</a></p>
+</body>
+</html>

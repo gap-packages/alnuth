@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+<title>GAP (Alnuth) - Chapter 4: Installation</title>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<meta name="generator" content="GAPDoc2HTML" />
+<link rel="stylesheet" type="text/css" href="manual.css" />
+<script src="manual.js" type="text/javascript"></script>
+<script type="text/javascript">overwriteStyle();</script>
+</head>
+<body class="chap4"  onload="jscontent()">
+
+
+<div class="chlinktop"><span class="chlink1">Goto Chapter: </span><a href="chap0.html">Top</a>  <a href="chap1.html">1</a>  <a href="chap2.html">2</a>  <a href="chap3.html">3</a>  <a href="chap4.html">4</a>  <a href="chapBib.html">Bib</a>  <a href="chapInd.html">Ind</a>  </div>
+
+<div class="chlinkprevnexttop">&nbsp;<a href="chap0.html">[Top of Book]</a>&nbsp;  <a href="chap0.html#contents">[Contents]</a>&nbsp;  &nbsp;<a href="chap3.html">[Previous Chapter]</a>&nbsp;  &nbsp;<a href="chapBib.html">[Next Chapter]</a>&nbsp;  </div>
+
+<p id="mathjaxlink" class="pcenter"><a href="chap4_mj.html">[MathJax on]</a></p>
+<p><a id="X8360C04082558A12" name="X8360C04082558A12"></a></p>
+<div class="ChapSects"><a href="chap4.html#X8360C04082558A12">4 <span class="Heading">Installation</span></a>
+<div class="ContSect"><span class="tocline"><span class="nocss">&nbsp;</span><a href="chap4.html#X821B9C2D817C0BE7">4.1 <span class="Heading">Installing Alnuth</span></a>
+</span>
+</div>
+<div class="ContSect"><span class="tocline"><span class="nocss">&nbsp;</span><a href="chap4.html#X83B28FDC7FACCE51">4.2 <span class="Heading">Getting PARI/GP</span></a>
+</span>
+</div>
+<div class="ContSect"><span class="tocline"><span class="nocss">&nbsp;</span><a href="chap4.html#X815DF28A87D65A3A">4.3 <span class="Heading">Adjust the path of the executable for GP</span></a>
+</span>
+<div class="ContSSBlock">
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap4.html#X84E2E83F8251DC49">4.3-1 PariVersion</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap4.html#X7F2835FB7C5069DD">4.3-2 SetAlnuthExternalExecutable</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap4.html#X81CD0C70812FC6F3">4.3-3 SetAlnuthExternalExecutablePermanently</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap4.html#X7F648B427EB19552">4.3-4 RestoreAlnuthExternalExecutablePermanently</a></span>
+</div></div>
+<div class="ContSect"><span class="tocline"><span class="nocss">&nbsp;</span><a href="chap4.html#X781C2F107F76F8A4">4.4 <span class="Heading">Loading and testing the package</span></a>
+</span>
+</div>
+</div>
+
+<h3>4 <span class="Heading">Installation</span></h3>
+
+<p>This package provides an interface between <strong class="pkg">GAP</strong> and either PARI/GP or OSCAR. When <strong class="pkg">Alnuth</strong> is loaded in <strong class="pkg">GAP</strong> running inside OSCAR, it automatically uses OSCAR. Otherwise, <strong class="pkg">Alnuth</strong> uses PARI/GP, which has to be obtained and installed independently of this package. <strong class="pkg">Alnuth</strong> works with PARI/GP Version 2.5 or higher.</p>
+
+<p><a id="X821B9C2D817C0BE7" name="X821B9C2D817C0BE7"></a></p>
+
+<h4>4.1 <span class="Heading">Installing Alnuth</span></h4>
+
+<p>The package <strong class="pkg">Alnuth</strong> is part of the standard distribution of <strong class="pkg">GAP</strong> so that in most cases there is no need to install it separately. If you are using <strong class="pkg">GAP</strong> inside OSCAR, then <strong class="pkg">Alnuth</strong> is already bundled and automatically uses OSCAR, so no further installation is required. Otherwise, to use <strong class="pkg">Alnuth</strong> you need to have PARI/GP installed. See the following section for information on PARI/GP.</p>
+
+<p>In case you want to update <strong class="pkg">Alnuth</strong> independently of your main <strong class="pkg">GAP</strong> installation or if you are interested in an old version of <strong class="pkg">Alnuth</strong> interfacing to KANT/KASH you can find all released versions of <strong class="pkg">Alnuth</strong> in the form of gzipped tar-archives at <span class="URL"><a href="https://github.com/gap-packages/alnuth/releases">https://github.com/gap-packages/alnuth/releases</a></span></p>
+
+<p>There are two ways of installing a <strong class="pkg">GAP</strong> package. If you have permission to add files to the installation of <strong class="pkg">GAP</strong> on your system you may install <strong class="pkg">Alnuth</strong> into the <code class="code">pkg</code> subdirectory of the <strong class="pkg">GAP</strong> installation tree. Otherwise you may install <strong class="pkg">Alnuth</strong> in a private <code class="code">pkg</code> directory (for details see Subsections <a href="https://docs.gap-system.org/doc/ref/chap76.html#X82473E4B8756C6CD"><span class="RefLink">Reference: Installing a GAP Package</span></a> and <a href="https://docs.gap-system.org/doc/ref/chap9.html#X7A4973627A5DB27D"><span class="RefLink">Reference: GAP Root Directories</span></a> in the <strong class="pkg">GAP</strong> reference manual).</p>
+
+<p>To install the latest version of <strong class="pkg">Alnuth</strong> download one of the archives <code class="code">alnuth.tar.gz</code>, move it to the directory <code class="code">pkg</code> in which you want to install, and unpack the archive. If you are using the command line you can unpack with the command <code class="code">tar xzf alnuth.tar.gz</code>.</p>
+
+<p><a id="X83B28FDC7FACCE51" name="X83B28FDC7FACCE51"></a></p>
+
+<h4>4.2 <span class="Heading">Getting PARI/GP</span></h4>
+
+<p>Using <strong class="pkg">Alnuth</strong> outside OSCAR requires an installation of PARI/GP in Version 2.5 or higher. The software PARI/GP is freely available at <span class="URL"><a href="https://pari.math.u-bordeaux.fr/">https://pari.math.u-bordeaux.fr/</a></span></p>
+
+<p>Note that the place where PARI/GP is located in your system is independent of the place where <strong class="pkg">Alnuth</strong> is installed.</p>
+
+<ol>
+<li><p><em>Installing under Linux</em></p>
+
+<p>In many Linux distributions PARI/GP can be installed via the software package manager, but this might sometimes be an older version which cannot be used together with <strong class="pkg">Alnuth</strong>. (Starting GP from the command line with the option <code class="code">--version-short</code> will show you the version number.)</p>
+
+<p>If you install PARI/GP from source make sure you install with GMP support for better performance and complete the installation with <code class="code">make install</code> so that you can start GP by just calling <code class="code">gp</code> from the command line.</p>
+
+</li>
+<li><p><em>Installing under Windows</em></p>
+
+<p>For Windows it is sufficient to get the basic GP binary which can be found at <span class="URL"><a href="https://pari.math.u-bordeaux.fr/download.html">https://pari.math.u-bordeaux.fr/download.html</a></span></p>
+
+</li>
+</ol>
+<p><a id="X815DF28A87D65A3A" name="X815DF28A87D65A3A"></a></p>
+
+<h4>4.3 <span class="Heading">Adjust the path of the executable for GP</span></h4>
+
+<p>When <strong class="pkg">Alnuth</strong> is used outside OSCAR, it needs to know where the executable for GP is. In the default setting <strong class="pkg">Alnuth</strong> looks for an executable program named <code class="code">gp</code> in the search paths of the system. More precisely, for a file <code class="code">gp</code> inside one of the directories in the list returned by <code class="code">DirectoriesSystemPrograms()</code> (called in a <strong class="pkg">GAP</strong> session).</p>
+
+<p>Under Linux the default setting should work with a standard installation of PARI/GP.</p>
+
+<p>For the default setting to work under Windows the downloaded executable file, for example <code class="code">gp-2-5-0.exe</code> has to be renamed to <code class="code">gp.exe</code> and moved to one of the directories listed by <code class="code">DirectoriesSystemPrograms()</code> (Ignore the leading <code class="code">cygdrive</code> in each path name and note that the single letter specifies the drive, for example <code class="code">/cygdrive/c/Windows/</code> denotes the folder <code class="code">Windows</code> on drive <code class="code">C:</code>).</p>
+
+<p>To check whether an executable of GP in Version 2.5 or higher is available with the default setting, you can use the function</p>
+
+<p><a id="X84E2E83F8251DC49" name="X84E2E83F8251DC49"></a></p>
+
+<h5>4.3-1 PariVersion</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; PariVersion</code>(  )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
+<p>which prints the version number, if the user preference <code class="code">PariGpPath</code> refers to a usable GP executable.</p>
+
+<p>If you cannot use the default setting for you purpose, you have several ways to configure Alnuth.</p>
+
+<p>The recommended approach is to use the <strong class="pkg">GAP</strong> user preference system:</p>
+
+
+<div class="example"><pre>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">SetUserPreference("alnuth", "PariGpPath", "/home/my/pari-2.5.0/gp");</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">SetUserPreference("alnuth", "PariStackSize", 256);</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">WriteGapIniFile();</span>
+</pre></div>
+
+<p>This changes the current session immediately. <code class="code">WriteGapIniFile()</code> writes the current non-default settings to your personal <code class="file">gap.ini</code>, so they are used again in future <strong class="pkg">GAP</strong> sessions. See <a href="https://docs.gap-system.org/doc/ref/chap3.html#X7B0AD104839B6C3C"><span class="RefLink">Reference: Configuring User preferences</span></a> for background on the user preference system.</p>
+
+<p>The user preferences relevant for Alnuth are shown by <code class="code">ShowUserPreferences("alnuth");</code>. The most important ones are <code class="code">PariGpPath</code>, <code class="code">PariGpOptions</code>, <code class="code">PariStackSize</code>, and <code class="code">PrimitiveElementTrials</code>.</p>
+
+<p>In older versions of <strong class="pkg">Alnuth</strong> configuration was done via the global variables <code class="code">AL_EXECUTABLE</code>, <code class="code">AL_PATH</code>, <code class="code">AL_OPTIONS</code>, <code class="code">AL_STACKSIZE</code>, and <code class="code">PRIM_TEST</code>. These globals are deprecated, and they trigger a warning when used. The globals except for <code class="code">AL_PATH</code> still serve as a fallback if the corresponding user preference is unusable. Their replacements are as follows:</p>
+
+
+<dl>
+<dt><strong class="Mark"><code class="code">AL_EXECUTABLE</code></strong></dt>
+<dd><p>use the user preference <code class="code">PariGpPath</code></p>
+
+</dd>
+<dt><strong class="Mark"><code class="code">AL_OPTIONS</code></strong></dt>
+<dd><p>use the user preference <code class="code">PariGpOptions</code></p>
+
+</dd>
+<dt><strong class="Mark"><code class="code">AL_STACKSIZE</code></strong></dt>
+<dd><p>use the user preference <code class="code">PariStackSize</code></p>
+
+</dd>
+<dt><strong class="Mark"><code class="code">PRIM_TEST</code></strong></dt>
+<dd><p>use the user preference <code class="code">PrimitiveElementTrials</code></p>
+
+</dd>
+<dt><strong class="Mark"><code class="code">AL_PATH</code></strong></dt>
+<dd><p>has been removed; Alnuth now always uses the bundled GP helper files.</p>
+
+</dd>
+</dl>
+<p>For backwards compatibility, the following functions still exist after loading the package (see Section <a href="chap4.html#X781C2F107F76F8A4"><span class="RefLink">4.4</span></a>), but they are deprecated wrappers around the user preference system.</p>
+
+<p><a id="X7F2835FB7C5069DD" name="X7F2835FB7C5069DD"></a></p>
+
+<h5>4.3-2 SetAlnuthExternalExecutable</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; SetAlnuthExternalExecutable</code>( <var class="Arg">path</var> )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
+<p>sets the user preference <code class="code">PariGpPath</code> for the current <strong class="pkg">GAP</strong> session. Depending on your installation of PARI/GP and your operating system the string <var class="Arg">path</var> can be either the command to start GP in a terminal (for example <code class="code">gp</code>) or the complete path to the executable of GP. The function is deprecated; new code should call <code class="code">SetUserPreference("alnuth", "PariGpPath", path);</code> directly.</p>
+
+<p>The function returns the stored preference value.</p>
+
+<p><a id="X81CD0C70812FC6F3" name="X81CD0C70812FC6F3"></a></p>
+
+<h5>4.3-3 SetAlnuthExternalExecutablePermanently</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; SetAlnuthExternalExecutablePermanently</code>( <var class="Arg">path</var> )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
+<p>does the same as <code class="code">SetAlnuthExternalExecutable</code> and then calls <code class="code">WriteGapIniFile()</code> to persist the current user preference settings in your personal <code class="file">gap.ini</code>. The function is deprecated; new code should call <code class="code">SetUserPreference("alnuth", "PariGpPath", path); WriteGapIniFile();</code> instead.</p>
+
+<p><a id="X7F648B427EB19552" name="X7F648B427EB19552"></a></p>
+
+<h5>4.3-4 RestoreAlnuthExternalExecutablePermanently</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; RestoreAlnuthExternalExecutablePermanently</code>(  )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
+<p>restores the default value of <code class="code">PariGpPath</code> and then calls <code class="code">WriteGapIniFile()</code>. The function is deprecated; new code should set <code class="code">PariGpPath</code> to the desired default command or path and then call <code class="code">WriteGapIniFile()</code> directly.</p>
+
+<p><a id="X781C2F107F76F8A4" name="X781C2F107F76F8A4"></a></p>
+
+<h4>4.4 <span class="Heading">Loading and testing the package</span></h4>
+
+<p>If <strong class="pkg">Alnuth</strong> is not loaded when GAP is started you have to request it explicitly to use it. This is done by calling <code class="code">LoadPackage("alnuth");</code> in a GAP session. If <strong class="pkg">Alnuth</strong> had not been loaded already a short banner will be displayed.</p>
+
+
+<div class="example"><pre>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">LoadPackage("alnuth");</span>
+Loading Alnuth 4.0.0 (ALgebraic NUmber THeory and an interface to PARI/GP and OSCAR)
+by Björn Assmann,
+   Andreas Distler (a.distler@tu-bs.de), and
+   Bettina Eick (http://www.iaa.tu-bs.de/beick).
+maintained by:
+   Max Horn (https://www.quendi.de/math) and
+   The GAP Team (support@gap-system.org).
+Homepage: https://gap-packages.github.io/alnuth
+Report issues at https://github.com/gap-packages/alnuth/issues
+true
+gap&gt;
+</pre></div>
+
+<p>To load a certain version of <strong class="pkg">Alnuth</strong> you can specify the version number as second argument in the call to <code class="code">LoadPackage</code>. (See <code class="func">LoadPackage</code> (<a href="https://docs.gap-system.org/doc/ref/chap76.html#X79B373A77B29D1F5"><span class="RefLink">Reference: LoadPackage</span></a>) in the <strong class="pkg">GAP</strong> reference manual or type <code class="code">?LoadPackage</code> within a GAP session).</p>
+
+<p>Once the package is loaded, it is possible to check the correct installation running a short test by calling <code class="code">ReadPackage("Alnuth", "tst/testinstall.tst");</code>.</p>
+
+
+<div class="example"><pre>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">ReadPackage("Alnuth", "tst/testinstall.g");</span>
+Architecture: aarch64-apple-darwin21.4.0-default64-kv8
+
+testing: GAPROOT/pkg/alnuth/tst/ALNUTH.tst
+      66 ms (33 ms GC) and 11.0MB allocated for GAPROOT/pkg/alnuth/tst/ALNUTH.tst
+testing: GAPROOT/pkg/alnuth/tst/version.tst
+      21 ms (21 ms GC) and 29.6KB allocated for GAPROOT/pkg/alnuth/tst/version.tst
+-----------------------------------
+total        87 ms (54 ms GC) and 11.0MB allocated
+              0 failures in 2 files
+
+#I  No errors detected while testing
+gap&gt;
+</pre></div>
+
+<p>The architecture, timings and memory usage will usually differ; other discrepancies in the output indicate some problem.</p>
+
+<p>If the test suite runs into an error in the first part, which when running outside OSCAR verifies the availability of PARI/GP, check your installation of PARI/GP and consult the last chapter of the documentation of <strong class="pkg">Alnuth</strong> for more information.</p>
+
+<p>If you find any bugs or have any suggestions or comments, we would very much appreciate it if you would let us know by submitting an issue at the <strong class="pkg">Alnuth</strong> issue tracker on GitHub <span class="URL"><a href="https://github.com/gap-packages/alnuth/issues">https://github.com/gap-packages/alnuth/issues</a></span> or by writing an mail to <span class="URL"><a href="mailto:support@gap-system.org">support@gap-system.org</a></span>.</p>
+
+<p> </p>
+
+
+<div class="chlinkprevnextbot">&nbsp;<a href="chap0.html">[Top of Book]</a>&nbsp;  <a href="chap0.html#contents">[Contents]</a>&nbsp;  &nbsp;<a href="chap3.html">[Previous Chapter]</a>&nbsp;  &nbsp;<a href="chapBib.html">[Next Chapter]</a>&nbsp;  </div>
+
+
+<div class="chlinkbot"><span class="chlink1">Goto Chapter: </span><a href="chap0.html">Top</a>  <a href="chap1.html">1</a>  <a href="chap2.html">2</a>  <a href="chap3.html">3</a>  <a href="chap4.html">4</a>  <a href="chapBib.html">Bib</a>  <a href="chapInd.html">Ind</a>  </div>
+
+<hr />
+<p class="foot">generated by <a href="https://www.math.rwth-aachen.de/~Frank.Luebeck/GAPDoc">GAPDoc2HTML</a></p>
+</body>
+</html>

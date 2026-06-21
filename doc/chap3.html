@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+<title>GAP (Alnuth) - Chapter 3: An example application</title>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<meta name="generator" content="GAPDoc2HTML" />
+<link rel="stylesheet" type="text/css" href="manual.css" />
+<script src="manual.js" type="text/javascript"></script>
+<script type="text/javascript">overwriteStyle();</script>
+</head>
+<body class="chap3"  onload="jscontent()">
+
+
+<div class="chlinktop"><span class="chlink1">Goto Chapter: </span><a href="chap0.html">Top</a>  <a href="chap1.html">1</a>  <a href="chap2.html">2</a>  <a href="chap3.html">3</a>  <a href="chap4.html">4</a>  <a href="chapBib.html">Bib</a>  <a href="chapInd.html">Ind</a>  </div>
+
+<div class="chlinkprevnexttop">&nbsp;<a href="chap0.html">[Top of Book]</a>&nbsp;  <a href="chap0.html#contents">[Contents]</a>&nbsp;  &nbsp;<a href="chap2.html">[Previous Chapter]</a>&nbsp;  &nbsp;<a href="chap4.html">[Next Chapter]</a>&nbsp;  </div>
+
+<p id="mathjaxlink" class="pcenter"><a href="chap3_mj.html">[MathJax on]</a></p>
+<p><a id="X81CAD2F27B2066C4" name="X81CAD2F27B2066C4"></a></p>
+<div class="ChapSects"><a href="chap3.html#X81CAD2F27B2066C4">3 <span class="Heading">An example application</span></a>
+<div class="ContSect"><span class="tocline"><span class="nocss">&nbsp;</span><a href="chap3.html#X7981DB6C79742C4C">3.1 <span class="Heading">Number fields defined by matrices</span></a>
+</span>
+</div>
+<div class="ContSect"><span class="tocline"><span class="nocss">&nbsp;</span><a href="chap3.html#X85ADC6A27B26C804">3.2 <span class="Heading">Number fields defined by a polynomial</span></a>
+</span>
+</div>
+</div>
+
+<h3>3 <span class="Heading">An example application</span></h3>
+
+<p>In this section we outline two example computations with the functions of the previous chapter. The first example uses number fields defined by matrices and the second example considers number fields defined by a polynomial.</p>
+
+<p><a id="X7981DB6C79742C4C" name="X7981DB6C79742C4C"></a></p>
+
+<h4>3.1 <span class="Heading">Number fields defined by matrices</span></h4>
+
+
+<div class="example"><pre>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">m1 := [ [ 1, 0, 0, -7 ], </span>
+<span class="GAPprompt">&gt;</span> <span class="GAPinput">           [ 7, 1, 0, -7 ], </span>
+<span class="GAPprompt">&gt;</span> <span class="GAPinput">           [ 0, 7, 1, -7 ], </span>
+<span class="GAPprompt">&gt;</span> <span class="GAPinput">           [ 0, 0, 7, -6 ] ];;</span>
+
+#
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">m2 := [ [ 0, 0, -13, 14 ], </span>
+<span class="GAPprompt">&gt;</span> <span class="GAPinput">           [ -1, 0, -13, 1 ], </span>
+<span class="GAPprompt">&gt;</span> <span class="GAPinput">           [ 13, -1, -13, 1 ], </span>
+<span class="GAPprompt">&gt;</span> <span class="GAPinput">           [ 0, 13, -14, 1 ] ];;</span>
+
+#
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">F := FieldByMatricesNC( [m1, m2] );</span>
+&lt;rational matrix field of unknown degree&gt;
+
+#
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">DegreeOverPrimeField(F);</span>
+4
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">PrimitiveElement(F);</span>
+[ [ 0, -1, 1, 0 ], [ 0, -1, 0, 1 ], [ 0, -1, 0, 0 ], [ 1, -1, 0, 0 ] ]
+
+#
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">Basis(F);</span>
+Basis( &lt;rational matrix field of degree 4&gt;, 
+[ [ [ 1, 0, 0, 0 ], [ 0, 1, 0, 0 ], [ 0, 0, 1, 0 ], [ 0, 0, 0, 1 ] ], 
+  [ [ 0, 1, 0, 0 ], [ -1, 1, 1, 0 ], [ -1, 0, 1, 1 ], [ -1, 0, 0, 1 ] ], 
+  [ [ 0, 0, 1, 0 ], [ -1, 0, 1, 1 ], [ -1, -1, 1, 1 ], [ 0, -1, 0, 1 ] ], 
+  [ [ 0, 0, 0, 1 ], [ -1, 0, 0, 1 ], [ 0, -1, 0, 1 ], [ 0, 0, -1, 1 ] ] ] )
+
+#
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">MaximalOrderBasis(F);</span>
+Basis( &lt;rational matrix field of degree 4&gt;, 
+[ [ [ 1, 0, 0, 0 ], [ 0, 1, 0, 0 ], [ 0, 0, 1, 0 ], [ 0, 0, 0, 1 ] ], 
+  [ [ 0, -1, 1, 0 ], [ 0, -1, 0, 1 ], [ 0, -1, 0, 0 ], [ 1, -1, 0, 0 ] ], 
+  [ [ 0, 0, 0, -1 ], [ 1, 0, 0, -1 ], [ 0, 1, 0, -1 ], [ 0, 0, 1, -1 ] ], 
+  [ [ -1, 1, 0, 0 ], [ -1, 0, 1, 0 ], [ -1, 0, 0, 1 ], [ -1, 0, 0, 0 ] ] ] )
+
+#
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">U := UnitGroup(F);</span>
+&lt;matrix group with 2 generators&gt;
+
+#
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">u := GeneratorsOfGroup( U );;</span>
+
+#
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">nat := IsomorphismPcpGroup(U);;</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">H := Image(nat);</span>
+Pcp-group with orders [ 10, 0 ]
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">ImageElm( nat, u[1] );</span>
+g1
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">ImageElm( nat, u[2] );</span>
+g2
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">ImageElm( nat, u[1]*u[2] );</span>
+g1*g2
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">u[1] = PreImagesRepresentative(nat, GeneratorsOfGroup(H)[1] );</span>
+true
+</pre></div>
+
+<p><a id="X85ADC6A27B26C804" name="X85ADC6A27B26C804"></a></p>
+
+<h4>3.2 <span class="Heading">Number fields defined by a polynomial</span></h4>
+
+
+<div class="example"><pre>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">g := UnivariatePolynomial( Rationals, [ 16, 64, -28, -4, 1 ] );</span>
+x^4-4*x^3-28*x^2+64*x+16
+
+#
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">F := FieldByPolynomialNC(g);</span>
+&lt;algebraic extension over the Rationals of degree 4&gt;
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">PrimitiveElement(F);</span>
+a
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">MaximalOrderBasis(F);</span>
+Basis( &lt;algebraic extension over the Rationals of degree 4&gt;, 
+[ !1, 1/2*a, 1/4*a^2, 1/56*a^3+1/14*a^2+1/14*a-2/7 ] )
+
+#
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">U := UnitGroup(F);</span>
+&lt;group with 4 generators&gt;
+
+#
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">natU := IsomorphismPcpGroup(U);;</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">elms := List( [1..10], x-&gt; Random(F) );;</span>
+
+#
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput"> PcpPresentationOfMultiplicativeSubgroup( F, elms );</span>
+Pcp-group with orders [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ]
+
+#
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">isom := IsomorphismPcpGroup( F, elms );;</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">y := RandomGroupElement( elms );;</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">z := ImageElm( isom, y );;</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">y = PreImagesRepresentative( isom, z );</span>
+true
+
+#
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">FactorsPolynomialAlgExt( F, g );</span>
+[ x_1+(-a), x_1+(a-2), x_1+(-1/7*a^3+3/7*a^2+31/7*a-40/7), 
+  x_1+(1/7*a^3-3/7*a^2-31/7*a+26/7) ]
+</pre></div>
+
+
+<div class="chlinkprevnextbot">&nbsp;<a href="chap0.html">[Top of Book]</a>&nbsp;  <a href="chap0.html#contents">[Contents]</a>&nbsp;  &nbsp;<a href="chap2.html">[Previous Chapter]</a>&nbsp;  &nbsp;<a href="chap4.html">[Next Chapter]</a>&nbsp;  </div>
+
+
+<div class="chlinkbot"><span class="chlink1">Goto Chapter: </span><a href="chap0.html">Top</a>  <a href="chap1.html">1</a>  <a href="chap2.html">2</a>  <a href="chap3.html">3</a>  <a href="chap4.html">4</a>  <a href="chapBib.html">Bib</a>  <a href="chapInd.html">Ind</a>  </div>
+
+<hr />
+<p class="foot">generated by <a href="https://www.math.rwth-aachen.de/~Frank.Luebeck/GAPDoc">GAPDoc2HTML</a></p>
+</body>
+</html>

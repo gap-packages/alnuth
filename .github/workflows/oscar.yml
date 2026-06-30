@@ -1,0 +1,68 @@
+name: OSCAR
+
+# Trigger the workflow on push or pull request
+on:
+  push:
+    branches:
+      - master
+      - main
+  pull_request:
+
+# the `concurrency` settings ensure that not too many CI jobs run in parallel
+concurrency:
+  # group by workflow and ref; the last slightly strange component ensures that for pull
+  # requests, we limit to 1 concurrent job, but for the default repository branch we don't
+  group: ${{ github.workflow }}-${{ github.ref }}-${{ github.ref_name != github.event.repository.default_branch || github.run_number }}
+  # Cancel intermediate builds, but only if it is a pull request build.
+  cancel-in-progress: ${{ startsWith(github.ref, 'refs/pull/') }}
+
+jobs:
+  oscar-smoke:
+    name: Oscar smoke test
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+
+    steps:
+      - uses: actions/checkout@v6
+      - uses: julia-actions/setup-julia@v2
+        with:
+          version: lts
+      - uses: julia-actions/cache@v2
+      - name: Install Oscar dev environment
+        run: |
+          julia --project=oscar-smoke --depwarn=error -e '
+            import Pkg
+            Pkg.develop(name="Oscar")
+            Pkg.add("GAP")
+            Pkg.instantiate()
+          '
+      - name: Override GAP.jl alnuth artifact
+        env:
+          ALNUTH_CHECKOUT: ${{ github.workspace }}
+          JULIA_DEPOT_OVERRIDE: ${{ runner.temp }}/julia-depot-override
+        run: |
+          julia --project=oscar-smoke -e '
+            using GAP
+            artifact_hash = basename(dirname(GAP.gap_pkg_artifact_dir("alnuth")))
+            artifacts_dir = joinpath(ENV["JULIA_DEPOT_OVERRIDE"], "artifacts")
+            mkpath(artifacts_dir)
+            open(joinpath(artifacts_dir, "Overrides.toml"), "w") do io
+              # GAP.jl resolves GAP package artifacts by hash, so we must override the
+              # currently resolved Alnuth artifact hash directly instead of using a
+              # package-UUID and artifact-name override.
+              println(io, artifact_hash, " = ", repr(abspath(ENV["ALNUTH_CHECKOUT"])))
+            end
+          '
+      - name: Run OscarInterface tests inside Oscar
+        env:
+          ALNUTH_CHECKOUT: ${{ github.workspace }}
+          JULIA_DEPOT_PATH: "${{ runner.temp }}/julia-depot-override:"
+        run: |
+          julia --project=oscar-smoke --depwarn=error -e '
+            using Oscar
+            installation_path = String(GAP.Globals.PackageInfo(GAP.Obj("alnuth"))[1].InstallationPath)
+            println("Alnuth installation path: ", installation_path)
+            expected_path = abspath(ENV["ALNUTH_CHECKOUT"]) * "/"
+            installation_path == expected_path || error("expected alnuth at $(expected_path), got $(installation_path)")
+            GAP.Packages.test("OscarInterface") || error("OscarInterface tests failed")
+          '
